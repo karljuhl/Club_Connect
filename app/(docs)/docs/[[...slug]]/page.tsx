@@ -38,7 +38,7 @@ export async function generateMetadata({
         return {}
     }
 
-    const url = `http://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
+    const url = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
 
     console.log(`Environment URL: ${process.env.NEXT_PUBLIC_VERCEL_URL}`);
 
