@@ -1,7 +1,7 @@
 // @ts-nocheck
 // TODO: Fix this when we turn strict mode on.
 import { UserSubscriptionPlan } from "@/types"
-import { basicPlan, freePlan, hobbyPlan, proPlan } from "@/config/subscriptions"
+import { basicPlan, freePlan, hobbyPlan, proPlan, HIDDEN, managedWeb } from "@/config/subscriptions"
 import { db } from "@/lib/db"
 import { stripe } from "@/lib/stripe"
 
@@ -32,13 +32,20 @@ export async function getUserSubscriptionPlan(
     if (hasPlan) {
         const subscription = await stripe.subscriptions.retrieve(user.stripeSubscriptionId)
 
-        if (subscription.plan.nickname === "Pro plan") {
+        if (subscription.plan.nickname === "Managed Web & Phone Plan") {
             plan = proPlan
-        } else if (subscription.plan.nickname === "Hobby plan") {
+        } else if (subscription.plan.nickname === "Web Plan") {
             plan = hobbyPlan
-        } else if (subscription.plan.nickname === "Basic plan") {
+        } else if (subscription.plan.nickname === "Web Plan") {
+            plan = managedWeb
+        } else if (subscription.plan.nickname === "Web & Phone Plan") {
             plan = basicPlan
+        } else if (subscription.plan.nickname === "Managed Web Plan") {
+            plan = basicPlan
+        } else if (subscription.plan.nickname === "Super Admin Plan") {
+            plan = HIDDEN
         }
+
     }
 
     return {

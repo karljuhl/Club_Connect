@@ -29,7 +29,7 @@ export function ChatMessage({ message, children, ...props }: ChatMessageProps) {
                         : 'bg-primary text-primary-foreground'
                 )}
             >
-                {message.role === 'user' ? <Icons.user /> : <Icons.bot />}
+                {message.role === 'user' ? <Icons.user /> : <Icons.bell />}
             </div>
             <div className="flex-1 px-1 ml-4 space-y-2 overflow-hidden">
                 {message.content == "loading" ? <Icons.loading className="animate-spin" /> :
