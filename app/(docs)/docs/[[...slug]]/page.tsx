@@ -38,7 +38,7 @@ export async function generateMetadata({
         return {}
     }
 
-    const url = process.env.NEXT_PUBLIC_VERCEL_URL
+    const baseUrl = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
 
     const ogUrl = new URL(`${url}/api/og`)
     ogUrl.searchParams.set("heading", doc.description ?? doc.title)
