@@ -112,6 +112,7 @@ export type UploadPublishedFile = {
 
 export type SubscriptionPlan = {
   name: string
+  availability: string
   description: string
   stripePriceId: string
 

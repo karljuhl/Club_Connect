@@ -55,6 +55,7 @@ export const managedWeb: SubscriptionPlan = {
 
 export const basicPlan: SubscriptionPlan = {
     name: "WEB & PHONE",
+    availability: "COMING SOON",
     description: "The WEB & PHONE plan has 2 chatbots, 3 crawlers, 6 files and unlimited messages.",
     stripePriceId: process.env.NEXT_PUBLIC_STRIPE_WANDP_PRICE_ID || "",
 
@@ -74,6 +75,7 @@ export const basicPlan: SubscriptionPlan = {
 
 export const proPlan: SubscriptionPlan = {
     name: "MANAGED W&P",
+    availability: "COMING SOON",
     description: "The MANAGED W&P plan has 4 chatbots, 4 crawlers, 6 files, unlimited messages and with our experienced team helping you set up and keeping a close eye on the day-to-day performance.",
     stripePriceId: process.env.NEXT_PUBLIC_STRIPE_MWANDP_PRICE_ID || "",
 

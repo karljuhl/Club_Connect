@@ -7,7 +7,7 @@ import { getUserSubscriptionPlan } from "@/lib/subscription"
 import { absoluteUrl } from "@/lib/utils"
 import { stripeCheckoutSchema } from "@/lib/validations/stripeCheckout"
 
-const billingUrl = absoluteUrl("dashboard/billing")
+const billingUrl = absoluteUrl("/dashboard/billing")
 
 export async function POST(req: Request) {
     try {

@@ -103,7 +103,7 @@ export function BillingForm({
             <Card className="border-0 shadow-0">
                 <div className="flex flex-wrap gap-6 mt-8 md:gap-8">
                     {[freePlan, hobbyPlan, managedWeb, basicPlan, proPlan, HIDDEN].map((plan, i) => {
-                        if (plan.name === basicPlan.name) {
+                        if (plan.name === managedWeb.name) {
                             return (
                                 <div key={i} className="hover:shadow-sm relative flex flex-col p-2 bg-white rounded-lg  bg-zinc-850 justify-between border border-purple-500">
                                     <div className="px-3 py-1 text-sm text-white bg-gradient-to-r from-pink-500 to-purple-500 rounded-full inline-block absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -111,7 +111,7 @@ export function BillingForm({
                                     </div>
                                     <Card className="shadow-none border-0 p-0 m-0" key={i}>
                                         <CardHeader>
-                                            <CardTitle>{plan.name}</CardTitle>
+                                            <CardTitle style={{ color: plan.availability === "COMING SOON" ? "gray" : "black" }}>{plan.name}</CardTitle>
                                             <CardDescription>${plan.price}/month</CardDescription>
                                         </CardHeader>
                                         <CardContent>
@@ -152,7 +152,9 @@ export function BillingForm({
                                         <CardFooter>
                                             <Button
                                                 onClick={(e) => openSession(e, plan.stripePriceId)}
-                                                className={cn(buttonVariants())}>
+                                                className={cn(buttonVariants())}
+                                                disabled={plan.availability === "COMING SOON" || isLoading}
+                                            >
                                                 {isLoading && (
                                                     <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                                                 )}
@@ -163,14 +165,19 @@ export function BillingForm({
                                 </div>)
                         }
                         return (
-                            <div key={i} className="hover:shadow-sm relative flex flex-col p-2 bg-white rounded-lg bg-zinc-850 justify-between border ">
-                                <Card className="shadow-none border-0 p-0 m-0" key={i}>
+                            <div key={i} className={`relative flex flex-col p-2 bg-white rounded-lg justify-between border ${plan.availability === "COMING SOON" ? "bg-gray-200" : "bg-zinc-850"} hover:shadow-sm`}>
+                                {plan.availability === "COMING SOON" && (
+                                    <div className="absolute inset-0 bg-white bg-opacity-80 flex items-center justify-center text-gray-500 font-bold text-xl uppercase z-10">
+                                        Coming Soon
+                                    </div>
+                                )}
+                                <Card className={`shadow-none border-0 p-0 m-0 ${plan.availability === "COMING SOON" ? "bg-gray-200" : "bg-zinc-850"}`} key={i}>
                                     <CardHeader>
-                                        <CardTitle>{plan.name}</CardTitle>
-                                        <CardDescription>${plan.price}/month</CardDescription>
+                                        <CardTitle style={{ color: plan.availability === "COMING SOON" ? "gray" : "black" }}>{plan.name}</CardTitle>
+                                        <CardDescription className={`${plan.availability === "COMING SOON" ? "text-gray-400" : "text-black"}`}>${plan.price}/month</CardDescription>
                                     </CardHeader>
                                     <CardContent>
-                                        <ul className="mt-4 space-y-2">
+                                        <ul className="mt-4 space-y-2" style={{ color: plan.availability === "COMING SOON" ? "gray" : "black" }}>
                                             <li className="flex items-center">
                                                 - {plan.maxChatbots} Chatbots
                                             </li>
@@ -208,7 +215,9 @@ export function BillingForm({
                                         {plan.name !== freePlan.name &&
                                             <Button
                                                 onClick={(e) => openSession(e, plan.stripePriceId)}
-                                                className={cn(buttonVariants())}>
+                                                className={cn(buttonVariants())}
+                                                disabled={plan.availability === "COMING SOON" || isLoading}
+                                            >
                                                 {isLoading && (
                                                     <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                                                 )}
