@@ -6,7 +6,7 @@ import localFont from "next/font/local"
 
 import { Metadata } from "next";
 import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/components/theme-provider";
+//import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { siteConfig } from "@/config/site"
 import Chatbot from '@/components/chatbot';
@@ -25,8 +25,8 @@ const fontHeading = localFont({
   variable: "--font-heading",
 })
 
-const title = `Build chatbot using OpenAI Assistant - ${siteConfig.name}`;
-const description = "OpenAssistantGPT is an open source platform for building chatbot using OpenAI's assitants.";
+const title = `Create & Manage Frontline Support your Facility - ${siteConfig.name}`;
+const description = "ClubConnect is a platform for creating frontline-support chatbots for your facility.";
 
 export const metadata: Metadata = {
   title,
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: title,
     description: description,
     url: new URL('https://openassitantgpt.io/'),
-    siteName: 'OpenAssistantGPT',
+    siteName: 'ClubConnect - Empowering your Facility',
     type: 'website',
   },
 };
@@ -65,7 +65,6 @@ export default async function RootLayout({
           fontHeading.variable
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <TooltipProvider>
             {children}
             <Toaster />
@@ -73,7 +72,6 @@ export default async function RootLayout({
               process.env.VERCEL_ENV === "production" ? <Analytics /> : <></>
             }
           </TooltipProvider>
-        </ThemeProvider>
         <Chatbot />
       </body>
       <GoogleAnalytics gaId="AW-11267388324" />

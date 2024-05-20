@@ -1,36 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider  = "postgresql"
   url       = env("POSTGRES_PRISMA_URL")
   directUrl = env("POSTGRES_DIRECT_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
-}
-
 model OpenAIConfig {
   id           String   @id @default(cuid())
   userId       String   @unique
   globalAPIKey String
-  createdAt    DateTime @default(now()) @map(name: "created_at")
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now()) @map("created_at")
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model ChatbotFiles {
   id         String   @id @default(cuid())
   assignedAt DateTime @default(now())
-
-  chatbotId String
-  chatbot   Chatbot @relation(fields: [chatbotId], references: [id], onDelete: Cascade)
-
-  fileId String
-  file   File   @relation(fields: [fileId], references: [id], onDelete: Cascade)
+  chatbotId  String
+  fileId     String
+  chatbot    Chatbot  @relation(fields: [chatbotId], references: [id], onDelete: Cascade)
+  file       File     @relation(fields: [fileId], references: [id], onDelete: Cascade)
 }
 
 model ChatbotErrors {
   id           String   @id @default(cuid())
-  createdAt    DateTime @default(now()) @map(name: "created_at")
+  createdAt    DateTime @default(now()) @map("created_at")
   errorMessage String
   threadId     String
   chatbotId    String
@@ -38,65 +35,59 @@ model ChatbotErrors {
 }
 
 model Chatbot {
-  id                  String        @id @default(cuid())
-  name                String
-  userId              String
-  openaiId            String
-  createdAt           DateTime      @default(now()) @map(name: "created_at")
-  openaiKey           String
-  modelId             String?
-  model               ChatbotModel? @relation(fields: [modelId], references: [id])
-  prompt              String?
-  welcomeMessage      String
-  chatbotErrorMessage String        @default("Oops! An error has occurred. If the issue persists, feel free to reach out to our support team for assistance. We're here to help!")
-  isImported          Boolean       @default(false)
+  id                              String            @id @default(cuid())
+  name                            String
+  userId                          String
+  openaiId                        String
+  createdAt                       DateTime          @default(now()) @map("created_at")
+  openaiKey                       String
+  modelId                         String?
+  prompt                          String?
+  welcomeMessage                  String
+  chatbotErrorMessage             String            @default("Oops! An error has occurred. If the issue persists, feel free to reach out to our support team for assistance. We're here to help!")
+  isImported                      Boolean           @default(false)
+  displayBranding                 Boolean           @default(true)
+  chatTitle                       String            @default("Chat with us")
+  chatMessagePlaceHolder          String            @default("Type a message...")
+  bubbleColor                     String            @default("#FFFFFF")
+  bubbleTextColor                 String            @default("#000000")
+  chatHeaderBackgroundColor       String            @default("#FFFFFF")
+  chatHeaderTextColor             String            @default("#000000")
+  chatbotReplyBackgroundColor     String            @default("#e4e4e7")
+  chatbotReplyTextColor           String            @default("#000000")
+  userReplyBackgroundColor        String            @default("#3b82f6")
+  userReplyTextColor              String            @default("#FFFFFF")
+  inquiryEnabled                  Boolean           @default(false)
+  inquiryLinkText                 String            @default("Contact our support team")
+  inquiryTitle                    String            @default("Contact our support team")
+  inquirySubtitle                 String            @default("Our team is here to help you with any questions you may have. Please provide us with your email and a brief message so we can assist you.")
+  inquiryEmailLabel               String            @default("Email")
+  inquiryMessageLabel             String            @default("Message")
+  inquirySendButtonText           String            @default("Send message")
+  inquiryAutomaticReplyText       String            @default("Your inquiry has been sent. Our team will get back to you shortly.")
+  inquiryDisplayLinkAfterXMessage Int               @default(1)
+  ChatbotErrors                   ChatbotErrors[]
+  ChatbotFiles                    ChatbotFiles[]
+  ClientInquiries                 ClientInquiries[]
+  model                           ChatbotModel?     @relation(fields: [modelId], references: [id])
+  user                            User              @relation(fields: [userId], references: [id])
 
-  displayBranding        Boolean @default(true)
-  chatTitle              String  @default("Chat with us")
-  chatMessagePlaceHolder String  @default("Type a message...")
-
-  bubbleColor                 String @default("#FFFFFF")
-  bubbleTextColor             String @default("#000000")
-  chatHeaderBackgroundColor   String @default("#FFFFFF")
-  chatHeaderTextColor         String @default("#000000")
-  chatbotReplyBackgroundColor String @default("#e4e4e7")
-  chatbotReplyTextColor       String @default("#000000")
-  userReplyBackgroundColor    String @default("#3b82f6")
-  userReplyTextColor          String @default("#FFFFFF")
-
-  inquiryEnabled                  Boolean @default(false)
-  inquiryLinkText                 String  @default("Contact our support team")
-  inquiryTitle                    String  @default("Contact our support team")
-  inquirySubtitle                 String  @default("Our team is here to help you with any questions you may have. Please provide us with your email and a brief message so we can assist you.")
-  inquiryEmailLabel               String  @default("Email")
-  inquiryMessageLabel             String  @default("Message")
-  inquirySendButtonText           String  @default("Send message")
-  inquiryAutomaticReplyText       String  @default("Your inquiry has been sent. Our team will get back to you shortly.")
-  inquiryDisplayLinkAfterXMessage Int     @default(1)
-
-  user            User              @relation(fields: [userId], references: [id])
-  ChatbotFiles    ChatbotFiles[]
-  ClientInquiries ClientInquiries[]
-  ChatbotErrors   ChatbotErrors[]
-
-  @@map(name: "chatbots")
+  @@map("chatbots")
 }
 
 model File {
-  id           String   @id @default(cuid())
+  id           String         @id @default(cuid())
   userId       String
   name         String
-  openAIFileId String   @unique
-  createdAt    DateTime @default(now()) @map(name: "created_at")
+  openAIFileId String         @unique
+  createdAt    DateTime       @default(now()) @map("created_at")
   blobUrl      String
-
-  crawlerId String?
-  crawler   Crawler? @relation(fields: [crawlerId], references: [id], onDelete: Cascade)
-
-  user         User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  crawlerId    String?
   ChatbotFiles ChatbotFiles[]
+  crawler      Crawler?       @relation(fields: [crawlerId], references: [id], onDelete: Cascade)
+  user         User           @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@map(name: "files")
+  @@map("files")
 }
 
 model ChatbotModel {
@@ -104,7 +95,7 @@ model ChatbotModel {
   name    String
   Chatbot Chatbot[]
 
-  @@map(name: "models")
+  @@map("models")
 }
 
 model ClientInquiries {
@@ -114,92 +105,84 @@ model ClientInquiries {
   email     String
   inquiry   String
   chatbotId String
-  chatbot   Chatbot   @relation(fields: [chatbotId], references: [id], onDelete: Cascade)
   deletedAt DateTime?
+  chatbot   Chatbot   @relation(fields: [chatbotId], references: [id], onDelete: Cascade)
 }
 
 model Message {
   id        String   @id @default(cuid())
   message   String
-  createdAt DateTime @default(now()) @map(name: "created_at")
+  createdAt DateTime @default(now()) @map("created_at")
   response  String
   threadId  String   @default("")
-
-  from String @default("unknown")
-
-  userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+  from      String   @default("unknown")
+  userId    String
   chatbotId String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@map(name: "messages")
+  @@map("messages")
 }
 
 model Crawler {
   id              String   @id @default(cuid())
   name            String
-  createdAt       DateTime @default(now()) @map(name: "created_at")
+  createdAt       DateTime @default(now()) @map("created_at")
   userId          String
   crawlUrl        String
   urlMatch        String
   selector        String
   maxPagesToCrawl Int
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  File            File[]
 
-  user User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  File File[]
-
-  @@map(name: "crawlers")
+  @@map("crawlers")
 }
 
 model Account {
   id                String  @id @default(cuid())
   userId            String
-  type              String
-  provider          String
   providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  access_token      String?
   expires_at        Int?
-  token_type        String?
+  id_token          String?
+  provider          String
+  refresh_token     String?
   scope             String?
-  id_token          String? @db.Text
   session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token_type        String?
+  type              String
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
 
 model Session {
   id           String   @id @default(cuid())
-  sessionToken String   @unique
   userId       String
   expires      DateTime
+  sessionToken String   @unique
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  createdAt     DateTime  @default(now()) @map(name: "created_at")
-
-  accounts     Account[]
-  sessions     Session[]
-  Chatbot      Chatbot[]
-  Crawler      Crawler[]
-  OpenAIConfig OpenAIConfig[]
-  File         File[]
-
-  stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
-  stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
-  stripePriceId          String?   @map(name: "stripe_price_id")
-  stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
+  id                     String        @id @default(cuid())
+  name                   String?
+  email                  String?       @unique
+  emailVerified          DateTime?
+  image                  String?
+  createdAt              DateTime      @default(now()) @map("created_at")
+  inquiryEmailEnabled    Boolean       @default(true)
+  stripeCurrentPeriodEnd DateTime?     @map("stripe_current_period_end")
+  stripeCustomerId       String?       @unique @map("stripe_customer_id")
+  stripePriceId          String?       @map("stripe_price_id")
+  stripeSubscriptionId   String?       @unique @map("stripe_subscription_id")
+  accounts               Account[]
+  OpenAIConfig           OpenAIConfig?
+  sessions               Session[]
+  Chatbot                Chatbot[]
+  Crawler                Crawler[]
+  File                   File[]
   Message                Message[]
-
-  inquiryEmailEnabled Boolean @default(true)
 }
 
 model VerificationToken {

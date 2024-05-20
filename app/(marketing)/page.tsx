@@ -6,7 +6,7 @@ import Image from "next/image";
 import { siteConfig } from "@/config/site";
 import { Icons } from "@/components/icons";
 import { FAQ } from '@/components/faq';
-import { freePlan, basicPlan, hobbyPlan, proPlan } from "@/config/subscriptions";
+import { freePlan, basicPlan, hobbyPlan, proPlan, managedWeb } from "@/config/subscriptions";
 
 export default function IndexPage() {
 
@@ -14,22 +14,15 @@ export default function IndexPage() {
     <>
       <section data-aos="fade-up" className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 py-12 md:py-24 lg:py-32">
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
-          <Link
-            href={siteConfig.links.twitter}
-            className="rounded-2xl bg-muted px-4 py-1.5 text-sm font-medium"
-            target="_blank"
-          >
-            Find us on 𝕏
-          </Link>
           <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
-            Build your own chatbot with OpenAI Assistant
+            Empower your Team with a Front-Desk Assistant from ClubConnect
           </h1>
           <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-            An open source platform for building chatbot with the Assistant API. We offer seamless integration for effortlessly incorporating a chatbot into your website.
+            A platform for building and managing chatbots which interact on your website and your phone system. We offer seamless integration for effortlessly incorporating a Front-Desk Assistant as frontline support for your facility.
           </p>
           <div className="space-x-4 space-y-4">
             <Link href="/login" className={cn(buttonVariants({ size: "lg" }))}>
-              <Icons.bot className="h-4 w-4 mr-2"></Icons.bot>
+              <Icons.bell className="h-4 w-4 mr-2"></Icons.bell>
               Get Started for Free
             </Link>
             <Link
@@ -47,10 +40,10 @@ export default function IndexPage() {
       <section data-aos="fade-up" id="chat" className="container py-12 md:py-24 lg:py-32">
         <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
           <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">
-            Test our chatbot assistant
+            Test our front-desk assistant
           </h2>
           <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-            Ask any question about OpenAssistantGPT to our chatbot powered by OpenAI Assistant API and see how it responds. You can also try the chatbot buttom right of the window.
+            Ask any question about ClubConnect to our chatbot powered by OpenAI and see how it responds. You can also try the chatbot buttom right of the window.
           </p>
           <div className="min-w-[85%] min-h-[15rem] text-left items-left pt-6">
             <iframe
@@ -67,7 +60,7 @@ export default function IndexPage() {
             Features
           </h2>
           <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-            Build your own chatbot with OpenAI&apos;s assistant. Give us the URL to crawl and we finish the job.
+            Build your own chatbot with OpenAI&apos;s assistant. Create a document with your facility&apos;s information or give us the URL to fetch it and we finish the job.
           </p>
         </div>
         <div className="mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3 mt-6">
@@ -88,40 +81,7 @@ export default function IndexPage() {
               <div className="space-y-2">
                 <h3 className="font-bold">Easy integration</h3>
                 <p className="text-sm">
-                  Only include our js in your website
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="relative overflow-hidden rounded-lg border bg-background p-2">
-            <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
-              <Icons.coin></Icons.coin>
-              <div className="space-y-2">
-                <h3 className="font-bold">Low cost</h3>
-                <p className="text-sm">
-                  Cheapest chatbot on the market
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="relative overflow-hidden rounded-lg border bg-background p-2">
-            <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
-              <svg width="24" height="24" viewBox="0 0 256 260" fill="currentColor" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid"><path d="M128.001 0C57.317 0 0 57.307 0 128.001c0 56.554 36.676 104.535 87.535 121.46 6.397 1.185 8.746-2.777 8.746-6.158 0-3.052-.12-13.135-.174-23.83-35.61 7.742-43.124-15.103-43.124-15.103-5.823-14.795-14.213-18.73-14.213-18.73-11.613-7.944.876-7.78.876-7.78 12.853.902 19.621 13.19 19.621 13.19 11.417 19.568 29.945 13.911 37.249 10.64 1.149-8.272 4.466-13.92 8.127-17.116-28.431-3.236-58.318-14.212-58.318-63.258 0-13.975 5-25.394 13.188-34.358-1.329-3.224-5.71-16.242 1.24-33.874 0 0 10.749-3.44 35.21 13.121 10.21-2.836 21.16-4.258 32.038-4.307 10.878.049 21.837 1.47 32.066 4.307 24.431-16.56 35.165-13.12 35.165-13.12 6.967 17.63 2.584 30.65 1.255 33.873 8.207 8.964 13.173 20.383 13.173 34.358 0 49.163-29.944 59.988-58.447 63.157 4.591 3.972 8.682 11.762 8.682 23.704 0 17.126-.148 30.91-.148 35.126 0 3.407 2.304 7.398 8.792 6.14C219.37 232.5 256 184.537 256 128.002 256 57.307 198.691 0 128.001 0Zm-80.06 182.34c-.282.636-1.283.827-2.194.39-.929-.417-1.45-1.284-1.15-1.922.276-.655 1.279-.838 2.205-.399.93.418 1.46 1.293 1.139 1.931Zm6.296 5.618c-.61.566-1.804.303-2.614-.591-.837-.892-.994-2.086-.375-2.66.63-.566 1.787-.301 2.626.591.838.903 1 2.088.363 2.66Zm4.32 7.188c-.785.545-2.067.034-2.86-1.104-.784-1.138-.784-2.503.017-3.05.795-.547 2.058-.055 2.861 1.075.782 1.157.782 2.522-.019 3.08Zm7.304 8.325c-.701.774-2.196.566-3.29-.49-1.119-1.032-1.43-2.496-.726-3.27.71-.776 2.213-.558 3.315.49 1.11 1.03 1.45 2.505.701 3.27Zm9.442 2.81c-.31 1.003-1.75 1.459-3.199 1.033-1.448-.439-2.395-1.613-2.103-2.626.301-1.01 1.747-1.484 3.207-1.028 1.446.436 2.396 1.602 2.095 2.622Zm10.744 1.193c.036 1.055-1.193 1.93-2.715 1.95-1.53.034-2.769-.82-2.786-1.86 0-1.065 1.202-1.932 2.733-1.958 1.522-.03 2.768.818 2.768 1.868Zm10.555-.405c.182 1.03-.875 2.088-2.387 2.37-1.485.271-2.861-.365-3.05-1.386-.184-1.056.893-2.114 2.376-2.387 1.514-.263 2.868.356 3.061 1.403Z" fill="#545454" /></svg>
-              <div className="space-y-2">
-                <h3 className="font-bold">Fully open source</h3>
-                <p className="text-sm">
-                  You can find the code on Github
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="relative overflow-hidden rounded-lg border bg-background p-2">
-            <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
-              <Icons.key></Icons.key>
-              <div className="space-y-2">
-                <h3 className="font-bold">Bring your API key</h3>
-                <p className="text-sm">
-                  No extra charge, you get billed directly by OpenAI.
+                  Include a short snippet on your website to enhance your team and be responsive to your customers
                 </p>
               </div>
             </div>
@@ -132,7 +92,7 @@ export default function IndexPage() {
               <div className="space-y-2">
                 <h3 className="font-bold">Low code</h3>
                 <p className="text-sm">
-                  You don&apos;t need to write a lot of code to implement our chatbot
+                  All you need to be able to do is organize your facility&apos;s information into a document
                 </p>
               </div>
             </div>
@@ -140,7 +100,7 @@ export default function IndexPage() {
         </div>
         <div className="mx-auto text-center md:max-w-[58rem]">
           <p className="leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-            {/** can add text eher */}
+            {/** can add text here */}
           </p>
         </div>
       </section>
@@ -211,36 +171,22 @@ export default function IndexPage() {
           <Image alt="code example" className="mt-6 shadow-xl border rounded-lg" width={550} height={550} src="/code_example.png" />
         </div>
       </section>
-      <section data-aos="fade-up" id="open-source" className="container bg-slate-50 py-12 md:py-24 lg:py-32">
-        <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
-          <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">
-            Proudly Open Source
-          </h2>
-          <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-            {siteConfig.name} is open source and powered by open source software. <br />{" "}
-            The code is available on GitHub.
-          </p>
-        </div>
-        <div className="mt-10 mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-left">
-          <GithubCard />
-        </div>
-      </section>
       <section data-aos="fade-up" id="pricing" className="container py-12 md:py-24 lg:py-32">
         <div className="container px-4 md:px-6">
           <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
             <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Pick the perfect plan for you</h2>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Find the Right Plan for your Facility</h2>
               <p className="max-w-[800px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                All plans include everything that is required to build a chatbot.
+                All plans include everything that is required to build a chatbot. No rush, try the free plan first and see what our Front-Desk Assistants can do!
               </p>
             </div>
           </div>
-          <div className="mx-auto mt-10 grid max-w-sm items-start gap-12 sm:max-w-4xl sm:grid-cols-2 lg:max-w-5xl lg:grid-cols-4">
+          <div className="mx-auto mt-10 grid max-w-sm items-start gap-12 sm:max-w-4xl sm:grid-cols-2 lg:max-w-5xl lg:grid-cols-5">
             <div className="flex flex-col space-y-2">
               <div className="space-y-2">
                 <h3 className="text-2xl font-bold tracking-tighter">{freePlan.name}</h3>
                 <p className="text-2xl font-bold tracking-tighter">${freePlan.price}</p>
-                <p className="text-sm text-gray-500 ">Perfect for personal projects, experiments, or simply getting familiar with our powerful tools.</p>
+                <p className="text-sm text-gray-500 ">Perfect for testing out and creating a example for your facility or simply getting familiar with our powerful tools.</p>
               </div>
               <ul className="grid gap-2 py-4">
                 <li>
@@ -266,7 +212,7 @@ export default function IndexPage() {
                 <h3 className="text-2xl font-bold tracking-tighter">{hobbyPlan.name}</h3>
                 <p className="text-2xl font-bold tracking-tighter">${hobbyPlan.price}</p>
                 <p className="text-sm text-gray-500">
-                  Ideal for teams and collaborators who are serious about building and deploying multiple projects.
+                  Ideal for smaller facilities who do not worry about phone load.
                 </p>
               </div>
               <ul className="grid gap-2 py-4">
@@ -294,16 +240,51 @@ export default function IndexPage() {
             </div>
             <div className="flex flex-col space-y-2">
               <div className="space-y-2">
-                <h3 className="text-2xl font-bold tracking-tighter">{basicPlan.name}</h3>
-                <p className="text-2xl font-bold tracking-tighter">${basicPlan.price}</p>
+                <h3 className="text-2xl font-bold tracking-tighter">{managedWeb.name}</h3>
+                <p className="text-2xl font-bold tracking-tighter">${managedWeb.price}</p>
                 <p className="text-sm text-gray-500">
-                  For organizations that require collaboration and deploy multiple chatbots.
+                  For modern facilities which may not have a phone and deal with all customers on their website.
                 </p>
               </div>
               <ul className="grid gap-2 py-4">
                 <li>
                   <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  {basicPlan.maxChatbots} Chatbot
+                  {managedWeb.maxChatbots} Chatbot
+                </li>
+                <li>
+                  <Icons.check className="mr-2 inline-block h-4 w-4" />
+                  {managedWeb.maxCrawlers} Crawlers
+                </li>
+                <li>
+                  <Icons.check className="mr-2 inline-block h-4 w-4" />
+                  {managedWeb.maxFiles} Files
+                </li>
+                <li>
+                  <Icons.check className="mr-2 inline-block h-4 w-4" />
+                  Customizations
+                </li>
+                <li>
+                  <Icons.check className="mr-2 inline-block h-4 w-4" />
+                  Unlimited Messages
+                </li>
+                <li>
+                  <Icons.check className="mr-2 inline-block h-4 w-4" />
+                  Frontline support
+                </li>
+              </ul>
+            </div>
+            <div className="flex flex-col space-y-2">
+              <div className="space-y-2">
+                <h3 className="text-2xl font-bold tracking-tighter">{basicPlan.name}</h3>
+                <p className="text-2xl font-bold tracking-tighter">${basicPlan.price}</p>
+                <p className="text-sm text-gray-500">
+                  For facilities that handle many customers both over the phone and on their website.
+                </p>
+              </div>
+              <ul className="grid gap-2 py-4">
+                <li>
+                  <Icons.check className="mr-2 inline-block h-4 w-4" />
+                  {basicPlan.maxChatbots} Chatbots
                 </li>
                 <li>
                   <Icons.check className="mr-2 inline-block h-4 w-4" />
@@ -325,6 +306,14 @@ export default function IndexPage() {
                   <Icons.check className="mr-2 inline-block h-4 w-4" />
                   Client Inquiry / Collect Leads
                 </li>
+                <li>
+                  <Icons.check className="mr-2 inline-block h-4 w-4" />
+                  Call Handoff to Front Desk
+                </li>
+                <li>
+                  <Icons.check className="mr-2 inline-block h-4 w-4" />
+                  10 hours of calls included
+                </li>
               </ul>
             </div>
             <div className="flex flex-col space-y-2">
@@ -338,7 +327,7 @@ export default function IndexPage() {
               <ul className="grid gap-2 py-4">
                 <li>
                   <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  {proPlan.maxChatbots} Chatbot
+                  {proPlan.maxChatbots} Chatbots
                 </li>
                 <li>
                   <Icons.check className="mr-2 inline-block h-4 w-4" />
@@ -359,6 +348,18 @@ export default function IndexPage() {
                 <li>
                   <Icons.check className="mr-2 inline-block h-4 w-4" />
                   Client Inquiry / Collect Leads
+                </li>
+                <li>
+                  <Icons.check className="mr-2 inline-block h-4 w-4" />
+                  Call Handoff to Front Desk
+                </li>
+                <li>
+                  <Icons.check className="mr-2 inline-block h-4 w-4" />
+                  30 hours of calls included
+                </li>
+                <li>
+                  <Icons.check className="mr-2 inline-block h-4 w-4" />
+                  Frontline support
                 </li>
               </ul>
             </div>

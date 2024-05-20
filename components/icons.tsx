@@ -40,6 +40,7 @@ import {
   Send,
   Loader,
   RefreshCcw,
+  ConciergeBell,
 } from "lucide-react"
 
 export type Icon = LucideIcon
@@ -106,4 +107,5 @@ export const Icons = {
   message: MessageSquare,
   twitter: Twitter,
   check: Check,
+  bell: ConciergeBell,
 }

@@ -9,60 +9,50 @@ export function FAQ() {
     <Accordion className="w-full mt-4" type="multiple">
       <AccordionItem value="item-0">
         <AccordionTrigger className="hover:underline-none">
-          What is OpenAssistantGPT?
+          What is ClubConnect?
         </AccordionTrigger>
         <AccordionContent className="text-muted-foreground">
-          OpenAssistantGPT is an advanced chatbot solution designed to answer questions, assist with navigating our website, and provide information to users in real-time.
-        </AccordionContent>
-      </AccordionItem>
-
-      <AccordionItem value="item-1">
-        <AccordionTrigger className="hover:underline-none">
-          What are OpenAI assistants?
-        </AccordionTrigger>
-        <AccordionContent className="text-muted-foreground">
-          The Assistants is designed to help developers build powerful AI assistants capable of performing a variety of tasks.
-          Find more information <a href="https://platform.openai.com/docs/assistants/how-it-works" className="underline">here</a>.
+          ClubConnect is an advanced chatbot solution designed to answer questions, assist with understanding facility services & offerings, and provide information to users in real-time. It allows your team to focus on enriching the experience of in-person customers, while having peace of mind that those on the website and calling are getting the answers they are looking for.
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2">
         <AccordionTrigger className="hover:underline-none">
-          How does the chatbot addapt to the website?
+          How does the chatbot adapt to changing information?
         </AccordionTrigger>
         <AccordionContent className="text-muted-foreground">
-          We use custom crawlers that we created to extract the content then this content is used to train the chatbot.
+          We use custom crawlers that are created to extract the information then this content is used to continusouly train the chatbot so it is providing the most up-to-date information.
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-3">
         <AccordionTrigger className="hover:underline-none">
-          Is OpenAssistantGPT always available?
+          Are your front-desk assistants always available?
         </AccordionTrigger>
         <AccordionContent className="text-muted-foreground">
-          Yes, OpenAssistantGPT is available 24/7 to assist with any questions you might have at any time.
+          Yes, ClubConnect&apos;s front-desk assistants are available 24/7 to assist with any questions you or your customers might have at any time.
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-4">
         <AccordionTrigger className="hover:underline-none text-left">
-          What kind of questions can I ask OpenAssistantGPT?
+          What kind of questions can I ask ClubConnect&apos;s Front-Desk Assistant ?
         </AccordionTrigger>
         <AccordionContent className="text-muted-foreground">
-          You can ask OpenAssistantGPT about website navigation, services offered, troubleshooting, and more. It&apos;s here to ensure you find the information you need.
+          You can ask ClubConnect&apos;s Front-Desk Assistant about website navigation, services offered, troubleshooting, and more. It&apos;s here to ensure you find the information you need.
         </AccordionContent>
       </AccordionItem>
       <AccordionItem className="border-b-0" value="item-5">
         <AccordionTrigger className="hover:underline-none text-left">
-          Does OpenAssistantGPT replace human customer service?
+          Does your Front-Desk Assistant replace human customer service?
         </AccordionTrigger>
         <AccordionContent className="text-muted-foreground">
-          OpenAssistantGPT complements our human customer service by handling straightforward questions and issues, allowing our human team to focus on more complex inquiries.
+          ClubConnect&apos;s Front-Desk Assistant complements human customer service by handling straightforward questions and issues, allowing our human team to focus on more complex inquiries.
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-6">
         <AccordionTrigger className="hover:underline-none">
-          Which model do you support with OpenAssistantGPT?
+          Which models do you support with ClubConnect&apos;s Front-Desk Assistant?
         </AccordionTrigger>
         <AccordionContent className="text-muted-foreground">
-          We support the GPT-3, GPT-4 and GPT-4o model from OpenAI.
+          We currently support the GPT-3, GPT-4 and GPT-4o model from OpenAI.
         </AccordionContent>
       </AccordionItem>
     </Accordion>

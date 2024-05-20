@@ -127,6 +127,8 @@ export type SubscriptionPlan = {
 
   premiumSupport?: boolean
 
+  phoneHandoff: boolean
+
   basicCustomization: boolean
 
   userInquiries: boolean
