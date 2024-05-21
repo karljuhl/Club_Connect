@@ -36,11 +36,9 @@ export async function getUserSubscriptionPlan(
             plan = proPlan
         } else if (subscription.plan.nickname === "Web Plan") {
             plan = hobbyPlan
-        } else if (subscription.plan.nickname === "Web Plan") {
+        } else if (subscription.plan.nickname === "Managed Web Plan") {
             plan = managedWeb
         } else if (subscription.plan.nickname === "Web & Phone Plan") {
-            plan = basicPlan
-        } else if (subscription.plan.nickname === "Managed Web Plan") {
             plan = basicPlan
         } else if (subscription.plan.nickname === "Super Admin Plan") {
             plan = HIDDEN
