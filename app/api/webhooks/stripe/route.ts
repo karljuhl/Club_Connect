@@ -1,89 +1,66 @@
+// This file should be at pages/api/webhooks/stripe.js
+import { buffer } from 'micro'; // 'micro' is used internally by Next.js for handling requests
+import Stripe from 'stripe';
+import { db } from '@/lib/db';
 
-import { headers } from "next/headers"
-import Stripe from "stripe"
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
+    apiVersion: '2023-10-16',
+    typescript: true,
+});
 
-import { db } from "@/lib/db"
-import { stripe } from "@/lib/stripe"
+export const config = {
+    api: {
+        bodyParser: false, // Disables body parsing, you'll handle it manually
+    },
+};
 
-export async function POST(req: Request) {
-    const body = await req.text()
-    const signature = headers().get("stripe-signature") as string
+export default async function handler(req, res) {
+    if (req.method === 'POST') {
+        const buf = await buffer(req); // Get raw request body
+        const sig = req.headers['stripe-signature'];
 
-    let event: Stripe.Event
-
-    try {
-        event = stripe.webhooks.constructEvent(
-            body,
-            signature,
-            process.env.STRIPE_WEBHOOK_SECRET || ""
-        )
-    } catch (error: any) {
-        console.log(error)
-        return new Response(`Webhook Error: ${error.message}`, { status: 400 })
-    }
-
-    const session = event.data.object as Stripe.Checkout.Session
-
-    if (event.type === "checkout.session.completed") {
-        console.log("checkout.session.completed")
-        // Retrieve the subscription details from Stripe.
-        const subscription = await stripe.subscriptions.retrieve(
-            session.subscription as string
-        )
-
-        // Update the user stripe into in our database.
-        // Since this is the initial subscription, we need to update
-        // the subscription id and customer id.
         try {
+            const event = stripe.webhooks.constructEvent(
+                buf.toString(), // Convert buffer to string
+                sig,
+                process.env.STRIPE_WEBHOOK_SECRET
+            );
 
-            await db.user.update({
-                where: {
-                    id: session?.metadata?.userId,
-                },
-                data: {
-                    stripeSubscriptionId: subscription.id,
-                    stripeCustomerId: subscription.customer as string,
-                    stripePriceId: subscription.items.data[0].price.id,
-                    stripeCurrentPeriodEnd: new Date(
-                        subscription.current_period_end * 1000
-                    ),
-                },
-            })
+            switch (event.type) {
+                case "checkout.session.completed":
+                    const session = event.data.object;
+                    const subscription = await stripe.subscriptions.retrieve(session.subscription);
 
-        } catch (error) {
-            console.log(error)
-            return new Response(`Update error session completed`, { status: 400 })
+                    // Update the user record with the new subscription info
+                    await db.user.update({
+                        where: {
+                            id: session.metadata.userId,
+                        },
+                        data: {
+                            stripeSubscriptionId: subscription.id,
+                            stripeCustomerId: subscription.customer,
+                            stripePriceId: subscription.items.data[0].price.id,
+                            stripeCurrentPeriodEnd: new Date(subscription.current_period_end * 1000),
+                        },
+                    });
+                    console.log("User subscription updated:", session.metadata.userId);
+                    res.json({ received: true });
+                    break;
+
+                case "invoice.payment_succeeded":
+                    // Similar logic for handling other types of events
+                    break;
+
+                default:
+                    console.warn(`Unhandled event type ${event.type}`);
+                    res.status(200).send('Unhandled event type');
+            }
+        } catch (err) {
+            console.error(`Webhook Error: ${err.message}`);
+            res.status(400).send(`Webhook Error: ${err.message}`);
         }
+    } else {
+        res.setHeader('Allow', 'POST');
+        res.status(405).send('Method Not Allowed');
     }
-
-    if (event.type === "invoice.payment_succeeded") {
-        console.log("invoice.payment_succeeded")
-        // Retrieve the subscription details from Stripe.
-        const subscription = await stripe.subscriptions.retrieve(
-            session.subscription as string
-        )
-
-        // Update the price id and set the new period end.
-        try {
-            console.log(subscription)
-
-            await db.user.update({
-                where: {
-                    stripeSubscriptionId: subscription.id,
-                },
-                data: {
-                    stripePriceId: subscription.items.data[0].price.id,
-                    stripeCurrentPeriodEnd: new Date(
-                        subscription.current_period_end * 1000
-                    ),
-                },
-            })
-
-        } catch (error) {
-            console.log(error)
-            return new Response(`Update error payment succeeded`, { status: 400 })
-        }
-    }
-
-    return new Response(null, { status: 200 })
 }
