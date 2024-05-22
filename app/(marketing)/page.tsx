@@ -208,26 +208,30 @@ export default function IndexPage() {
                     <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Frontline support</li>
                 </ul>
             </div>
-            <div className="relative flex flex-col space-y-2 blur-sm border px-3 py-3 rounded-md bg-gray-100">
-                <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-gray-500 text-xl font-bold z-10">Coming Soon</div>
-                <div className="space-y-2">
-                    <h3 className="text-2xl font-bold tracking-tighter">{basicPlan.name}</h3>
-                    <p className="text-2xl font-bold tracking-tighter">${basicPlan.price}</p>
-                    <p className="text-sm text-gray-700">For facilities that handle many customers both over the phone and on their website.</p>
-                </div>
-                <ul className="grid gap-2 py-4">
-                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {basicPlan.maxChatbots} Chatbots</li>
-                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {basicPlan.maxCrawlers} Crawlers</li>
-                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {basicPlan.maxFiles} Files</li>
-                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Customizations</li>
-                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Unlimited Messages</li>
-                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Client Inquiry / Collect Leads</li>
-                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Call Handoff to Front Desk</li>
-                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> 10 hours of calls included</li>
-                </ul>
-            </div>
-            <div className="relative flex flex-col space-y-2 blur-sm border px-3 py-3 rounded-md bg-gray-100">
-                <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-gray-600 text-xl font-bold z-10">Coming Soon</div>
+            <div className="relative flex flex-col space-y-2 border px-3 py-3 rounded-md bg-gray-100">
+    <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-gray-500 text-xl font-bold z-10">Coming Soon</div>
+    <div className="blur-sm">
+        <div className="space-y-2">
+            <h3 className="text-2xl font-bold tracking-tighter">{basicPlan.name}</h3>
+            <p className="text-2xl font-bold tracking-tighter">${basicPlan.price}</p>
+            <p className="text-sm text-gray-700">For facilities that handle many customers both over the phone and on their website.</p>
+        </div>
+        <ul className="grid gap-2 py-4">
+            <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {basicPlan.maxChatbots} Chatbots</li>
+            <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {basicPlan.maxCrawlers} Crawlers</li>
+            <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {basicPlan.maxFiles} Files</li>
+            <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Customizations</li>
+            <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Unlimited Messages</li>
+            <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Client Inquiry / Collect Leads</li>
+            <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Call Handoff to Front Desk</li>
+            <li><Icons.check className="mr-2 inline-block h-4 w-4" /> 10 hours of calls included</li>
+        </ul>
+    </div>
+</div>
+
+          <div className="relative flex flex-col space-y-2 border px-3 py-3 rounded-md bg-gray-100">
+            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-gray-500 text-xl font-bold z-10">Coming Soon</div>
+              <div className="blur-sm">
                 <div className="space-y-2">
                     <h3 className="text-2xl font-bold tracking-tighter">{proPlan.name}</h3>
                     <p className="text-2xl font-bold tracking-tighter">${proPlan.price}</p>
