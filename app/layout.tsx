@@ -36,11 +36,11 @@ export const metadata: Metadata = {
     title,
     description,
   },
-  metadataBase: new URL('https://openassitantgpt.io/'),
+  metadataBase: new URL('https://club-connect-three.vercel.app'),
   openGraph: {
     title: title,
     description: description,
-    url: new URL('https://openassitantgpt.io/'),
+    url: new URL('https://club-connect-three.vercel.app'),
     siteName: 'ClubConnect - Empowering your Facility',
     type: 'website',
   },
