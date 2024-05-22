@@ -83,6 +83,10 @@ export async function GET(req: Request, context: z.infer<typeof routeContextSche
             return new Response("Missing OpenAI API key", { status: 400, statusText: "Missing OpenAI API key" });
         }
 
+        const openai = new OpenAI({
+            apiKey: openAIConfig?.globalAPIKey
+        })
+
         const crawler = await db.crawler.findFirst({
             select: {
                 id: true,
