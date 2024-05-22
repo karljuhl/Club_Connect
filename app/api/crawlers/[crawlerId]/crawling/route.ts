@@ -29,8 +29,11 @@ async function verifyCurrentUserHasAccessToCrawler(crawlerId: string) {
 }
 
 async function fetchContent(url: string) {
+    // Remove http:// or https:// from the URL
+    const strippedUrl = url.replace(/^https?:\/\//, '');
+
     console.log("Original URL:", url); // Log the original URL
-    const encodedUrl = encodeURIComponent(url); // Ensure URL is encoded
+    const encodedUrl = encodeURIComponent(strippedUrl); // Ensure URL is encoded
     console.log("Encoded URL:", encodedUrl); // Log the encoded URL
 
     const jinaReaderUrl = `https://r.jina.ai/${encodedUrl}`;
