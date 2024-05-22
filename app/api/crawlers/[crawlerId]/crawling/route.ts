@@ -29,15 +29,24 @@ async function verifyCurrentUserHasAccessToCrawler(crawlerId: string) {
 }
 
 async function fetchContent(url: string) {
-    const jinaReaderUrl = `https://r.jina.ai/${encodeURIComponent(url)}`;
+    console.log("Original URL:", url); // Log the original URL
+    const encodedUrl = encodeURIComponent(url); // Ensure URL is encoded
+    console.log("Encoded URL:", encodedUrl); // Log the encoded URL
+
+    const jinaReaderUrl = `https://r.jina.ai/${encodedUrl}`;
+    console.log("Full Jina Reader URL:", jinaReaderUrl); // Log the full URL to be requested
+
     try {
         const response = await fetch(jinaReaderUrl);
-        return await response.text();
+        const text = await response.text();
+        console.log("Response from Jina Reader:", text); // Log the response from the API
+        return text;
     } catch (error) {
-        console.error('Failed to fetch URL via Jina Reader:', url, error);
+        console.error('Failed to fetch URL via Jina Reader:', jinaReaderUrl, error);
         return null;
     }
 }
+
 
 export async function GET(req: Request, context: z.infer<typeof routeContextSchema>) {
     try {
@@ -90,15 +99,26 @@ export async function GET(req: Request, context: z.infer<typeof routeContextSche
         }
 
         const content = await fetchContent(crawler.crawlUrl);
-        if (!content) {
-            console.error('Failed to fetch content:', crawler.crawlUrl);
-            return new Response(null, { status: 500 });
-        }
+if (!content) {
+    console.error('Failed to fetch content:', crawler.crawlUrl);
+    return new Response(null, { status: 500 });
+}
 
-        if (content.trim().length === 0) {
-            console.error('Content fetched contains only spaces:', crawler.crawlUrl + ' - No content found');
-            return new Response(null, { status: 500 });
-        }
+try {
+    const parsedContent = JSON.parse(content);
+    if (parsedContent && parsedContent.error) {
+        console.error('Error in fetched content:', parsedContent.error);
+        return new Response(JSON.stringify(parsedContent.error), { status: 500 });
+    }
+} catch (e) {
+    console.error('Error parsing content:', e);
+}
+
+if (content.trim().length === 0) {
+    console.error('Content fetched contains only spaces:', crawler.crawlUrl + ' - No content found');
+    return new Response(null, { status: 500 });
+}
+
 
         const date = new Date();
         const fileName = crawler.name.toLowerCase().replace(/\s/g, "-") + '-' + date.toISOString() + ".json";

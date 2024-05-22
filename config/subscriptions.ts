@@ -9,7 +9,7 @@ export const freePlan: SubscriptionPlan = {
     maxCrawlers: 1,
     maxFiles: 1,
     unlimitedMessages: false,
-    maxMessagesPerMonth: 350,
+    maxMessagesPerMonth: 150,
     basicCustomization: false,
     userInquiries: false,
     phoneHandoff: false,
