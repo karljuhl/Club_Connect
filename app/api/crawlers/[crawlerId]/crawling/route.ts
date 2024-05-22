@@ -40,7 +40,7 @@ async function fetchContent(url: string) {
     }
 }
 
-export async function handler(
+export async function get(
     req: Request,
     context: z.infer<typeof routeContextSchema>
 ): Promise<Response> {
