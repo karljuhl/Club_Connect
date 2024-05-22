@@ -44,7 +44,7 @@ export default function IndexPage() {
           </p>
           <div className="min-w-[85%] min-h-[15rem] text-left items-left pt-6">
             <iframe
-              src="/embed/clq6m06gc000114hm42s838g2/window?chatbox=false"
+              src="embed/clq6m06gc000114hm42s838g2/window?chatbox=false"
               className="overflow-hidden border border-1 shadow-xl rounded-lg shadow-lg w-full h-[65vh]"
               allowFullScreen allow="clipboard-read; clipboard-write"
             ></iframe>
@@ -230,7 +230,7 @@ export default function IndexPage() {
 </div>
 
           <div className="relative flex flex-col space-y-2 px-3 py-3 rounded-md bg-gray-100">
-            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-zinc-950 text-xl font-bold rounded-md z-10">Coming Soon</div>
+            <div className="absolute inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center text-zinc-950 text-xl font-bold rounded-md z-10">Coming Soon</div>
               <div className="blur-sm">
                 <div className="space-y-2">
                     <h3 className="text-2xl font-bold tracking-tighter">{proPlan.name}</h3>
