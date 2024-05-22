@@ -25,7 +25,6 @@ async function verifyCurrentUserHasAccessToCrawler(crawlerId: string) {
             id: crawlerId,
         },
     });
-
     return count > 0;
 }
 
@@ -40,10 +39,7 @@ async function fetchContent(url: string) {
     }
 }
 
-export async function get(
-    req: Request,
-    context: z.infer<typeof routeContextSchema>
-): Promise<Response> {
+export async function GET(req: Request, context: z.infer<typeof routeContextSchema>) {
     try {
         const session = await getServerSession(authOptions);
         const { params } = routeContextSchema.parse(context);
@@ -67,14 +63,15 @@ export async function get(
         const openAIConfig = await db.openAIConfig.findUnique({
             select: {
                 globalAPIKey: true,
+                id: true,
             },
             where: {
-                userId: user.id
+                userId: session?.user?.id
             }
         });
 
         if (!openAIConfig?.globalAPIKey) {
-            return new Response("Missing OpenAI API key", { status: 400 });
+            return new Response("Missing OpenAI API key", { status: 400, statusText: "Missing OpenAI API key" });
         }
 
         const crawler = await db.crawler.findFirst({
@@ -120,7 +117,7 @@ export async function get(
                 name: fileName,
                 blobUrl: blob.url,
                 openAIFileId: file.id,
-                userId: user.id,
+                userId: session?.user?.id,
                 crawlerId: crawler.id,
             }
         });
