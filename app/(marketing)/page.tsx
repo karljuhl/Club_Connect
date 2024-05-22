@@ -209,7 +209,7 @@ export default function IndexPage() {
                 </ul>
             </div>
             <div className="relative flex flex-col space-y-2 border px-3 py-3 rounded-md bg-gray-100">
-                <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-gray-500 text-xl font-bold z-10">Coming Soon</div>
+                <div className="absolute inset-0 bg-black bg-opacity-50 blur-sm flex items-center justify-center text-gray-500 text-xl font-bold z-10">Coming Soon</div>
                 <div className="space-y-2">
                     <h3 className="text-2xl font-bold tracking-tighter">{basicPlan.name}</h3>
                     <p className="text-2xl font-bold tracking-tighter">${basicPlan.price}</p>
@@ -227,7 +227,7 @@ export default function IndexPage() {
                 </ul>
             </div>
             <div className="relative flex flex-col space-y-2 border px-3 py-3 rounded-md bg-gray-100">
-                <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-gray-600 text-xl font-bold z-10">Coming Soon</div>
+                <div className="absolute inset-0 bg-black bg-opacity-50 blur-md flex items-center justify-center text-gray-600 text-xl font-bold z-10">Coming Soon</div>
                 <div className="space-y-2">
                     <h3 className="text-2xl font-bold tracking-tighter">{proPlan.name}</h3>
                     <p className="text-2xl font-bold tracking-tighter">${proPlan.price}</p>
