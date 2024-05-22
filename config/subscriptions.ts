@@ -19,6 +19,7 @@ export const freePlan: SubscriptionPlan = {
 
 export const hobbyPlan: SubscriptionPlan = {
     name: "WEB",
+    availability: "COMING SOON",
     description: "The WEB plan is limited 1 chatbot, 2 crawlers, 3 files and unlimited messages.",
     stripePriceId: process.env.NEXT_PUBLIC_STRIPE_WEB_PRICE_ID || "",
 
@@ -36,6 +37,7 @@ export const hobbyPlan: SubscriptionPlan = {
 
 export const managedWeb: SubscriptionPlan = {
     name: "MANAGED WEB",
+    availability: "COMING SOON",
     description: "The MANAGED WEB plan has 2 chatbots, 2 crawlers, 4 files, unlimited messages and with our experienced team helping you set up and keeping a close eye on the day-to-day performance.",
     stripePriceId: process.env.NEXT_PUBLIC_STRIPE_MW_PRICE_ID || "",
 

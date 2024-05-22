@@ -179,7 +179,9 @@ export default function IndexPage() {
             </div>
         </div>
         <div className="mx-auto mt-10 grid max-w-sm items-start gap-12 sm:max-w-4xl sm:grid-cols-2 lg:max-w-5xl lg:grid-cols-4">
-            <div className="relative flex flex-col space-y-2 border px-3 py-3 rounded-md bg-gray-100">
+        <div className="relative flex flex-col space-y-2 px-3 py-3 rounded-md bg-gray-100">
+            <div className="absolute inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center text-zinc-950 text-xl font-bold rounded-md z-10">Coming Soon</div>
+              <div className="blur-sm">
                 <div className="space-y-2">
                     <h3 className="text-2xl font-bold tracking-tighter">{hobbyPlan.name}</h3>
                     <p className="text-2xl font-bold tracking-tighter">${hobbyPlan.price}</p>
@@ -193,7 +195,10 @@ export default function IndexPage() {
                     <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Unlimited Messages</li>
                 </ul>
             </div>
-            <div className="relative flex flex-col space-y-2 border px-3 py-3 rounded-md bg-gray-100">
+            </div>
+            <div className="relative flex flex-col space-y-2 px-3 py-3 rounded-md bg-gray-100">
+            <div className="absolute inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center text-zinc-950 text-xl font-bold rounded-md z-10">Coming Soon</div>
+              <div className="blur-sm">
                 <div className="space-y-2">
                     <h3 className="text-2xl font-bold tracking-tighter">{managedWeb.name}</h3>
                     <p className="text-2xl font-bold tracking-tighter">${managedWeb.price}</p>
@@ -207,6 +212,7 @@ export default function IndexPage() {
                     <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Unlimited Messages</li>
                     <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Frontline support</li>
                 </ul>
+            </div>
             </div>
             <div className="relative flex flex-col space-y-2 rounded-md px-3 py-3 bg-gray-100">
     <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-zinc-950 text-xl font-bold rounded-md z-10">Coming Soon</div>
@@ -230,7 +236,7 @@ export default function IndexPage() {
 </div>
 
           <div className="relative flex flex-col space-y-2 px-3 py-3 rounded-md bg-gray-100">
-            <div className="absolute inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center text-zinc-950 text-xl font-bold rounded-md z-10">Coming Soon</div>
+            <div className="absolute inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center text-zinc-950 text-xl font-bold rounded-md z-2">Coming Soon</div>
               <div className="blur-sm">
                 <div className="space-y-2">
                     <h3 className="text-2xl font-bold tracking-tighter">{proPlan.name}</h3>
