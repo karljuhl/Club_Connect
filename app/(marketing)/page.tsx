@@ -251,6 +251,7 @@ export default function IndexPage() {
             </div>
         </div>
     </div>
+    </div>
 </section>
 
       <section data-aos="fade-up" id="faq" className="container space-y-6 py-12 md:py-24 lg:py-32">
