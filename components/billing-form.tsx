@@ -64,7 +64,7 @@ export function BillingForm({
             window.location.href = session.url
         }
     }
-    //console.log(subscriptionPlan)
+    console.log(subscriptionPlan)
 
     return (
         <form className={cn(className)} {...props}>
@@ -102,7 +102,7 @@ export function BillingForm({
             </Card>
             <Card className="border-0 shadow-0">
                 <div className="flex flex-wrap gap-6 mt-8 md:gap-8">
-                    {[freePlan, hobbyPlan, managedWeb, basicPlan, proPlan, HIDDEN].map((plan, i) => {
+                    {[freePlan, hobbyPlan, managedWeb, basicPlan, proPlan].map((plan, i) => {
                         if (plan.name === managedWeb.name) {
                             return (
                                 <div key={i} className="hover:shadow-sm relative flex flex-col p-2 bg-white rounded-lg  bg-zinc-850 justify-between border border-purple-500">
