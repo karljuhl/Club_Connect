@@ -64,7 +64,7 @@ export function BillingForm({
             window.location.href = session.url
         }
     }
-    console.log(subscriptionPlan)
+    //console.log(subscriptionPlan)
 
     return (
         <form className={cn(className)} {...props}>
