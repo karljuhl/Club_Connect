@@ -3,6 +3,8 @@ import * as React from "react"
 import { siteConfig } from "@/config/site"
 import { Icons } from "@/components/icons"
 import Link from "next/link"
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface SiteFooterProps extends React.HTMLAttributes<HTMLElement> {
   simpleFooter?: boolean
@@ -29,6 +31,12 @@ export function SiteFooter({ simpleFooter, className }: SiteFooterProps) {
                 </li>
               </ul>
             </div>
+            <div className="space-x-4 space-y-4">
+            <Link href="/login" className={cn(buttonVariants({ size: "lg" }))}>
+              <Icons.bell className="h-4 w-4 mr-2"></Icons.bell>
+              Get Started for Free
+            </Link>
+          </div>
           </div>
         }
         <div className="flex justify-between items-center border-t border-gray-200 mt-8 pt-4">
