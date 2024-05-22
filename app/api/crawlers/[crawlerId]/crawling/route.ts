@@ -175,7 +175,8 @@ export async function GET(
 
         // Add file to blob
         const blob = await put(fileName, JSON.stringify(content), {
-            access: "public"
+            access: "public",
+            token: process.env.BLOB_READ_WRITE_TOKEN
         })
 
         // Add file to OpenAI
