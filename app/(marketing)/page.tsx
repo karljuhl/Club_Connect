@@ -168,182 +168,87 @@ export default function IndexPage() {
           <Image alt="code example" className="mt-6 shadow-xl border rounded-lg" width={550} height={550} src="/code_example.png" />
         </div>
       </section>
-      <section data-aos="fade-up" id="pricing" className="container py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
-          <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
+<section data-aos="fade-up" id="pricing" className="container py-12 md:py-24 lg:py-32">
+    <div className="container px-4 md:px-6">
+        <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
             <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Find the Right Plan for your Facility</h2>
-              <p className="max-w-[800px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                All plans include everything that is required to build a chatbot. No rush, try the free plan first and see what our Front-Desk Assistants can do!
-              </p>
-            </div>
-          </div>
-          <div className="mx-auto mt-10 grid max-w-sm items-start gap-12 sm:max-w-4xl sm:grid-cols-2 lg:max-w-5xl lg:grid-cols-4">
-            <div className="flex flex-col space-y-2 border px-3 py-3 rounded-md">
-              <div className="space-y-2">
-                <h3 className="text-2xl font-bold tracking-tighter">{hobbyPlan.name}</h3>
-                <p className="text-2xl font-bold tracking-tighter">${hobbyPlan.price}</p>
-                <p className="text-sm">
-                  Ideal for smaller facilities who do not worry about phone load.
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Find the Right Plan for your Facility</h2>
+                <p className="max-w-[800px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                    All plans include everything that is required to build a chatbot. No rush, try the free plan first and see what our Front-Desk Assistants can do!
                 </p>
-              </div>
-              <ul className="grid gap-2 py-4">
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  {hobbyPlan.maxChatbots} Chatbot
-                </li>
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  {hobbyPlan.maxCrawlers} Crawlers
-                </li>
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  {hobbyPlan.maxFiles} Files
-                </li>
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  Customizations
-                </li>
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  Unlimited Messages
-                </li>
-              </ul>
             </div>
-            <div className="flex flex-col space-y-2 border px-3 py-3 rounded-md">
-              <div className="space-y-2">
-                <h3 className="text-2xl font-bold tracking-tighter text-gray-200">{managedWeb.name}</h3>
-                <p className="text-2xl font-bold tracking-tighter text-gray-200">${managedWeb.price}</p>
-                <p className="text-sm text-gray-700">
-                  For modern facilities which may not have a phone and deal with all customers on their website.
-                </p>
-              </div>
-              <ul className="grid gap-2 py-4">
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  {managedWeb.maxChatbots} Chatbot
-                </li>
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  {managedWeb.maxCrawlers} Crawlers
-                </li>
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  {managedWeb.maxFiles} Files
-                </li>
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  Customizations
-                </li>
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  Unlimited Messages
-                </li>
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  Frontline support
-                </li>
-              </ul>
-            </div>
-            <div className="flex flex-col space-y-2 border px-3 py-3 rounded-md">
-            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-xl font-bold z-10">
-              Coming Soon
-            </div>
-              <div className="space-y-2">
-                <h3 className="text-2xl font-bold tracking-tighter">{basicPlan.name}</h3>
-                <p className="text-2xl font-bold tracking-tighter">${basicPlan.price}</p>
-                <p className="text-sm text-gray-700">
-                  For facilities that handle many customers both over the phone and on their website.
-                </p>
-              </div>
-              <ul className="grid gap-2 py-4">
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  {basicPlan.maxChatbots} Chatbots
-                </li>
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  {basicPlan.maxCrawlers} Crawlers
-                </li>
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  {basicPlan.maxFiles} Files
-                </li>
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  Customizations
-                </li>
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  Unlimited Messages
-                </li>
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  Client Inquiry / Collect Leads
-                </li>
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  Call Handoff to Front Desk
-                </li>
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  10 hours of calls included
-                </li>
-              </ul>
-            </div>
-            <div className="flex flex-col space-y-2 border px-3 py-3 rounded-md">
-            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-xl font-bold z-10">
-              Coming Soon
-            </div>
-              <div className="space-y-2">
-                <h3 className="text-2xl font-bold tracking-tighter">{proPlan.name}</h3>
-                <p className="text-2xl font-bold tracking-tighter">${proPlan.price}</p>
-                <p className="text-sm text-gray-700">
-                  Tailored solutions for large-scale operations and advanced requirements.
-                </p>
-              </div>
-              <ul className="grid gap-2 py-4">
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  {proPlan.maxChatbots} Chatbots
-                </li>
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  {proPlan.maxCrawlers} Crawlers
-                </li>
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  {proPlan.maxFiles} Files
-                </li>
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  Customizations
-                </li>
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  Unlimited Messages
-                </li>
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  Client Inquiry / Collect Leads
-                </li>
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  Call Handoff to Front Desk
-                </li>
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  30 hours of calls included
-                </li>
-                <li>
-                  <Icons.check className="mr-2 inline-block h-4 w-4" />
-                  Frontline support
-                </li>
-              </ul>
-            </div>
-          </div>
         </div>
-      </section>
+        <div className="mx-auto mt-10 grid max-w-sm items-start gap-12 sm:max-w-4xl sm:grid-cols-2 lg:max-w-5xl lg:grid-cols-4">
+            <div className="relative flex flex-col space-y-2 border px-3 py-3 rounded-md">
+                <div className="space-y-2">
+                    <h3 className="text-2xl font-bold tracking-tighter">{hobbyPlan.name}</h3>
+                    <p className="text-2xl font-bold tracking-tighter">${hobbyPlan.price}</p>
+                    <p className="text-sm">Ideal for smaller facilities who do not worry about phone load.</p>
+                </div>
+                <ul className="grid gap-2 py-4">
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {hobbyPlan.maxChatbots} Chatbot</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {hobbyPlan.maxCrawlers} Crawlers</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {hobbyPlan.maxFiles} Files</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Customizations</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Unlimited Messages</li>
+                </ul>
+            </div>
+            <div className="relative flex flex-col space-y-2 border px-3 py-3 rounded-md">
+                <div className="space-y-2">
+                    <h3 className="text-2xl font-bold tracking-tighter text-gray-200">{managedWeb.name}</h3>
+                    <p className="text-2xl font-bold tracking-tighter text-gray-200">${managedWeb.price}</p>
+                    <p className="text-sm text-gray-700">For modern facilities which may not have a phone and deal with all customers on their website.</p>
+                </div>
+                <ul className="grid gap-2 py-4">
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {managedWeb.maxChatbots} Chatbot</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {managedWeb.maxCrawlers} Crawlers</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {managedWeb.maxFiles} Files</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Customizations</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Unlimited Messages</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Frontline support</li>
+                </ul>
+            </div>
+            <div className="relative flex flex-col space-y-2 border px-3 py-3 rounded-md">
+                <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-xl font-bold z-10">Coming Soon</div>
+                <div className="space-y-2">
+                    <h3 className="text-2xl font-bold tracking-tighter">{basicPlan.name}</h3>
+                    <p className="text-2xl font-bold tracking-tighter">${basicPlan.price}</p>
+                    <p className="text-sm text-gray-700">For facilities that handle many customers both over the phone and on their website.</p>
+                </div>
+                <ul className="grid gap-2 py-4">
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {basicPlan.maxChatbots} Chatbots</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {basicPlan.maxCrawlers} Crawlers</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {basicPlan.maxFiles} Files</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Customizations</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Unlimited Messages</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Client Inquiry / Collect Leads</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Call Handoff to Front Desk</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> 10 hours of calls included</li>
+                </ul>
+            </div>
+            <div className="relative flex flex-col space-y-2 border px-3 py-3 rounded-md">
+                <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-white text-xl font-bold z-10">Coming Soon</div>
+                <div className="space-y-2">
+                    <h3 className="text-2xl font-bold tracking-tighter">{proPlan.name}</h3>
+                    <p className="text-2xl font-bold tracking-tighter">${proPlan.price}</p>
+                    <p className="text-sm text-gray-700">Tailored solutions for large-scale operations and advanced requirements.</p>
+                </div>
+                <ul className="grid gap-2 py-4">
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {proPlan.maxChatbots} Chatbots</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {proPlan.maxCrawlers} Crawlers</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {proPlan.maxFiles} Files</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Customizations</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Unlimited Messages</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Client Inquiry / Collect Leads</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Call Handoff to Front Desk</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> 30 hours of calls included</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Frontline support</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
       <section data-aos="fade-up" id="faq" className="container space-y-6 py-12 md:py-24 lg:py-32">
         <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
           <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">
