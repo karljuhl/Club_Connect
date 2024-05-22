@@ -1,4 +1,3 @@
-import { GithubCard } from "@/components/github-card";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -215,7 +214,7 @@ export default function IndexPage() {
             </div>
             </div>
             <div className="relative flex flex-col space-y-2 rounded-md px-3 py-3 bg-gray-100">
-    <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-zinc-950 text-xl font-bold rounded-md z-10">Coming Soon</div>
+    <div className="absolute inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center text-zinc-950 text-xl font-bold rounded-md z-10">Coming Soon</div>
     <div className="blur-sm">
         <div className="space-y-2">
             <h3 className="text-2xl font-bold tracking-tighter">{basicPlan.name}</h3>

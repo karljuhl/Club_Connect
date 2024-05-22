@@ -105,10 +105,12 @@ export function BillingForm({
                     {[freePlan, hobbyPlan, managedWeb, basicPlan, proPlan].map((plan, i) => {
                         if (plan.name === managedWeb.name) {
                             return (
-                                <div key={i} className="hover:shadow-sm relative flex flex-col p-2 bg-white rounded-lg  bg-zinc-850 justify-between border border-purple-500">
-                                    <div className="px-3 py-1 text-sm text-white bg-gradient-to-r from-pink-500 to-purple-500 rounded-full inline-block absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                                        Popular
+                                <div key={i} className={`relative flex flex-col p-2 bg-white rounded-lg justify-between border ${plan.availability === "COMING SOON" ? "bg-gray-200" : "bg-zinc-850"} hover:shadow-sm`}>
+                                {plan.availability === "COMING SOON" && (
+                                    <div className="absolute inset-0 bg-white bg-opacity-80 flex items-center justify-center text-gray-500 font-bold text-xl uppercase z-10">
+                                        Coming Soon
                                     </div>
+                                )}
                                     <Card className="shadow-none border-0 p-0 m-0" key={i}>
                                         <CardHeader>
                                             <CardTitle style={{ color: plan.availability === "COMING SOON" ? "gray" : "black" }}>{plan.name}</CardTitle>
