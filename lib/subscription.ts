@@ -33,7 +33,7 @@ export async function getUserSubscriptionPlan(
         const subscription = await stripe.subscriptions.retrieve(user.stripeSubscriptionId);
         console.log("Stripe Subscription retrieved:", subscription);
 
-        switch (subscription.plan.nickname) {
+        switch (subscription.plan.id) {
             case "Managed Web & Phone Plan":
                 plan = proPlan;
                 break;
@@ -46,7 +46,7 @@ export async function getUserSubscriptionPlan(
             case "Web & Phone Plan":
                 plan = basicPlan;
                 break;
-            case "Super Admin Plan":
+            case "price_1PIcopIAkTADmlFD5ZO6MfFl":
                 plan = HIDDEN;
                 break;
             default:
