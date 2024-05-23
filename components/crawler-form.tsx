@@ -116,7 +116,7 @@ export function CrawlerForm({ crawler, className, ...props }: CrawlerFormProps) 
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel htmlFor="crawlUrl">
-                                        Crawling URL
+                                        Crawling URL(s)
                                     </FormLabel>
                                     <Input
                                         defaultValue={crawler?.crawlUrl || ""}
