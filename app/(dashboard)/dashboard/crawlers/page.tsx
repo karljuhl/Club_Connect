@@ -43,7 +43,7 @@ export default async function CrawlersPage() {
       </div>
       <div>
         {crawlers?.length ? (
-          <div className="divide-y divide-border rounded-md border">
+          <div className="divide-y divide-border rounded-md border max-w-screen">
             {crawlers.map((crawler: any) => (
               <CrawlerItem key={crawler.id} crawler={crawler} />
             ))}

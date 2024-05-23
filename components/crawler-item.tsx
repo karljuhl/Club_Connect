@@ -11,7 +11,7 @@ interface CrawlerItemProps {
 
 export function CrawlerItem({ crawler }: CrawlerItemProps) {
     return (
-        <div className="flex items-center justify-between p-4">
+        <div className="flex items-center justify-between p-4 w-1/2">
             <div className="grid gap-1">
                 <Link
                     href={`/dashboard/crawlers/${crawler.id}`}
