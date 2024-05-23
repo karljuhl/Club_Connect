@@ -120,49 +120,7 @@ export function NewCrawlerForm({ className, ...props }: React.HTMLAttributes<HTM
                                         id="crawlUrl"
                                     />
                                     <FormDescription>
-                                        The URL that we will start the crawling on. Make sure the URL starts with the protocol https:// or http://
-                                    </FormDescription>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="urlMatch"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel htmlFor="urlmatch">
-                                        URL Match
-                                    </FormLabel>
-                                    <Input
-                                        id="urlmatch"
-                                        onChange={field.onChange}
-                                    />
-                                    <FormDescription>
-                                        When we crawl we will make sure to always match with this string.
-                                        If you want to crawl everything put the same value as the Crawling URL.
-                                    </FormDescription>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="selector"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel htmlFor="selector">
-                                        Selector
-                                    </FormLabel>
-                                    <Input
-                                        id="selector"
-                                        onChange={field.onChange}
-                                        value={field.value}
-                                    />
-                                    <FormDescription>
-                                        The selector will be used by the query selector to get the content from a specific part of the website.
-                                        You can test your query selector when you open your website with F12 in the console and do this: document.querySelector(&quot;[id=&apos;root&apos;]&quot;).
-                                        If you want to extract all the content simply use: &apos;body&apos;
+                                        The URL(s) that we will crawl. Seperate multiples with a comma and space.
                                     </FormDescription>
                                     <FormMessage />
                                 </FormItem>
