@@ -20,7 +20,7 @@ export function CrawlerItem({ crawler }: CrawlerItemProps) {
                     {crawler.name}
                 </Link>
                 <div>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-muted-foreground break-words">
                         {crawler.crawlUrl}
                     </p>
                     <p className="text-sm text-muted-foreground">
