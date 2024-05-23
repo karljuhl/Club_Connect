@@ -249,17 +249,19 @@ export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbot
                                         OpenAI Model
                                     </FormLabel>
                                     <Select
-                                        onChange={value => field.onChange(value!.value)}
-                                        defaultValue={field.value}
-                                        id="modelId"
-                                        options={
-                                            models.filter((model: ChatbotModel) => availablesModels.includes(model.name)).map((model: ChatbotModel) => (
-                                                { value: model.id, label: model.name }
-                                            ))
-                                        }
-                                        className="basic-multi-select"
-                                        classNamePrefix="select"
-                                    />
+                                    onChange={value => field.onChange(value!.value)}
+    defaultValue={field.value}
+    id="modelId"
+    options={
+        models.map((model: ChatbotModel) => ({
+            value: model.id,
+            label: model.name
+        }))
+    }
+    className="basic-multi-select"
+    classNamePrefix="select"
+/>
+
                                     <FormDescription>
                                         The OpenAI model that will be used to generate responses.
                                         <b> If you don&apos;t have the gpt-4 option and want to use it. You need to have an OpenAI account at least tier 1.</b>
