@@ -108,10 +108,12 @@ const urls = crawler.crawlUrl.split(',').map(url => url.trim()).filter(url => ur
 
 // Call fetchContent with the array of cleaned URLs
 const content = await fetchContent(urls);
+console.log("Fetched content:", content); // Log the content to inspect its format
 if (!content) {
     console.error('Failed to fetch content for URLs:', urls);
     return new Response(null, { status: 500 });
 }
+
 
 
 try {
