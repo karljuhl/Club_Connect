@@ -38,7 +38,7 @@ async function fetchContent(urls) {
             const response = await fetch(jinaReaderUrl);
             const text = await response.text();
             // Convert each fetched content into a JSON string immediately
-            results.push(JSON.stringify({jinaReaderUrl: jinaReaderUrl , url: url, content: text}));
+            results.push(JSON.stringify({content: text}));
         } catch (error) {
             console.error('Failed to fetch URL via Jina Reader:', jinaReaderUrl, error);
             results.push(JSON.stringify({url: url, error: error.message}));
