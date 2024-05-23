@@ -122,7 +122,7 @@ export async function POST(req: Request) {
     const createdChatbot = await openai.beta.assistants.create({
       name: body.name,
       instructions: body.prompt,
-      model: model.name,
+      model: model.id,
       tools: [{ type: "file_search" }],
       tool_resources: {
         file_search: {
