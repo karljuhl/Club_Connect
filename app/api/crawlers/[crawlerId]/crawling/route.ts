@@ -29,7 +29,7 @@ async function verifyCurrentUserHasAccessToCrawler(crawlerId: string) {
 }
 
 async function fetchContent(urls) {
-    let combinedContent = '';
+    let results = [];
     for (const url of urls) {
         const strippedUrl = url.replace(/^https?:\/\//, '');
         const encodedUrl = encodeURIComponent(strippedUrl);
@@ -38,16 +38,15 @@ async function fetchContent(urls) {
         try {
             const response = await fetch(jinaReaderUrl);
             const text = await response.text();
-            combinedContent += text + "\n"; // Combine with a newline separator
+            // Convert each fetched content into a JSON string immediately
+            results.push(JSON.stringify({url: url, content: text}));
         } catch (error) {
             console.error('Failed to fetch URL via Jina Reader:', jinaReaderUrl, error);
-            // Continue to next URL or decide to throw an error or break
+            results.push(JSON.stringify({url: url, error: error.message}));
         }
     }
-    return combinedContent;
+    return results;  // Returns an array of JSON strings
 }
-
-
 
 export async function GET(req: Request, context: z.infer<typeof routeContextSchema>) {
     try {
@@ -104,46 +103,30 @@ export async function GET(req: Request, context: z.infer<typeof routeContextSche
         }
 
         // Split the crawlUrl by commas and trim each URL to remove extra spaces
-const urls = crawler.crawlUrl.split(',').map(url => url.trim()).filter(url => url.length > 0);
-
-// Call fetchContent with the array of cleaned URLs
-const content = await fetchContent(urls);
-console.log("Fetched content:", content); // Log the content to inspect its format
-if (!content) {
-    console.error('Failed to fetch content for URLs:', urls);
-    return new Response(null, { status: 500 });
-}
-
-
-
-try {
-    const parsedContent = JSON.parse(content);
-    if (parsedContent && parsedContent.error) {
-        console.error('Error in fetched content:', parsedContent.error);
-        return new Response(JSON.stringify(parsedContent.error), { status: 500 });
-    }
-} catch (e) {
-    console.error('Error parsing content:', e);
-}
-
-if (content.trim().length === 0) {
-    console.error('Content fetched contains only spaces:', crawler.crawlUrl + ' - No content found');
-    return new Response(null, { status: 500 });
-}
-
-
+        const urls = crawler.crawlUrl.split(',').map(url => url.trim()).filter(url => url.length > 0);
+        const contentArray = await fetchContent(urls); // This is now an array of JSON strings
+        console.log("Fetched content:", contentArray); // Log the content to inspect its format
+        
+        if (contentArray.length === 0) {
+            console.error('Failed to fetch content for URLs:', urls);
+            return new Response(null, { status: 500 });
+        }
+    
+        // Combining all JSON strings into one JSON array
+        const content = '[' + contentArray.join(",") + ']';
+    
         const date = new Date();
         const fileName = crawler.name.toLowerCase().replace(/\s/g, "-") + '-' + date.toISOString() + ".json";
-
-        const blob = await put(fileName, JSON.stringify({ content }), {
+    
+        const blob = await put(fileName, content, {
             access: "public",
             token: process.env.BLOB_READ_WRITE_TOKEN
         });
-
+    
         const file = await openai.files.create({
             file: await fetch(blob.url), purpose: 'assistants'
         });
-
+    
         await db.file.create({
             data: {
                 name: fileName,
@@ -153,7 +136,7 @@ if (content.trim().length === 0) {
                 crawlerId: crawler.id,
             }
         });
-
+    
         return new Response(null, { status: 204 });
     } catch (error) {
         console.error('Error during GET operation:', error);
