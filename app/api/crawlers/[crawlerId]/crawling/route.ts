@@ -28,27 +28,25 @@ async function verifyCurrentUserHasAccessToCrawler(crawlerId: string) {
     return count > 0;
 }
 
-async function fetchContent(url: string) {
-    // Remove http:// or https:// from the URL
-    const strippedUrl = url.replace(/^https?:\/\//, '');
+async function fetchContent(urls) {
+    let combinedContent = '';
+    for (const url of urls) {
+        const strippedUrl = url.replace(/^https?:\/\//, '');
+        const encodedUrl = encodeURIComponent(strippedUrl);
+        const jinaReaderUrl = `https://r.jina.ai/${encodedUrl}`;
 
-    console.log("Original URL:", url); // Log the original URL
-    const encodedUrl = encodeURIComponent(strippedUrl); // Ensure URL is encoded
-    console.log("Encoded URL:", encodedUrl); // Log the encoded URL
-
-    const jinaReaderUrl = `https://r.jina.ai/${encodedUrl}`;
-    console.log("Full Jina Reader URL:", jinaReaderUrl); // Log the full URL to be requested
-
-    try {
-        const response = await fetch(jinaReaderUrl);
-        const text = await response.text();
-        console.log("Response from Jina Reader:", text); // Log the response from the API
-        return text;
-    } catch (error) {
-        console.error('Failed to fetch URL via Jina Reader:', jinaReaderUrl, error);
-        return null;
+        try {
+            const response = await fetch(jinaReaderUrl);
+            const text = await response.text();
+            combinedContent += text + "\n"; // Combine with a newline separator
+        } catch (error) {
+            console.error('Failed to fetch URL via Jina Reader:', jinaReaderUrl, error);
+            // Continue to next URL or decide to throw an error or break
+        }
     }
+    return combinedContent;
 }
+
 
 
 export async function GET(req: Request, context: z.infer<typeof routeContextSchema>) {
@@ -105,11 +103,16 @@ export async function GET(req: Request, context: z.infer<typeof routeContextSche
             return new Response(null, { status: 404 });
         }
 
-        const content = await fetchContent(crawler.crawlUrl);
+        // Split the crawlUrl by commas and trim each URL to remove extra spaces
+const urls = crawler.crawlUrl.split(',').map(url => url.trim()).filter(url => url.length > 0);
+
+// Call fetchContent with the array of cleaned URLs
+const content = await fetchContent(urls);
 if (!content) {
-    console.error('Failed to fetch content:', crawler.crawlUrl);
+    console.error('Failed to fetch content for URLs:', urls);
     return new Response(null, { status: 500 });
 }
+
 
 try {
     const parsedContent = JSON.parse(content);
