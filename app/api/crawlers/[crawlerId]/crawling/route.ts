@@ -32,8 +32,7 @@ async function fetchContent(urls) {
     let results = [];
     for (const url of urls) {
         const strippedUrl = url.replace(/^https?:\/\//, '');
-        const encodedUrl = encodeURIComponent(strippedUrl);
-        const jinaReaderUrl = `https://r.jina.ai/${encodedUrl}`;
+        const jinaReaderUrl = `https://r.jina.ai/${strippedUrl}`;
 
         try {
             const response = await fetch(jinaReaderUrl);
