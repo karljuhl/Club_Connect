@@ -1,10 +1,9 @@
 import { getServerSession } from "next-auth/next";
 import { z } from "zod";
-import fetch from "node-fetch";
-import { JSDOM } from "jsdom";
 
 import { authOptions } from "@/lib/auth";
 import { db } from "@/lib/db";
+
 import { put } from "@vercel/blob";
 import OpenAI from "openai";
 import { getUserSubscriptionPlan } from "@/lib/subscription";
@@ -29,14 +28,22 @@ async function verifyCurrentUserHasAccessToCrawler(crawlerId: string) {
     return count > 0;
 }
 
-async function fetchContent(url) {
+async function fetchContent(url: string) {
+    // Remove http:// or https:// from the URL
     const strippedUrl = url.replace(/^https?:\/\//, '');
-    const encodedUrl = encodeURIComponent(strippedUrl);
+
+    console.log("Original URL:", url); // Log the original URL
+    const encodedUrl = encodeURIComponent(strippedUrl); // Ensure URL is encoded
+    console.log("Encoded URL:", encodedUrl); // Log the encoded URL
+
     const jinaReaderUrl = `https://r.jina.ai/${encodedUrl}`;
+    console.log("Full Jina Reader URL:", jinaReaderUrl); // Log the full URL to be requested
 
     try {
         const response = await fetch(jinaReaderUrl);
-        return await response.text();
+        const text = await response.text();
+        console.log("Response from Jina Reader:", text); // Log the response from the API
+        return text;
     } catch (error) {
         console.error('Failed to fetch URL via Jina Reader:', jinaReaderUrl, error);
         return null;
@@ -63,6 +70,7 @@ async function getAllUrls(url, baseUrl) {
     await crawl(url);
     return Array.from(urls);
 }
+
 
 export async function GET(req, context) {
     try {
@@ -91,6 +99,24 @@ export async function GET(req, context) {
             access: "public",
             token: process.env.BLOB_READ_WRITE_TOKEN
         });
+        
+        const openAIConfig = await db.openAIConfig.findUnique({
+            select: {
+                globalAPIKey: true,
+                id: true,
+            },
+            where: {
+                userId: session?.user?.id
+            }
+        })
+
+        if (!openAIConfig?.globalAPIKey) {
+            return new Response("Missing OpenAI API key", { status: 400, statusText: "Missing OpenAI API key" })
+        }
+
+        const openai = new OpenAI({
+            apiKey: openAIConfig?.globalAPIKey
+        })
 
         const file = await openai.files.create({
             file: await fetch(blob.url), purpose: 'assistants'
