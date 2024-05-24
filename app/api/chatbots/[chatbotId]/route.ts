@@ -211,7 +211,7 @@ export async function DELETE(
 
         const openai = new OpenAI({
           apiKey: process.env.DEFAULT_CONFIG_API_KEY
-        })
+        });
 
         await openai.beta.assistants.del(chatbot?.openaiId || '')
       } catch (error) {

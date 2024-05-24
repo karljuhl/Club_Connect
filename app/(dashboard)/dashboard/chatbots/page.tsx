@@ -53,7 +53,7 @@ export default async function ChatbotsPage() {
         {bots?.length ? (
           <div className="divide-y divide-border rounded-md border">
             {bots.map((bot) => (
-              <ChatbotItem key={bot.id} chatbot={bot} model={bot.model} />
+              <ChatbotItem key={bot.id} chatbot={bot} />
             ))}
           </div>
         ) : (
