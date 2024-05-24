@@ -70,22 +70,16 @@ export async function POST(req: Request) {
       return new Response("Invalid Model", { status: 400 })
     }
 
-    const openAIConfig = await db.openAIConfig.findUnique({
-      select: {
-        globalAPIKey: true,
-        id: true,
-      },
-      where: {
-        userId: session?.user?.id
-      }
-    })
-
-    if (!openAIConfig?.globalAPIKey) {
+    if (!process.env.DEFAULT_CONFIG_API_KEY) {
       return new Response("Missing your global OpenAI API key, please configure your account.", { status: 400 })
     }
 
+    if (!process.env.DEFAULT_CHATBOT_MODEL) {
+      return new Response("Default chatbot model not configured", { status: 500 });
+    }
+
     const openai = new OpenAI({
-      apiKey: openAIConfig?.globalAPIKey
+      apiKey: process.env.DEFAULT_CONFIG_API_KEY
     })
 
     const files = await db.file.findMany({
@@ -104,15 +98,6 @@ export async function POST(req: Request) {
       return new Response("Invalid files", { status: 400 })
     }
 
-    try {
-      const openaiTest = new OpenAI({
-        apiKey: body.openAIKey
-      })
-      await openaiTest.models.list()
-    } catch (error) {
-      return new Response("Invalid OpenAI API key", { status: 400, statusText: "Invalid OpenAI API key" })
-    }
-
     const batch = await openai.beta.vectorStores.create({
       name: `Vector Store - ${body.name}`,
       file_ids: files.map((file) => file.openAIFileId)
@@ -122,7 +107,7 @@ export async function POST(req: Request) {
     const createdChatbot = await openai.beta.assistants.create({
       name: body.name,
       instructions: body.prompt,
-      model: model.id,
+      model: process.env.DEFAULT_CHATBOT_MODEL,
       tools: [{ type: "file_search" }],
       tool_resources: {
         file_search: {
@@ -135,9 +120,9 @@ export async function POST(req: Request) {
       data: {
         name: body.name,
         prompt: body.prompt,
-        openaiKey: body.openAIKey,
+        openaiKey: process.env.DEFAULT_CONFIG_API_KEY,
         openaiId: createdChatbot.id,
-        modelId: model.id,
+        modelId: process.env.DEFAULT_CHATBOT_MODEL,
         userId: user?.id,
         welcomeMessage: body.welcomeMessage,
         chatbotErrorMessage: body.chatbotErrorMessage,

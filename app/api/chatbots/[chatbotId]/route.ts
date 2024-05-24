@@ -67,31 +67,16 @@ export async function PATCH(
     return new Response(null, { status: 403 })
   }
 
-  const openAIConfig = await db.openAIConfig.findUnique({
-    select: {
-      globalAPIKey: true,
-      id: true,
-    },
-    where: {
-      userId: session?.user?.id
-    }
-  })
-
-  if (!openAIConfig?.globalAPIKey) {
+  if (!process.env.DEFAULT_CONFIG_API_KEY) {
     return new Response("Missing your global OpenAI API key, please configure your account.", { status: 400 })
+  }
+
+  if (!process.env.DEFAULT_CHATBOT_MODEL) {
+    return new Response("Default chatbot model not configured", { status: 500 });
   }
 
   const body = await req.json()
   const payload = chatbotSchema.parse(body)
-
-  try {
-    const openaiTest = new OpenAI({
-      apiKey: payload.openAIKey
-    })
-    await openaiTest.models.list()
-  } catch (error) {
-    return new Response("Invalid OpenAI API key", { status: 400, statusText: "Invalid OpenAI API key" })
-  }
 
   try {
     const chatbot = await db.chatbot.update({
@@ -145,7 +130,7 @@ export async function PATCH(
     })
 
     const openai = new OpenAI({
-      apiKey: openAIConfig?.globalAPIKey
+      apiKey: process.env.DEFAULT_CONFIG_API_KEY
     })
 
     const model = await db.chatbotModel.findFirst({
@@ -215,23 +200,17 @@ export async function DELETE(
     })
 
     if (!chatbot!.isImported) {
-      try {
-        const openAIConfig = await db.openAIConfig.findUnique({
-          select: {
-            globalAPIKey: true,
-            id: true,
-          },
-          where: {
-            userId: session?.user?.id
-          }
-        })
 
-        if (!openAIConfig?.globalAPIKey) {
-          return new Response("Missing OpenAI API key", { status: 403 })
+        if (!process.env.DEFAULT_CONFIG_API_KEY) {
+          return new Response("Missing your global OpenAI API key, please configure your account.", { status: 400 })
+        }
+    
+        if (!process.env.DEFAULT_CHATBOT_MODEL) {
+          return new Response("Default chatbot model not configured", { status: 500 });
         }
 
         const openai = new OpenAI({
-          apiKey: openAIConfig?.globalAPIKey
+          apiKey: process.env.DEFAULT_CONFIG_API_KEY
         })
 
         await openai.beta.assistants.del(chatbot?.openaiId || '')
@@ -251,4 +230,3 @@ export async function DELETE(
     console.log(error)
     return new Response(null, { status: 500 })
   }
-}

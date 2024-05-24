@@ -11,8 +11,8 @@ import { redirect } from "next/navigation";
 import { siteConfig } from "@/config/site"
 
 export const metadata: Metadata = {
-  title: "Welcome",
-  description: "Welcome to the app!",
+  title: "Welcome to ClubConnect",
+  description: "Let's get you set up!",
 }
 
 export default async function Welcome() {
