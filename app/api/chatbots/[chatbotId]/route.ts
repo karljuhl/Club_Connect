@@ -199,34 +199,37 @@ export async function DELETE(
       }
     })
 
-    if (!chatbot!.isImported) {
+    if (chatbot && chatbot.isImported) {
+      if (!process.env.DEFAULT_CONFIG_API_KEY) {
+        return new Response("Missing your global OpenAI API key, please configure your account.", { status: 400 })
+      }
 
-        if (!process.env.DEFAULT_CONFIG_API_KEY) {
-          return new Response("Missing your global OpenAI API key, please configure your account.", { status: 400 })
-        }
-    
-        if (!process.env.DEFAULT_CHATBOT_MODEL) {
-          return new Response("Default chatbot model not configured", { status: 500 });
-        }
+      if (!process.env.DEFAULT_CHATBOT_MODEL) {
+        return new Response("Default chatbot model not configured", { status: 500 });
+      }
 
-        const openai = new OpenAI({
-          apiKey: process.env.DEFAULT_CONFIG_API_KEY
-        });
+      const openai = new OpenAI({
+        apiKey: process.env.DEFAULT_CONFIG_API_KEY
+      });
 
-        await openai.beta.assistants.del(chatbot?.openaiId || '')
+      try {
+        await openai.beta.assistants.del(chatbot.openaiId);
       } catch (error) {
-        console.log(error)
+        console.log(error);
+        // Optionally return or handle the error differently
       }
     }
 
+    // Proceed to delete the chatbot
     await db.chatbot.delete({
       where: {
         id: params.chatbotId
       }
-    })
+    });
 
-    return new Response(null, { status: 204 })
+    return new Response(null, { status: 204 });
   } catch (error) {
-    console.log(error)
-    return new Response(null, { status: 500 })
+    console.log(error);
+    return new Response(null, { status: 500 });
   }
+}
