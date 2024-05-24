@@ -36,7 +36,6 @@ export default async function ChatbotPage({ params }: ChatbotSettingsProps) {
             id: true,
             name: true,
             createdAt: true,
-            openaiKey: process.env.DEFAULT_CONFIG_API_KEY,
             welcomeMessage: true,
             chatbotErrorMessage: true,
             prompt: true,
@@ -59,6 +58,8 @@ export default async function ChatbotPage({ params }: ChatbotSettingsProps) {
     if (!chatbot) {
         notFound()
     }
+
+    chatbot.openaiKey = process.env.DEFAULT_CONFIG_API_KEY;
 
     const files = await db.file.findMany({
         where: {
