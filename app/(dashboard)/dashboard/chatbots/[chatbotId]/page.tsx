@@ -36,7 +36,7 @@ export default async function ChatbotPage({ params }: ChatbotSettingsProps) {
             id: true,
             name: true,
             createdAt: true,
-            openaiKey: true,
+            openaiKey: process.env.DEFAULT_CONFIG_API_KEY,
             welcomeMessage: true,
             chatbotErrorMessage: true,
             prompt: true,
