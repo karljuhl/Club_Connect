@@ -91,8 +91,9 @@ export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbot
     }
 
     async function onSubmit(data: FormData) {
+        event.preventDefault();
         setIsSaving(true)
-        console.log(data)
+        console.log("Submitting data:", data);
 
         const response = await fetch(`/api/chatbots`, {
             method: "POST",
@@ -108,6 +109,8 @@ export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbot
             }),
         })
 
+        const result = await response.json();
+        console.log("Submission result:", result);
         setIsSaving(false)
 
         if (!response?.ok) {
