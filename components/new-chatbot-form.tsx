@@ -102,7 +102,7 @@ export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbot
             body: JSON.stringify({
                 name: data.name,
                 prompt: data.prompt,
-                openAIKey: DEFAULT_CHATBOT_API_KEY,
+                openAIKey: process.env.DEFAULT_CHATBOT_API_KEY,
                 welcomeMessage: data.welcomeMessage,
                 chatbotErrorMessage: data.chatbotErrorMessage,
                 modelId: process.env.DEFAULT_CHATBOT_MODEL,
