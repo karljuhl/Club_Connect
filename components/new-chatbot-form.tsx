@@ -91,8 +91,8 @@ export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbot
     }
 
     async function onSubmit(data: FormData) {
+        console.log("onSubmit called", data);
         setIsSaving(true)
-        console.log(data)
 
         const response = await fetch(`/api/chatbots`, {
             method: "POST",
