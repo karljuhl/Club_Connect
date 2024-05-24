@@ -91,7 +91,6 @@ export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbot
     }
 
     async function onSubmit(data: FormData) {
-        event.preventDefault();
         setIsSaving(true)
         console.log("Submitting data:", data);
 
@@ -108,10 +107,6 @@ export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbot
                 files: data.files
             }),
         })
-
-        const result = await response.json();
-        console.log("Submission result:", result);
-        setIsSaving(false)
 
         if (!response?.ok) {
             if (response.status === 400) {
@@ -133,6 +128,9 @@ export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbot
                 variant: "destructive",
             })
         }
+
+        const result = await response.json();
+        console.log("Form submitted successfully:", result);
 
         toast({
             description: "Your chatbot has been saved.",

@@ -100,7 +100,6 @@ export async function PATCH(
       },
     })
 
-    console.log("Chatbot updated:", chatbot);
 
     const currentFiles = await db.chatbotFiles.findMany({
       where: {
