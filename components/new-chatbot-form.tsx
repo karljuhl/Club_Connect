@@ -92,7 +92,7 @@ export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbot
 
     async function onSubmit(data: FormData) {
         setIsSaving(true)
-        console.log("Submitting data:", data);
+        console.log(data)
 
         const response = await fetch(`/api/chatbots`, {
             method: "POST",
@@ -102,11 +102,15 @@ export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbot
             body: JSON.stringify({
                 name: data.name,
                 prompt: data.prompt,
+                openAIKey: data.openAIKey,
                 welcomeMessage: data.welcomeMessage,
                 chatbotErrorMessage: data.chatbotErrorMessage,
+                modelId: data.modelId,
                 files: data.files
             }),
         })
+
+        setIsSaving(false)
 
         if (!response?.ok) {
             if (response.status === 400) {
@@ -128,9 +132,6 @@ export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbot
                 variant: "destructive",
             })
         }
-
-        const result = await response.json();
-        console.log("Form submitted successfully:", result);
 
         toast({
             description: "Your chatbot has been saved.",
@@ -234,6 +235,54 @@ export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbot
                                     <FormDescription>
                                         The OpenAI model will use this file to search for specific content.
                                         If you don&apos;t have a file yet, it is because you haven&apos;t published any file.
+                                    </FormDescription>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="modelId"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel htmlFor="modelId">
+                                        OpenAI Model
+                                    </FormLabel>
+                                    <Select
+                                        onChange={value => field.onChange(value!.value)}
+                                        defaultValue={field.value}
+                                        id="modelId"
+                                        options={
+                                            models.filter((model: ChatbotModel) => availablesModels.includes(model.name)).map((model: ChatbotModel) => (
+                                                { value: model.id, label: model.name }
+                                            ))
+                                        }
+                                        className="basic-multi-select"
+                                        classNamePrefix="select"
+                                    />
+                                    <FormDescription>
+                                        The OpenAI model that will be used to generate responses.
+                                        <b> If you don&apos;t have the gpt-4 option and want to use it. You need to have an OpenAI account at least tier 1.</b>
+                                    </FormDescription>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="openAIKey"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel htmlFor="openAIKey">
+                                        OpenAI API Key
+                                    </FormLabel>
+                                    <Input
+                                        onChange={field.onChange}
+                                        id="openAIKey"
+                                        type="password"
+                                    />
+                                    <FormDescription>
+                                        The OpenAI API key that will be used to generate responses
                                     </FormDescription>
                                     <FormMessage />
                                 </FormItem>
