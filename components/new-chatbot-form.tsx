@@ -90,6 +90,11 @@ export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbot
         return models
     }
 
+    const onSubmit = async (data) => {
+        console.log("Form Submission Started", data);
+        // rest of your onSubmit code...
+    }
+
     async function onSubmit(data: FormData) {
         console.log("onSubmit called", data);
         setIsSaving(true)
