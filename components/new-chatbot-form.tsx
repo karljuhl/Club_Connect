@@ -95,60 +95,6 @@ export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbot
         // rest of your onSubmit code...
     }
 
-    async function onSubmit(data: FormData) {
-        console.log("onSubmit called", data);
-        setIsSaving(true)
-
-        const response = await fetch(`/api/chatbots`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                name: data.name,
-                prompt: data.prompt,
-                openAIKey: process.env.DEFAULT_CHATBOT_API_KEY,
-                welcomeMessage: data.welcomeMessage,
-                chatbotErrorMessage: data.chatbotErrorMessage,
-                modelId: process.env.DEFAULT_CHATBOT_MODEL,
-                files: data.files
-            }),
-        })
-
-        setIsSaving(false)
-
-        if (!response?.ok) {
-            if (response.status === 400) {
-                return toast({
-                    title: "Something went wrong.",
-                    description: await response.text(),
-                    variant: "destructive",
-                })
-            } else if (response.status === 402) {
-                return toast({
-                    title: "Chatbot limit reached.",
-                    description: "Please upgrade to the a higher plan.",
-                    variant: "destructive",
-                })
-            }
-            return toast({
-                title: "Something went wrong.",
-                description: "Your chatbot was not saved. Please try again.",
-                variant: "destructive",
-            })
-        }
-
-        toast({
-            description: "Your chatbot has been saved.",
-        })
-
-        router.refresh()
-
-        if (!isOnboarding) {
-            const object = await response.json()
-            router.push(`/dashboard/chatbots/${object.chatbot.id}/chat`)
-        }
-    }
 
     return (
         <Form {...form}>
