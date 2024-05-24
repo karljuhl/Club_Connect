@@ -115,7 +115,6 @@ export default async function ChatbotPage({ params }: ChatbotSettingsProps) {
                                         user={user}
                                         files={files}
                                         currentFiles={currentFiles.map((file) => file.file.id)}
-                                        models={models}
                                         chatbot={chatbot} />
                                     :
                                     <ImportedChatbotForm
