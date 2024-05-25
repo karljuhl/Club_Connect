@@ -1,154 +1,274 @@
 'use client'
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";  // Corrected from 'next/navigation' to 'next/router'
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import * as z from "zod"
 
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/components/ui/button"
 import {
     Card,
     CardContent,
     CardFooter,
     CardHeader,
     CardTitle,
-} from "@/components/ui/card";
-import { Form, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { toast } from "@/components/ui/use-toast"; // Ensure toast is correctly imported
-import { Icons } from "@/components/icons"; // Ensure Icons is correctly imported
-import { chatbotSchema } from "@/lib/validations/chatbot";
-import { ChatbotModel, File, User } from "@prisma/client";
+} from "@/components/ui/card"
+import { Form, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { toast } from "@/components/ui/use-toast"
+import { Icons } from "@/components/icons"
+import { chatbotSchema } from "@/lib/validations/chatbot"
+import { ChatbotModel, File, User } from "@prisma/client"
 import Select from 'react-select';
-import { Textarea } from "@/components/ui/textarea";
+import { Textarea } from "@/components/ui/textarea"
 
+type FormData = z.infer<typeof chatbotSchema>
 
-interface NewChatbotProps {
-    isOnboarding: boolean;
-    user: Pick<User, "id">;
-    className?: string;
+interface NewChatbotProps extends React.HTMLAttributes<HTMLElement> {
+    isOnboarding: boolean
+    user: Pick<User, "id">
 }
 
-export function NewChatbotForm({ isOnboarding, user, className }: NewChatbotProps) {
-    const router = useRouter();
-    const { control, handleSubmit, formState: { errors }, watch } = useForm<FormData>({
+export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbotProps) {
+    const router = useRouter()
+    const form = useForm<FormData>({
         resolver: zodResolver(chatbotSchema),
         defaultValues: {
             welcomeMessage: "Hello, how can I help you?",
-            prompt: "You are an assistant. You help users that visit our website, keep it short, always refer to the documentation provided and never ask for more information.",
-            chatbotErrorMessage: "Oops! An error has occurred. If the issue persists, feel free to reach out to our support team for assistance. We're here to help!"
+            prompt: "You are an assistant you help users that visit our website, keep it short, always refer to the documentation provided and never ask for more information.",
+            chatbotErrorMessage: "Oops! An error has occurred. If the issue persists, feel free to reach out to our support team for assistance. We're here to help!",
+            openAIKey: process.env.DEFAULT_CHATBOT_API_KEY,
+            modelId: process.env.DEFAULT_CHATBOT_MODEL
         }
-    });
+    })
 
-    const [models, setModels] = useState<ChatbotModel[]>([]);
-    const [files, setFiles] = useState<File[]>([]);
-    const [isSaving, setIsSaving] = useState<boolean>(false);
+    const [models, setModels] = useState<ChatbotModel[]>([])
+    const [files, setFiles] = useState<File[]>([])
+    const [isSaving, setIsSaving] = useState<boolean>(false)
 
-    console.log("Validation Errors:", errors);
-    console.log("Complete Form State:", watch());
+    const { formState: { errors } } = form;
+console.log("Validation Errors:", errors);
+console.log("Complete Form State:", form.watch());
+
 
     useEffect(() => {
-        async function init() {
-            const response = await fetch('/api/files', {
-                method: "GET",
-                headers: { "Content-Type": "application/json" },
-            });
-            const files = await response.json();
-            console.log("Files loaded:", files);
-            setFiles(files);
-        }
-        init();
-    }, []);
+        const init = async () => {
 
-    async function onSubmit(data: FormData, event: React.BaseSyntheticEvent) {
-        event.preventDefault();
+            const filesResponse = await getFiles()
+            setFiles(filesResponse)
+        }
+        init()
+    }, [])
+
+    async function getFiles() {
+        const response = await fetch('/api/files', {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+
+        const files = await response.json()
+        console.log(process.env.DEFAULT_CHATBOT_API_KEY, process.env.DEFAULT_CHATBOT_MODEL);
+        console.log(files);
+        return files
+    }
+
+    console.log("Prepared Data for Submission:", JSON.stringify({
+        name: data.name,
+        prompt: data.prompt,
+        openAIKey: data.openAIKey,
+        welcomeMessage: data.welcomeMessage,
+        chatbotErrorMessage: data.chatbotErrorMessage,
+        modelId: data.modelId,
+        files: data.files
+    }));
+    
+
+    async function onSubmit(data: FormData) {
+        event.preventDefault();  // Stop the form from submitting traditionally
         console.log("Form Submitted with Data:", data);
-        setIsSaving(true);
+        setIsSaving(true)
 
         const response = await fetch(`/api/chatbots`, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-        });
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                name: data.name,
+                prompt: data.prompt,
+                openAIKey: process.env.DEFAULT_CHATBOT_API_KEY,
+                welcomeMessage: data.welcomeMessage,
+                chatbotErrorMessage: data.chatbotErrorMessage,
+                modelId: process.env.DEFAULT_CHATBOT_MODEL,
+                files: data.files
+            }),
+        })
 
-        const result = await response.text();
-        setIsSaving(false);
+        setIsSaving(false)
 
-        if (!response.ok) {
-            console.log("API Response Error:", result);
-            toast({ title: "Error", description: result, variant: "destructive" });
-            return;
+        if (!response?.ok) {
+            if (response.status === 400) {
+                console.log("API Response Error:", await response.text());
+                return toast({
+                    title: "Something went wrong.",
+                    description: await response.text(),
+                    variant: "destructive",
+                })
+            } else if (response.status === 402) {
+                return toast({
+                    title: "Chatbot limit reached.",
+                    description: "Please upgrade to the a higher plan.",
+                    variant: "destructive",
+                })
+            }
+            return toast({
+                title: "Something went wrong.",
+                description: "Your chatbot was not saved. Please try again.",
+                variant: "destructive",
+            })
         }
 
-        console.log("API Response Success:", result);
-        toast({ description: "Your chatbot has been saved." });
-        router.refresh();
+        console.log("API Response Success:", await response.json());
+        toast({
+            description: "Your chatbot has been saved.",
+        })
+
+        router.refresh()
 
         if (!isOnboarding) {
-            const object = JSON.parse(result);
-            router.push(`/dashboard/chatbots/${object.chatbot.id}/chat`);
+            const object = await response.json()
+            router.push(`/dashboard/chatbots/${object.chatbot.id}/chat`)
         }
     }
 
     return (
-        <Form onSubmit={handleSubmit(onSubmit)}>
-            <Card>
-                <CardHeader>
-                    <CardTitle>Create new Chatbot</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                    <FormField name="name" control={control} render={({ field }) => (
-                        <FormItem>
-                            <FormLabel htmlFor="name">Display Name</FormLabel>
-                            <Input {...field} id="name" />
-                            <FormMessage />
-                        </FormItem>
-                    )} />
-                    <FormField name="welcomeMessage" control={control} render={({ field }) => (
-                        <FormItem>
-                            <FormLabel htmlFor="welcomemessage">Welcome Message</FormLabel>
-                            <Input {...field} id="welcomemessage" />
-                            <FormMessage />
-                        </FormItem>
-                    )} />
-                    <FormField name="prompt" control={control} render={({ field }) => (
-                        <FormItem>
-                            <FormLabel htmlFor="prompt">Default Prompt</FormLabel>
-                            <Textarea {...field} id="prompt" />
-                            <FormMessage />
-                        </FormItem>
-                    )} />
-                    <FormField name="files" control={control} render={({ field }) => (
-                        <FormItem>
-                            <FormLabel htmlFor="files">Choose Your File for Retrieval</FormLabel>
-                            <Select
-                                isMulti
-                                closeMenuOnSelect={false}
-                                onChange={value => field.onChange(value.map((v) => v.value))}
-                                options={files.map(file => ({ value: file.id, label: file.name }))}
-                                className="basic-multi-select"
-                                classNamePrefix="select"
-                            />
-                            <FormMessage />
-                        </FormItem>
-                    )} />
-                    <FormField name="chatbotErrorMessage" control={control} render={({ field }) => (
-                        <FormItem>
-                            <FormLabel htmlFor="chatbotErrorMessage">Chatbot Error Message</FormLabel>
-                            <Textarea {...field} id="chatbotErrorMessage" />
-                            <FormMessage />
-                        </FormItem>
-                    )} />
-                </CardContent>
-                <CardFooter>
+        <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)}>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Create new Chatbot</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
+                        <FormField
+                            control={form.control}
+                            name="name"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel htmlFor="name">
+                                        Display Name
+                                    </FormLabel>
+                                    <Input
+                                        onChange={field.onChange}
+                                        id="name"
+                                    />
+                                    <FormDescription>
+                                        The name that will be displayed in the dashboard
+                                    </FormDescription>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="welcomeMessage"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel htmlFor="welcomemessage">
+                                        Welcome message
+                                    </FormLabel>
+                                    <Input
+                                        onChange={field.onChange}
+                                        value={field.value}
+                                        id="welcomemessage"
+                                    />
+                                    <FormDescription>
+                                        The welcome message that will be sent to the user when they start a conversation
+                                    </FormDescription>
+                                    <FormMessage />
+                                </FormItem>)}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="prompt"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel htmlFor="prompt">
+                                        Default prompt
+                                    </FormLabel >
+                                    <Textarea
+                                        onChange={field.onChange}
+                                        value={field.value}
+                                        id="prompt"
+                                    />
+                                    <FormDescription>
+                                        The prompt that will be sent to OpenAI for every messages, here&apos;s and example:
+                                        &quot;You are an assistant you help users that visit our website, keep it short, always refer to the documentation provided and never ask for more information.&quot;
+                                    </FormDescription>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="files"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel htmlFor="files">
+                                        Choose your file for retrival
+                                    </FormLabel>
+                                    <Select
+                                        isMulti
+                                        closeMenuOnSelect={false}
+                                        onChange={value => field.onChange(value.map((v) => v.value))}
+                                        defaultValue={field.value}
+                                        name="files"
+                                        id="files"
+                                        options={files.map((file) => ({ value: file.id, label: file.name }))}
+                                        className="basic-multi-select"
+                                        classNamePrefix="select"
+                                    />
+
+                                    <FormDescription>
+                                        The OpenAI model will use this file to search for specific content.
+                                        If you don&apos;t have a file yet, it is because you haven&apos;t published any file.
+                                    </FormDescription>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="chatbotErrorMessage"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel htmlFor="chatbotErrorMessage">
+                                        Chatbot Error Message
+                                    </FormLabel>
+                                    <Textarea
+                                        value={field.value}
+                                        onChange={field.onChange}
+                                        id="chatbotErrorMessage"
+                                    />
+                                    <FormDescription>
+                                        The message that will be displayed when the chatbot encounters an error and can&apos;t reply to a user.
+                                    </FormDescription>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                    </CardContent>
+                    <CardFooter>
                     <button type="submit" className={cn(buttonVariants(), className)} disabled={isSaving}>
-                        {isSaving && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
-                        Create
-                    </button>
-                </CardFooter>
-            </Card>
-        </Form>
-    );
+    {isSaving && (<Icons.spinner className="mr-2 h-4 w-4 animate-spin" />)}
+    <span>Create</span>
+</button>
+                    </CardFooter>
+                </Card>
+            </form >
+        </Form >
+    )
 }
