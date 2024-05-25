@@ -75,11 +75,14 @@ console.log("Complete Form State:", form.watch());
         console.log(files);
         return files
     }
+
+    console.log(data)
     
 
     async function onSubmit(data: FormData) {
+        event.preventDefault();
+        console.log("Event:", event);
         console.log("Form Submitted with Data:", data);
-        setIsSaving(true)
 
         const response = await fetch(`/api/chatbots`, {
             method: "POST",
@@ -252,9 +255,9 @@ console.log("Complete Form State:", form.watch());
                     </CardContent>
                     <CardFooter>
                     <button type="submit" className={cn(buttonVariants(), className)} disabled={isSaving}>
-    {isSaving && (<Icons.spinner className="mr-2 h-4 w-4 animate-spin" />)}
-    <span>Create</span>
+    {isSaving ? <Icons.spinner className="mr-2 h-4 w-4 animate-spin" /> : "Create"}
 </button>
+
                     </CardFooter>
                 </Card>
             </form >
