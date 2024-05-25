@@ -62,7 +62,7 @@ export async function POST(req: Request) {
 
     const model = await db.chatbotModel.findUnique({
       where: {
-        id: body.modelId
+        id: process.env.DEFAULT_CHATBOT_MODEL
       }
     })
 
@@ -137,7 +137,7 @@ export async function POST(req: Request) {
         prompt: body.prompt,
         openaiKey: process.env.DEFAULT_CHATBOT_API_KEY,
         openaiId: createdChatbot.id,
-        modelId: model.id,
+        modelId: process.env.DEFAULT_CHATBOT_MODEL,
         userId: user?.id,
         welcomeMessage: body.welcomeMessage,
         chatbotErrorMessage: body.chatbotErrorMessage,
