@@ -190,7 +190,7 @@ export async function PATCH(
       {
         name: chatbot.name,
         instructions: chatbot.prompt,
-        model: model?.name,
+        model: model?.id,
         tools: [{ type: "file_search" }],
         tool_resources: {
           file_search: {
