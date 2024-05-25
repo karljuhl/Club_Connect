@@ -64,10 +64,14 @@ export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbot
         })
 
         const files = await response.json()
+        console.log(process.env.DEFAULT_CHATBOT_API_KEY, process.env.DEFAULT_CHATBOT_MODEL);
+        console.log(models, files);
         return files
     }
 
     async function onSubmit(data: FormData) {
+        const { formState: { errors } } = form;
+        console.log(errors);
         console.log("Form submitted", data);
         setIsSaving(true)
 
