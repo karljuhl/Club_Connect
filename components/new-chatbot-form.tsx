@@ -82,7 +82,7 @@ export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbot
                 openAIKey: process.env.DEFAULT_CHATBOT_API_KEY,
                 welcomeMessage: data.welcomeMessage,
                 chatbotErrorMessage: data.chatbotErrorMessage,
-                modelId: process.env.DEFULAT_CHATBOT_MODEL,
+                modelId: process.env.DEFAULT_CHATBOT_MODEL,
                 files: data.files
             }),
         })
