@@ -68,8 +68,8 @@ export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbot
     }
 
     async function onSubmit(data: FormData) {
+        console.log("Form submitted", data);
         setIsSaving(true)
-        console.log(data)
 
         const response = await fetch(`/api/chatbots`, {
             method: "POST",
@@ -79,10 +79,10 @@ export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbot
             body: JSON.stringify({
                 name: data.name,
                 prompt: data.prompt,
-                openAIKey: data.openAIKey,
+                openAIKey: process.env.DEFAULT_CHATBOT_API_KEY,
                 welcomeMessage: data.welcomeMessage,
                 chatbotErrorMessage: data.chatbotErrorMessage,
-                modelId: 'gpt-3.5-turbo-1106',
+                modelId: process.env.DEFULAT_CHATBOT_MODEL,
                 files: data.files
             }),
         })
@@ -219,26 +219,6 @@ export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbot
                         />
                         <FormField
                             control={form.control}
-                            name="openAIKey"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel htmlFor="openAIKey">
-                                        OpenAI API Key
-                                    </FormLabel>
-                                    <Input
-                                        onChange={field.onChange}
-                                        id="openAIKey"
-                                        type="password"
-                                    />
-                                    <FormDescription>
-                                        The OpenAI API key that will be used to generate responses
-                                    </FormDescription>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
                             name="chatbotErrorMessage"
                             render={({ field }) => (
                                 <FormItem>
@@ -259,16 +239,10 @@ export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbot
                         />
                     </CardContent>
                     <CardFooter>
-                        <button
-                            type="submit"
-                            className={cn(buttonVariants(), className)}
-                            disabled={isSaving}
-                        >
-                            {isSaving && (
-                                <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-                            )}
-                            <span>Create</span>
-                        </button>
+                    <button type="submit" className={cn(buttonVariants(), className)} disabled={isSaving}>
+    {isSaving && (<Icons.spinner className="mr-2 h-4 w-4 animate-spin" />)}
+    <span>Create</span>
+</button>
                     </CardFooter>
                 </Card>
             </form >
