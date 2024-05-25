@@ -75,20 +75,9 @@ console.log("Complete Form State:", form.watch());
         console.log(files);
         return files
     }
-
-    console.log("Prepared Data for Submission:", JSON.stringify({
-        name: data.name,
-        prompt: data.prompt,
-        openAIKey: data.openAIKey,
-        welcomeMessage: data.welcomeMessage,
-        chatbotErrorMessage: data.chatbotErrorMessage,
-        modelId: data.modelId,
-        files: data.files
-    }));
     
 
     async function onSubmit(data: FormData) {
-        event.preventDefault();  // Stop the form from submitting traditionally
         console.log("Form Submitted with Data:", data);
         setIsSaving(true)
 
