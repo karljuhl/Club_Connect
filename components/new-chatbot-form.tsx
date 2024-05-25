@@ -43,24 +43,11 @@ export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbot
     })
 
     const [models, setModels] = useState<ChatbotModel[]>([])
-    const [availablesModels, setAvailablesModels] = useState<string[]>([])
     const [files, setFiles] = useState<File[]>([])
     const [isSaving, setIsSaving] = useState<boolean>(false)
 
     useEffect(() => {
         const init = async () => {
-            const response = await fetch('/api/models', {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            })
-            const models = await response.json()
-            console.log(models);
-            setModels(models)
-
-            const supportedModels = await getAvailableModels()
-            setAvailablesModels(supportedModels)
 
             const filesResponse = await getFiles()
             setFiles(filesResponse)
@@ -80,17 +67,6 @@ export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbot
         return files
     }
 
-    async function getAvailableModels() {
-        const response = await fetch(`/api/users/${props.user.id}/openai/models`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-        const models = await response.json()
-        return models
-    }
-
     async function onSubmit(data: FormData) {
         setIsSaving(true)
         console.log(data)
@@ -106,7 +82,7 @@ export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbot
                 openAIKey: data.openAIKey,
                 welcomeMessage: data.welcomeMessage,
                 chatbotErrorMessage: data.chatbotErrorMessage,
-                modelId: data.modelId,
+                modelId: 'gpt-3.5-turbo-1106',
                 files: data.files
             }),
         })
@@ -236,34 +212,6 @@ export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbot
                                     <FormDescription>
                                         The OpenAI model will use this file to search for specific content.
                                         If you don&apos;t have a file yet, it is because you haven&apos;t published any file.
-                                    </FormDescription>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="modelId"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel htmlFor="modelId">
-                                        OpenAI Model
-                                    </FormLabel>
-                                    <Select
-                                        onChange={value => field.onChange(value!.value)}
-                                        defaultValue={field.value}
-                                        id="modelId"
-                                        options={
-                                            models.filter((model: ChatbotModel) => availablesModels.includes(model.name)).map((model: ChatbotModel) => (
-                                                { value: model.id, label: model.name }
-                                            ))
-                                        }
-                                        className="basic-multi-select"
-                                        classNamePrefix="select"
-                                    />
-                                    <FormDescription>
-                                        The OpenAI model that will be used to generate responses.
-                                        <b> If you don&apos;t have the gpt-4 option and want to use it. You need to have an OpenAI account at least tier 1.</b>
                                     </FormDescription>
                                     <FormMessage />
                                 </FormItem>
