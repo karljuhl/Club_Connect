@@ -75,67 +75,58 @@ console.log("Complete Form State:", form.watch());
         console.log(files);
         return files
     }
-
-    console.log(data)
     
 
-    async function onSubmit(data: FormData) {
-        event.preventDefault();
-        console.log("Event:", event);
+    async function onSubmit(data) {
         console.log("Form Submitted with Data:", data);
-
-        const response = await fetch(`/api/chatbots`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                name: data.name,
-                prompt: data.prompt,
-                openAIKey: process.env.DEFAULT_CHATBOT_API_KEY,
-                welcomeMessage: data.welcomeMessage,
-                chatbotErrorMessage: data.chatbotErrorMessage,
-                modelId: process.env.DEFAULT_CHATBOT_MODEL,
-                files: data.files
-            }),
-        })
-
-        setIsSaving(false)
-
-        if (!response?.ok) {
-            if (response.status === 400) {
-                console.log("API Response Error:", await response.text());
-                return toast({
+        setIsSaving(true);
+    
+        try {
+            const response = await fetch(`/api/chatbots`, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    name: data.name,
+                    prompt: data.prompt,
+                    openAIKey: process.env.DEFAULT_CHATBOT_API_KEY,
+                    welcomeMessage: data.welcomeMessage,
+                    chatbotErrorMessage: data.chatbotErrorMessage,
+                    modelId: process.env.DEFAULT_CHATBOT_MODEL,
+                    files: data.files
+                }),
+            });
+    
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.log("API Response Error:", errorText);
+                toast({
                     title: "Something went wrong.",
-                    description: await response.text(),
+                    description: errorText,
                     variant: "destructive",
-                })
-            } else if (response.status === 402) {
-                return toast({
-                    title: "Chatbot limit reached.",
-                    description: "Please upgrade to the a higher plan.",
-                    variant: "destructive",
-                })
+                });
+            } else {
+                const result = await response.json();
+                console.log("API Response Success:", result);
+                toast({
+                    description: "Your chatbot has been saved.",
+                });
+                router.refresh();
+                if (!isOnboarding) {
+                    router.push(`/dashboard/chatbots/${result.chatbot.id}/chat`);
+                }
             }
-            return toast({
-                title: "Something went wrong.",
-                description: "Your chatbot was not saved. Please try again.",
+        } catch (error) {
+            console.error("Submission Error:", error);
+            toast({
+                title: "Network error",
+                description: "Failed to submit data. Please try again later.",
                 variant: "destructive",
-            })
-        }
-
-        console.log("API Response Success:", await response.json());
-        toast({
-            description: "Your chatbot has been saved.",
-        })
-
-        router.refresh()
-
-        if (!isOnboarding) {
-            const object = await response.json()
-            router.push(`/dashboard/chatbots/${object.chatbot.id}/chat`)
+            });
+        } finally {
+            setIsSaving(false);
         }
     }
+    
 
     return (
         <Form {...form}>
@@ -255,9 +246,8 @@ console.log("Complete Form State:", form.watch());
                     </CardContent>
                     <CardFooter>
                     <button type="submit" className={cn(buttonVariants(), className)} disabled={isSaving}>
-    {isSaving ? <Icons.spinner className="mr-2 h-4 w-4 animate-spin" /> : "Create"}
-</button>
-
+                {isSaving ? <Icons.spinner className="mr-2 h-4 w-4 animate-spin" /> : "Create"}
+            </button>
                     </CardFooter>
                 </Card>
             </form >
