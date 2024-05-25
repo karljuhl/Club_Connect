@@ -106,7 +106,7 @@ export async function POST(req: Request) {
 
     try {
       const openaiTest = new OpenAI({
-        apiKey: body.openAIKey
+        apiKey: process.env.DEFAULT_CHATBOT_API_KEY
       })
       await openaiTest.models.list()
     } catch (error) {
@@ -122,7 +122,7 @@ export async function POST(req: Request) {
     const createdChatbot = await openai.beta.assistants.create({
       name: body.name,
       instructions: body.prompt,
-      model: model.name,
+      model: process.env.DEFAULT_CHATBOT_MODEL,
       tools: [{ type: "file_search" }],
       tool_resources: {
         file_search: {
@@ -135,7 +135,7 @@ export async function POST(req: Request) {
       data: {
         name: body.name,
         prompt: body.prompt,
-        openaiKey: body.openAIKey,
+        openaiKey: process.env.DEFAULT_CHATBOT_API_KEY,
         openaiId: createdChatbot.id,
         modelId: model.id,
         userId: user?.id,

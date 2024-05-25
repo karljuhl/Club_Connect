@@ -38,9 +38,7 @@ export function NewChatbotForm({ isOnboarding, className, ...props }: NewChatbot
         defaultValues: {
             welcomeMessage: "Hello, how can I help you?",
             prompt: "You are an assistant you help users that visit our website, keep it short, always refer to the documentation provided and never ask for more information.",
-            chatbotErrorMessage: "Oops! An error has occurred. If the issue persists, feel free to reach out to our support team for assistance. We're here to help!",
-            openAIKey: process.env.DEFAULT_CHATBOT_API_KEY,
-            modelId: process.env.DEFAULT_CHATBOT_MODEL,
+            chatbotErrorMessage: "Oops! An error has occurred. If the issue persists, feel free to reach out to our support team for assistance. We're here to help!"
         }
     })
 
@@ -88,10 +86,8 @@ console.log("Complete Form State:", form.watch());
                 body: JSON.stringify({
                     name: data.name,
                     prompt: data.prompt,
-                    openAIKey: process.env.DEFAULT_CHATBOT_API_KEY,
                     welcomeMessage: data.welcomeMessage,
                     chatbotErrorMessage: data.chatbotErrorMessage,
-                    modelId: process.env.DEFAULT_CHATBOT_MODEL,
                     files: data.files
                 }),
             });
