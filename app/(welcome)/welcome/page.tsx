@@ -48,12 +48,12 @@ export default async function Welcome() {
       </Link>
       <div data-aos="fade-up" data-aos-duration="1000" className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
         <div className="flex flex-col space-y-2 text-center">
-          <Icons.bot className="mx-auto h-6 w-6" />
+          <Icons.bell className="mx-auto h-6 w-6" />
           <h1 className="text-2xl font-semibold tracking-tight">
             Welcome to {siteConfig.name}
           </h1>
           <p className="text-sm text-muted-foreground">
-            Let&apos;s get started with creating your first chatbot. We highly recommend you to go through our onboarding process to get started.
+            Let&apos;s get started with creating your first Front-Desk Assitant. We highly recommend you to go through our onboarding process to get started.
           </p>
           <div className="flex flex-col space-y-5 pt-10">
             <Link data-aos="fade-left" data-aos-duration="3000" className="shadow-lg border border-gray inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-secondary rounded text-secondary-foreground hover:bg-secondary/80" href={"/dashboard/onboarding"}>
