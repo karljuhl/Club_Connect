@@ -20,13 +20,13 @@ export default function MicrosoftLoginForm() {
           callbackUrl: searchParams?.get("from") || "/welcome",
         });
       }}
-      className="flex flex-col space-y-4 px-4 sm:px-16"
+      className="flex flex-col space-y-4 px-4 mb-4 sm:px-16"
     >
       <button
         disabled={loading}
         className={`${loading
           ? "cursor-not-allowed border-gray-200 bg-gray-100"
-          : "border-black bg-black text-white hover:bg-white hover:text-black"
+          : "border-black bg-black text-black bg-white hover:text-white hover:bg-black"
           } flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none`}
       >
         {loading ? (
