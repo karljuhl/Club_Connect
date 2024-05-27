@@ -9,6 +9,7 @@ import { getCurrentUser } from "@/lib/session";
 import { redirect } from "next/navigation";
 import GithubLoginForm from "@/components/github-login-form";
 import GoogleLoginForm from "@/components/google-login-form";
+import MicrosoftLoginForm from "@/components/g-microsoft-login-form";
 
 export const metadata: Metadata = {
   title: "Login",
@@ -47,6 +48,7 @@ export default async function Login() {
           </p>
           <div className="py-4">
             <GithubLoginForm />
+            <MicrosoftLoginForm />
             <GoogleLoginForm />
           </div>
           <p className="text-sm text-muted-foreground">
