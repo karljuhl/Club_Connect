@@ -46,7 +46,7 @@ export default async function ChatbotsPage() {
 
   return (
     <DashboardShell>
-      <DashboardHeader heading="Chatbots" text="Create and manage your chatbots.">
+      <DashboardHeader heading="Front-Desk Assistants" text="Create and manage your assistants.">
         <ChatbotCreateButton />
       </DashboardHeader>
       <div>
@@ -58,10 +58,10 @@ export default async function ChatbotsPage() {
           </div>
         ) : (
           <EmptyPlaceholder>
-            <EmptyPlaceholder.Icon name="bot" />
-            <EmptyPlaceholder.Title>No chatbot created</EmptyPlaceholder.Title>
+            <EmptyPlaceholder.Icon name="bell" />
+            <EmptyPlaceholder.Title>No Front-Desk Assitants have been Created</EmptyPlaceholder.Title>
             <EmptyPlaceholder.Description>
-              You don&apos;t have any chatbot yet. Start creating.
+              Start creating.
             </EmptyPlaceholder.Description>
             <ChatbotCreateButton variant="outline" />
           </EmptyPlaceholder>
