@@ -42,7 +42,7 @@ export async function POST(
         }
 
         const openai = new OpenAI({
-            apiKey: process.env.DEFAULT_CHATBOT_API_KEY
+            apiKey: chatbot.openaiKey || process.env.DEFAULT_CHATBOT_API_KEY
         })
 
         const input: {
