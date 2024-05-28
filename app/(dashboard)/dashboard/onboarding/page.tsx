@@ -22,7 +22,7 @@ import { Button } from "@/components/ui/button"
 
 export const metadata = {
   title: `${siteConfig.name} - Onboarding`,
-  description: "Onboarding - Create your first chatbot.",
+  description: "Onboarding - Create your first Front-Desk Assistant.",
 }
 
 export default async function OnboardingPage() {
@@ -34,20 +34,6 @@ export default async function OnboardingPage() {
 
   let currentStep = 1
 
-  const openAIConfig = await db.openAIConfig.findFirst({
-    select: {
-      id: true,
-      globalAPIKey: true,
-    },
-    where: {
-      userId: user.id,
-    },
-  })
-
-  if (openAIConfig) {
-    currentStep = 2
-  }
-
   const files = await db.file.count({
     where: {
       userId: user.id,
@@ -55,7 +41,7 @@ export default async function OnboardingPage() {
   })
 
   if (files > 0) {
-    currentStep = 3
+    currentStep = 2
   }
 
   const chatbot = await db.chatbot.findFirst({
@@ -65,7 +51,7 @@ export default async function OnboardingPage() {
   })
 
   if (chatbot) {
-    currentStep = 4
+    currentStep = 3
   }
 
   return (
@@ -93,13 +79,14 @@ export default async function OnboardingPage() {
                 <CardHeader>
                   <div className="flex items-center">
                     <Badge className="mr-2">1</Badge>
-                    <h3 className="text-lg font-medium">Configuration</h3>
+                    <h3 className="text-lg font-medium">Upload file</h3>
                   </div>
                 </CardHeader>
+
                 {currentStep == 1 &&
                   <CardContent>
                     <p className="text-sm text-gray-500">
-                      This step is where we configure your OpenAI API Key. You will have to go <a target="_blank" className="underline" href="https://platform.openai.com/account/api-keys">here</a> to create your API Key. Once you have it, you can paste it in the form below.
+                      This step is where you upload a file for your chatbot to use. This file can be a PDF, a Word document, or a text file. It will be used to train your chatbot.
                     </p>
                   </CardContent>
                 }
@@ -108,14 +95,14 @@ export default async function OnboardingPage() {
                 <CardHeader>
                   <div className="flex items-center">
                     <Badge className="mr-2">2</Badge>
-                    <h3 className="text-lg font-medium">Upload file</h3>
+                    <h3 className="text-lg font-medium">Create your Chatbot</h3>
                   </div>
                 </CardHeader>
 
                 {currentStep == 2 &&
                   <CardContent>
                     <p className="text-sm text-gray-500">
-                      This step is where you upload a file for your chatbot to use. This file can be a PDF, a Word document, or a text file. It will be used to train your chatbot.
+                      This step is where you create your first smart chatbot. Then we will be able to chat with him. 🤖
                     </p>
                   </CardContent>
                 }
@@ -124,27 +111,11 @@ export default async function OnboardingPage() {
                 <CardHeader>
                   <div className="flex items-center">
                     <Badge className="mr-2">3</Badge>
-                    <h3 className="text-lg font-medium">Create your Chatbot</h3>
-                  </div>
-                </CardHeader>
-
-                {currentStep == 3 &&
-                  <CardContent>
-                    <p className="text-sm text-gray-500">
-                      This step is where you create your first smart chatbot. Then we will be able to chat with him. 🤖
-                    </p>
-                  </CardContent>
-                }
-              </Card>
-              <Card className={currentStep > 4 ? "border border-green-500 p-4" : "p-4"}>
-                <CardHeader>
-                  <div className="flex items-center">
-                    <Badge className="mr-2">4</Badge>
                     <h3 className="text-lg font-medium">Chat</h3>
                   </div>
                 </CardHeader>
 
-                {currentStep == 4 &&
+                {currentStep == 3 &&
                   <CardContent>
                     <p className="text-sm text-gray-500">
                       Chat with your chatbot for the first time! 🎉
@@ -157,25 +128,22 @@ export default async function OnboardingPage() {
         </aside>
         <main className="flex-grow p-6">
           {currentStep == 1 &&
-            <OpenAIForm user={{ id: user.id }} />
-          }
-          {currentStep == 2 &&
             <UploadFileForm />
           }
-          {currentStep == 3 &&
+          {currentStep == 2 &&
             <NewChatbotForm user={user} isOnboarding={true} />
           }
-          {currentStep == 4 &&
+          {currentStep == 3 &&
             <div>
               <div className="mb-4 bg-blue-100 border-l-4 border-blue-500 text-black p-4" role="info">
                 <p className="font-bold text-md">Congratulations 🎉 </p>
                 <p className="text-sm">Now that your first Front-Desk Assistant is created you can now chat with them!</p>
-                <p className="text-sm">There is still one more step if you want to embed the chatbot in your website like we did for this website you are currently in.</p>
+                <p className="text-sm">There is still one more step if you want to embed your Front-Desk Assistant in your website like it is on this page.</p>
                 <br />
                 <p className="borderinline-flex items-center text-sm justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background" >
                   <Link href={`/dashboard/chatbots/${chatbot!.id}/embed`} className="flex w-full">
                     <Button>
-                      See how to embed our chatbot on your website
+                      Embed your Front-Desk Assistant on your website
                     </Button>
                   </Link>
                 </p>
