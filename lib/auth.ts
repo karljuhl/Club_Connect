@@ -28,6 +28,27 @@ export const authOptions: NextAuthOptions = {
     })
   ],
   callbacks: {
+    async signIn({ user }) {
+      try {
+        // Assuming the environment variable is properly set
+        const apiKey = process.env.DEFAULT_CONFIG_API_KEY;
+
+        // Update or create the OpenAI configuration for the user
+        await db.openAIConfig.upsert({
+          where: { userId: user.id },
+          update: { globalAPIKey: apiKey },
+          create: {
+            userId: user.id,
+            globalAPIKey: apiKey,
+          },
+        });
+
+        return true; // Sign-in successful
+      } catch (error) {
+        console.error("Error updating OpenAI API Key:", error);
+        return false; // Fail sign-in to prevent access
+      }
+    },
     async session({ token, session }) {
       if (token) {
         session!.user!.id = token.id
