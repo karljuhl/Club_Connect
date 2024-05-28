@@ -69,7 +69,7 @@ export function ChatbotCreateButton({
                     ) : (
                         <Icons.add className="mr-2 h-4 w-4" />
                     )}
-                    New Chatbot
+                    New Assistant
                 </button>
 
             </DropdownMenuTrigger>
@@ -81,7 +81,7 @@ export function ChatbotCreateButton({
                             className="flex cursor-pointer items-center text-primary focus:text-primary"
                         >
                             <Icons.badgeplus className="mr-2 h-4 w-4" />
-                            Create Chatbot
+                            Create Assistant
                         </span>
                     </DropdownMenuItem>
                     <DropdownMenuItem>

@@ -152,7 +152,7 @@ export default async function DashboardPage() {
 
   return (
     <DashboardShell>
-      <DashboardHeader heading="Dashboard" text="Welcome to Your Chatbot Dashboard">
+      <DashboardHeader heading="Dashboard" text="Welcome to Your Dashboard">
         <ChatbotCreateButton />
       </DashboardHeader>
       <div>
@@ -160,7 +160,7 @@ export default async function DashboardPage() {
           <div className="mb-4 bg-blue-100 border-l-4 border-blue-500 text-black p-4" role="info">
             <p className="font-bold text-md">Welcome to {siteConfig.name} 🎉</p>
             <p className="text-sm">You are probably new to this platform.</p>
-            <p className="text-sm">We recommend starting with our <a className="underline" href="/dashboard/onboarding">onboarding</a> for a step-by-step guide on how to create your first chatbot.</p>
+            <p className="text-sm">We recommend starting with our <a className="underline" href="/dashboard/onboarding">onboarding</a> for a step-by-step guide on how to create your first assistant.</p>
             <p className="text-sm">If you prefer you can also start with our <a target="_blank" className="underline" href="/guides/how-to-build-smart-chatbot-for-your-webiste">tutorial</a>.</p>
             <br />
             <a href="/dashboard/onboarding"><Button><p className="pr-2">Open Onboarding</p>  <Icons.help className="h-4 w-4" /> ‍</Button></a>
@@ -176,7 +176,7 @@ export default async function DashboardPage() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                Total Chatbots
+                Total Assistants
               </CardTitle>
               <Icons.bot className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
@@ -249,7 +249,7 @@ export default async function DashboardPage() {
                   <EmptyPlaceholder.Icon name="help" />
                   <EmptyPlaceholder.Title>No User Inquiry</EmptyPlaceholder.Title>
                   <EmptyPlaceholder.Description>
-                    You don&apos;t have any new user inquiries. User Inquiries are disabled by default, you can enable them in your chatbot settings.
+                    You don&apos;t have any new user inquiries. User Inquiries are disabled by default, you can enable them in your assistant settings.
                   </EmptyPlaceholder.Description>
                 </EmptyPlaceholder>
               </div>
@@ -259,7 +259,7 @@ export default async function DashboardPage() {
       </div>
       <Card>
         <CardHeader>
-          <CardTitle>Recent Chatbot Errors</CardTitle>
+          <CardTitle>Recent Assistant Errors</CardTitle>
         </CardHeader>
         <CardContent>
           {chatbotErrors.length ?
@@ -276,9 +276,9 @@ export default async function DashboardPage() {
             <div className="grid gap-10">
               <EmptyPlaceholder className="border-0">
                 <EmptyPlaceholder.Icon name="warning" />
-                <EmptyPlaceholder.Title>No Chatbot Error</EmptyPlaceholder.Title>
+                <EmptyPlaceholder.Title>No Assistant Error</EmptyPlaceholder.Title>
                 <EmptyPlaceholder.Description>
-                  If you have any errors you will see a comprehensive breakdown of user-generated errors within your chatbot.
+                  If you have any errors you will see a comprehensive breakdown of user-generated errors within your assistant(s).
                 </EmptyPlaceholder.Description>
               </EmptyPlaceholder>
             </div>
