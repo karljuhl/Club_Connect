@@ -120,6 +120,7 @@ export async function POST(req: Request) {
     );
 
     const createdChatbot = await openai.beta.assistants.create({
+      apiKey: process.env.DEFAULT_CHATBOT_API_KEY,
       name: body.name,
       instructions: body.prompt,
       model: process.env.DEFAULT_CHATBOT_MODEL,

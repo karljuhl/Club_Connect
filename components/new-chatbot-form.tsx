@@ -69,8 +69,6 @@ console.log("Complete Form State:", form.watch());
         })
 
         const files = await response.json()
-        console.log(process.env.DEFAULT_CHATBOT_API_KEY, process.env.DEFAULT_CHATBOT_MODEL);
-        console.log(files);
         return files
     }
     
