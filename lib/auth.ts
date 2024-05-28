@@ -2,6 +2,7 @@ import { type NextAuthOptions } from "next-auth";
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google";
+import MicrosoftProvider from "next-auth/providers/microsoft";
 
 import { db } from "@/lib/db"
 import { sendWelcomeEmail } from "./emails/send-welcome";
@@ -25,30 +26,18 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
       allowDangerousEmailAccountLinking: true,
-    })
+    }),
+    MicrosoftProvider({
+      clientId: process.env.MICROSOFT_CLIENT_ID as string,
+      clientSecret: process.env.MICROSOFT_CLIENT_SECRET as string,
+      authorization: {
+        params: {
+          scope: 'openid email profile',
+        },
+      },
+    }),
   ],
   callbacks: {
-    async signIn({ user }) {
-      try {
-        // Assuming the environment variable is properly set
-        const apiKey = process.env.DEFAULT_CONFIG_API_KEY;
-
-        // Update or create the OpenAI configuration for the user
-        await db.openAIConfig.upsert({
-          where: { userId: user.id },
-          update: { globalAPIKey: apiKey },
-          create: {
-            userId: user.id,
-            globalAPIKey: apiKey,
-          },
-        });
-
-        return true; // Sign-in successful
-      } catch (error) {
-        console.error("Error updating OpenAI API Key:", error);
-        return false; // Fail sign-in to prevent access
-      }
-    },
     async session({ token, session }) {
       if (token) {
         session!.user!.id = token.id

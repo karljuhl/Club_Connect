@@ -33,7 +33,7 @@ export default async function SupportPage() {
                 <p className="text-muted-foreground">
                     First, before reaching out you can always try our chatbot. He knows a lot about our platform he might be able to help you.
                     <br />
-                    If you still have issue with our app you can email us at support@clubconnect.com
+                    If you still have issue with our app you can email us at <a href="mailto:support@clubconnect.com">support@clubconnect.com</a>
                 </p>
                 <div className="min-w-[85%] min-h-[15rem] text-left items-left pt-6">
                     <iframe

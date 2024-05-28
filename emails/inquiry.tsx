@@ -42,7 +42,7 @@ export default function InquiryEmail({ ownerName, userEmail, userInquiry, chatbo
 
                             <br />
                             <br />
-                            <b>Chatbot Name:</b> {chatbotName}
+                            <b>Assistant Name:</b> {chatbotName}
                             <br />
                             <b>User Email:</b> {userEmail}
                             <br />

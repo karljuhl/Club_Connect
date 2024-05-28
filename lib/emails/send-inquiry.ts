@@ -7,7 +7,7 @@ export async function sendNewInquiryEmail({ email, ownerName, userEmail, userInq
     try {
         // Send the email using the Resend API
         await EmailClient.emails.send({
-            from: "OpenAssistantGPT <no-reply@openassistantgpt.io>",
+            from: "Club Connect <no-reply@clubconnect.pro>",
             to: email as string,
             subject: `${siteConfig.name} - New User Inquiry!`,
             react: emailTemplate,

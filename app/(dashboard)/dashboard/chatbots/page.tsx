@@ -59,9 +59,9 @@ export default async function ChatbotsPage() {
         ) : (
           <EmptyPlaceholder>
             <EmptyPlaceholder.Icon name="bell" />
-            <EmptyPlaceholder.Title>No Front-Desk Assitants have been Created</EmptyPlaceholder.Title>
+            <EmptyPlaceholder.Title>No Front-Desk Assistants Currently</EmptyPlaceholder.Title>
             <EmptyPlaceholder.Description>
-              Start creating.
+              Create your first assistant.
             </EmptyPlaceholder.Description>
             <ChatbotCreateButton variant="outline" />
           </EmptyPlaceholder>
