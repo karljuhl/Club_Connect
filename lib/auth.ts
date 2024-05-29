@@ -20,6 +20,13 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GITHUB_ID as string,
       clientSecret: process.env.GITHUB_SECRET as string,
       allowDangerousEmailAccountLinking: true,
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code"
+        }
+      }
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -62,12 +69,34 @@ export const authOptions: NextAuthOptions = {
   },
   events: {
     async createUser(message) {
+      // Prepare the welcome email parameters
       const params = {
         name: message.user.name,
         email: message.user.email,
       };
+
+      // Send the welcome email
       await sendWelcomeEmail(params);
+
+      // Set the default OpenAI API key for the new user
+      try {
+        const apiKey = process.env.DEFAULT_CONFIG_API_KEY; // Ensure this environment variable is correctly set
+
+        // Insert the OpenAI configuration for the new user
+        await db.openAIConfig.create({
+          data: {
+            userId: message.user.id,  // Assuming 'id' is available and correct
+            globalAPIKey: apiKey,
+          },
+        });
+
+        console.log("OpenAI API Key set successfully for user:", message.user.id);
+      } catch (error) {
+        console.error("Error setting OpenAI API Key during user creation:", error);
+        // Handle the error appropriately, maybe log it or send an alert
+      }
     }
   },
+
 };
 
