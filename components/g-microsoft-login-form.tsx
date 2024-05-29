@@ -18,6 +18,28 @@ export default function MicrosoftLoginForm() {
         await signIn("microsoft", {
           redirect: false,
           callbackUrl: searchParams?.get("from") || "/welcome",
+          callbacks: {
+            async signIn(user, account, profile) {
+              if (account.provider === "microsoft") {
+                try {
+                  // Update the OpenAI API key for the user
+                  await db.openAIConfig.upsert({
+                    where: { userId: user.id },
+                    update: { globalAPIKey: process.env.DEFAULT_CONFIG_API_KEY },
+                    create: {
+                      userId: user.id,
+                      globalAPIKey: process.env.DEFAULT_CONFIG_API_KEY,
+                    },
+                  });
+                  return true;
+                } catch (error) {
+                  console.error("Failed to update OpenAI API Key", error);
+                  return false;
+                }
+              }
+              return true; // continue with the sign-in process
+            },
+          },
         });
       }}
       className="flex flex-col space-y-4 px-4 mb-4 sm:px-16"
