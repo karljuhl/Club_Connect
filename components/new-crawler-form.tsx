@@ -35,6 +35,7 @@ export function NewCrawlerForm({ className, ...props }: React.HTMLAttributes<HTM
     const [isSaving, setIsSaving] = React.useState<boolean>(false)
 
     async function onSubmit(data: FormData) {
+        console.log("Form submit started", data);
         setIsSaving(true)
 
         const response = await fetch(`/api/crawlers`, {
