@@ -34,47 +34,11 @@ export function NewCrawlerForm({ className, ...props }: React.HTMLAttributes<HTM
     })
     const [isSaving, setIsSaving] = React.useState<boolean>(false)
 
-    async function onSubmit(data: FormData) {
-        console.log("Form submit started", data);
-        setIsSaving(true)
-
-        const response = await fetch(`/api/crawlers`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                name: data.name,
-                crawlUrl: data.crawlUrl,
-                selector: data.selector,
-                urlMatch: data.urlMatch
-            }),
-        })
-
-        setIsSaving(false)
-
-        if (!response?.ok) {
-            if (response.status === 402) {
-                return toast({
-                    title: "Crawler limit reached.",
-                    description: "Please upgrade to the a higher plan.",
-                    variant: "destructive",
-                })
-            }
-
-            return toast({
-                title: "Something went wrong.",
-                description: "Your crawler was not saved. Please try again.",
-                variant: "destructive",
-            })
-        }
-
-        toast({
-            description: "Your crawler has been saved.",
-        })
-        const json = await response.json()
-        router.push(`/dashboard/crawlers/${json.id}/crawl`)
+    async function onSubmit(data) {
+        console.log("Form Data:", data);
+        alert("Check console for form data");
     }
+    
 
     return (
         <Form {...form}>
