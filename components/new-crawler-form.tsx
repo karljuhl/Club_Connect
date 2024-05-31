@@ -129,9 +129,15 @@ export function NewCrawlerForm({ className, ...props }: React.HTMLAttributes<HTM
                         />
                     </CardContent>
                     <CardFooter>
-                    <button type="submit" className={cn(buttonVariants(), className)} disabled={isSaving}>
-                {isSaving ? <Icons.spinner className="mr-2 h-4 w-4 animate-spin" /> : "Create"}
-            </button>
+                    <button
+    type="submit"
+    className={cn(buttonVariants(), className)}
+    disabled={isSaving}
+    onClick={() => console.log("Create button clicked")}
+>
+    {isSaving ? <Icons.spinner className="mr-2 h-4 w-4 animate-spin" /> : "Create"}
+</button>
+
                     </CardFooter>
                 </Card>
             </form>
