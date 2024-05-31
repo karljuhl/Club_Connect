@@ -8,9 +8,7 @@ import { RequiresHigherPlanError } from "@/lib/exceptions";
 
 const crawlerCreateSchema = z.object({
     name: z.string(),
-    crawlUrl: z.string(),
-    urlMatch: z.string(),
-    selector: z.string()
+    crawlUrl: z.string()
 })
 
 export async function GET(request: Request) {
