@@ -64,7 +64,7 @@ export async function POST(req: Request) {
         }
 
         const json = await req.json()
-        const body = crawlerCreateSchema.parse(json)
+        const body = crawlerCreateSchema.parse(json);
 
         const crawler = await db.crawler.create({
             data: {
@@ -72,13 +72,14 @@ export async function POST(req: Request) {
                 crawlUrl: body.crawlUrl,
                 urlMatch: body.urlMatch,
                 selector: body.selector,
-                maxPagesToCrawl: 25,
+                maxPagesToCrawl: body.maxPagesToCrawl,
                 userId: session?.user?.id,
             },
             select: {
                 id: true,
             },
-        })
+        });
+        
 
         return new Response(JSON.stringify(crawler))
     } catch (error) {
