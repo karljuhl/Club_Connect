@@ -61,6 +61,7 @@ export default async function FilePage() {
                 <div className="mb-4 flex items-center justify-between px-2">
                     <Label className="text-lg">Uploaded files</Label>
                     <FileUploadButton variant={"outline"} />
+                    <br></br>
                     <Accordion className="w-full mt-4" type="multiple">
                         <AccordionItem value="item-0">
                             <AccordionTrigger className="hover:underline-none text-black">
