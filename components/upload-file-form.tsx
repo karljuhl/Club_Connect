@@ -22,6 +22,7 @@ import { Icons } from "@/components/icons"
 import { Form, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { fileUploadSchema } from "@/lib/validations/fileUpload"
 import { useRef } from "react"
+import { AccordionTrigger, AccordionContent, AccordionItem, Accordion } from "@/components/ui/accordion"
 
 interface UploadFileFormProps extends React.HTMLAttributes<HTMLFormElement> { }
 
@@ -101,6 +102,23 @@ export function UploadFileForm({ className, ...props }: UploadFileFormProps) {
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-6">
+                        <div className="flex flex-col">
+                            <Accordion className="w-full mt-2 mb-2" type="multiple">
+                                <AccordionItem value="item-0">
+                                    <AccordionTrigger className="hover:underline-none text-muted-foreground">
+                                        Best Practices for Creating your File
+                                    </AccordionTrigger>
+                                    <AccordionContent className="text-muted-foreground">
+                                        The document which you are creating is what your Front-Desk Assistant will use as the source knowledge document and will be used to answer custmoers questions and get them pointed in the right direction. From a high level view your document should include services/products offered, rates, policies etc...  
+                                            - What are the services/products offered?
+                                            - What are the rates for members/visitors for the different services?
+                                            - Do cusotmers need accounts? How can they trouble shoot issues like: resetting password adding a facility etc...
+                                            - What policies exist for your facility: sign-up, weather, cancellation, refunds etc... 
+                                            - Is there any needed information that is not covered above i.e. recommending partner services, offering special deals/packages, recommended contacts for certain topics such as facility rental, tournaments, CX etc...
+                                    </AccordionContent>
+                                </AccordionItem>
+                            </Accordion>
+                        </div>
                         <FormField
                             control={form.control}
                             name="file"

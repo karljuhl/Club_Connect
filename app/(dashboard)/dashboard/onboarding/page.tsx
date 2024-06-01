@@ -87,8 +87,6 @@ export default async function OnboardingPage() {
                   <CardContent>
                     <p className="text-sm text-gray-500">
                       This step is where you upload a file for your assistant to use. This file can be a PDF, a Word document, or a text file. It will be used to train your assistant.
-                      Create a document twith any needed information, from services and rates, to links for creating an account, update an account, appropriate contacts for differetn types of inquiries etc... 
-                      If you need help creating your document please refer to documentation here (link) 
                     </p>
                   </CardContent>
                 }
