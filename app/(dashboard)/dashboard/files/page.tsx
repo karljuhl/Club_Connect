@@ -58,13 +58,14 @@ export default async function FilePage() {
             <DashboardHeader heading="Files" text="List of all of your imported and crawled files.">
             </DashboardHeader>
             <div className="flex flex-col">
+              <div className="flex flex-col">
                 <div className="mb-4 flex items-center justify-between px-2">
                     <Label className="text-lg">Uploaded files</Label>
                     <FileUploadButton variant={"outline"} />
-                    <br></br>
+                </div>
                     <Accordion className="w-full mt-4" type="multiple">
                         <AccordionItem value="item-0">
-                            <AccordionTrigger className="hover:underline-none text-black">
+                            <AccordionTrigger className="hover:underline-none text-muted-foreground">
                                 Best Practices for Creating your File
                             </AccordionTrigger>
                             <AccordionContent className="text-muted-foreground">
@@ -72,7 +73,7 @@ export default async function FilePage() {
                             </AccordionContent>
                         </AccordionItem>
                     </Accordion>
-                </div>
+              </div>
                 {uploadedFiles.length ?
                     <div className="divide-y divide-border rounded-md border">
                         {uploadedFiles.map((file) => (
