@@ -190,7 +190,6 @@ export default function IndexPage() {
                     <li><Icons.check className="mr-2 inline-block h-4 w-4" /> 250 messages per month</li>
                 </ul>
             </div>
-            </div>
         <div className="relative flex flex-col space-y-2 px-3 py-3 rounded-md bg-gray-100">
             <div className="absolute inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center text-zinc-950 text-xl font-bold rounded-md z-10">Coming Soon</div>
               <div className="blur-sm">
@@ -224,6 +223,7 @@ export default function IndexPage() {
                 </ul>
             </div>
             </div>
+          </div>
     </div>
 </section>
 
