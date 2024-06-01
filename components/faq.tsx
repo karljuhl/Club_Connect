@@ -44,12 +44,12 @@ export function FAQ() {
           Does your Front-Desk Assistant replace human customer service?
         </AccordionTrigger>
         <AccordionContent className="text-white">
-          ClubConnect&apos;s Front-Desk Assistant complements human customer service by handling straightforward questions and issues, allowing our human team to focus on more complex inquiries and enhancing in-person customer&apos;s experience.
+          ClubConnect&apos;s Front-Desk Assistant complements human customer service by handling straightforward questions and issues, allowing your human Front-Desk team to focus on more complex inquiries and enhancing in-person customer&apos;s experience.
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-6">
         <AccordionTrigger className="hover:underline-none text-left">
-          ClubConnect&apos;s Front-Desk Assistant complements human customer service by handling straightforward questions and issues, allowing our human team to focus on more complex inquiries and enhancing in-person customer&apos;s experience.
+          Which AI models does ClubConnect suuport in their Front-Desk Assistants?
         </AccordionTrigger>
         <AccordionContent className="text-white">
           We support the latest models from OpenAI with a focus on Stable Sanpshots so when updates are pushed you dont have to worry about how those will affect your Front-Desk Assistants, any updates to a new model for Front-Desk Assistants will be communicated ahead of time and our team will work with you to make sure your assistant improves along with the updated model. 

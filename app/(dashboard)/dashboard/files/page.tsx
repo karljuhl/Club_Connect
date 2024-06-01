@@ -11,6 +11,7 @@ import { CrawlerCreateButton } from "@/components/crawler-create-button"
 import { FileUploadButton } from "@/components/file-upload-button"
 import { FileItem } from "@/components/file-items"
 import { siteConfig } from "@/config/site"
+import { AccordionTrigger, AccordionContent, AccordionItem, Accordion } from "@/components/ui/accordion"
 
 export const metadata = {
     title: `${siteConfig.name} - Files`,
@@ -60,6 +61,16 @@ export default async function FilePage() {
                 <div className="mb-4 flex items-center justify-between px-2">
                     <Label className="text-lg">Uploaded files</Label>
                     <FileUploadButton variant={"outline"} />
+                    <Accordion className="w-full mt-4" type="multiple">
+                        <AccordionItem value="item-0">
+                            <AccordionTrigger className="hover:underline-none text-black">
+                                Best Practices for Creating your File
+                            </AccordionTrigger>
+                            <AccordionContent className="text-muted-foreground">
+                                ClubConnect is a solution designed to help your customers while relieving pressure on your Front-Desk Team, assist with understanding facility services & offerings, and provide information to users in real-time. It allows your team to focus on enriching the experience of in-person customers, while having peace of mind that those on the website and calling are getting the answers they are looking for.
+                            </AccordionContent>
+                        </AccordionItem>
+                    </Accordion>
                 </div>
                 {uploadedFiles.length ?
                     <div className="divide-y divide-border rounded-md border">
