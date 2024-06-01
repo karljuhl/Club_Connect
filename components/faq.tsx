@@ -27,7 +27,7 @@ export function FAQ() {
         <AccordionTrigger className="hover:underline-none">
           Are your front-desk assistants always available?
         </AccordionTrigger>
-        <AccordionContent className="text-muted-foreground">
+        <AccordionContent className="text-white">
           Yes, ClubConnect&apos;s front-desk assistants are available 24/7 to assist with any questions you or your customers might have at any time.
         </AccordionContent>
       </AccordionItem>
@@ -35,23 +35,23 @@ export function FAQ() {
         <AccordionTrigger className="hover:underline-none text-left">
           What kind of questions can I ask ClubConnect&apos;s Front-Desk Assistant ?
         </AccordionTrigger>
-        <AccordionContent className="text-muted-foreground">
+        <AccordionContent className="text-white">
           You can ask ClubConnect&apos;s Front-Desk Assistant about website navigation, services offered, troubleshooting, and more. It&apos;s here to ensure you find the information you need. We are working on integrations with software providers powering your club to further increase the possibilities of how Front-Desk Assistants are capable of aiding your customers.
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem className="border-b-0" value="item-5">
+      <AccordionItem value="item-5">
         <AccordionTrigger className="hover:underline-none text-left">
           Does your Front-Desk Assistant replace human customer service?
         </AccordionTrigger>
-        <AccordionContent className="text-muted-foreground">
+        <AccordionContent className="text-white">
           ClubConnect&apos;s Front-Desk Assistant complements human customer service by handling straightforward questions and issues, allowing our human team to focus on more complex inquiries and enhancing in-person customer&apos;s experience.
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem className="border-b-0" value="item-6">
-        <AccordionTrigger className="hover:underline-none">
+      <AccordionItem value="item-6">
+        <AccordionTrigger className="hover:underline-none text-left">
           ClubConnect&apos;s Front-Desk Assistant complements human customer service by handling straightforward questions and issues, allowing our human team to focus on more complex inquiries and enhancing in-person customer&apos;s experience.
         </AccordionTrigger>
-        <AccordionContent className="text-muted-foreground">
+        <AccordionContent className="text-white">
           We support the latest models from OpenAI with a focus on Stable Sanpshots so when updates are pushed you dont have to worry about how those will affect your Front-Desk Assistants, any updates to a new model for Front-Desk Assistants will be communicated ahead of time and our team will work with you to make sure your assistant improves along with the updated model. 
         </AccordionContent>
       </AccordionItem>

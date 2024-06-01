@@ -177,7 +177,7 @@ export default function IndexPage() {
                 </p>
             </div>
         </div>
-        <div className="mx-auto mt-10 grid max-w-sm items-start gap-12 sm:max-w-4xl sm:grid-cols-2 lg:max-w-5xl lg:grid-cols-4">
+        <div className="mx-auto mt-10 grid max-w-sm items-start gap-12 sm:max-w-4xl sm:grid-cols-1 lg:max-w-5xl lg:grid-cols-3">
         <div className="relative flex flex-col space-y-2 px-3 py-3 rounded-md bg-gray-100">
                 <div className="space-y-2">
                     <h3 className="text-2xl font-bold tracking-tighter">{freePlan.name}</h3>
