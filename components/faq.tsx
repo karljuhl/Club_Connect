@@ -47,7 +47,7 @@ export function FAQ() {
           ClubConnect&apos;s Front-Desk Assistant complements human customer service by handling straightforward questions and issues, allowing our human team to focus on more complex inquiries.
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem value="item-6">
+      <AccordionItem className="border-b-0" value="item-6">
         <AccordionTrigger className="hover:underline-none">
           Which models do you support with ClubConnect&apos;s Front-Desk Assistant?
         </AccordionTrigger>
