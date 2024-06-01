@@ -19,11 +19,11 @@ export const dashboardConfig: DashboardConfig = {
             href: "/dashboard/chatbots",
             icon: "bell",
         },
-        {
-            title: "Crawlers",
-            href: "/dashboard/crawlers",
-            icon: "post",
-        },
+        //{
+        //    title: "Crawlers",
+        //    href: "/dashboard/crawlers",
+        //    icon: "post",
+        //},
         {
             title: "Files",
             href: "/dashboard/files",

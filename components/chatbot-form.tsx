@@ -126,9 +126,9 @@ export function ChatbotForm({ chatbot, currentFiles, models, files, className, .
             >
                 <Card>
                     <CardHeader>
-                        <CardTitle>Chatbot settings</CardTitle>
+                        <CardTitle>Front-Desk Assistant settings</CardTitle>
                         <CardDescription>
-                            Update your chatbot configuration.
+                            Update your assistant configuration.
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-6">
@@ -167,7 +167,7 @@ export function ChatbotForm({ chatbot, currentFiles, models, files, className, .
                                         id="welcomeMessage"
                                     />
                                     <FormDescription>
-                                        The first message that will be sent to the user when they start a conversation with your chatbot.
+                                        The first message that will be sent to the user when they start a conversation with your assistant.
                                     </FormDescription>
                                     <FormMessage />
                                 </FormItem>
@@ -179,7 +179,7 @@ export function ChatbotForm({ chatbot, currentFiles, models, files, className, .
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel htmlFor="prompt">
-                                        Prompt
+                                        Your Assistant&apos;s Task
                                     </FormLabel>
                                     <Textarea
                                         defaultValue={chatbot.prompt}
@@ -187,8 +187,9 @@ export function ChatbotForm({ chatbot, currentFiles, models, files, className, .
                                         id="prompt"
                                     />
                                     <FormDescription>
-                                        This is the prompt that will be sent to OpenAI, here&apos;s and example:
+                                        This is the prompt that will be sent to OpenAI, here&apos;s an example:
                                         &quot;You are an assistant you help users that visit our website, keep it short, always refer to the documentation provided and never ask for more information.&quot;
+                                        Tolearn more visit our documentation at (link)
                                     </FormDescription>
                                     <FormMessage />
                                 </FormItem>
@@ -215,8 +216,8 @@ export function ChatbotForm({ chatbot, currentFiles, models, files, className, .
                                     />
 
                                     <FormDescription>
-                                        The OpenAI model will use this file to search for specific content.
-                                        If you don&apos;t have a file yet, it is because you haven&apos;t published any file.
+                                        The assistant will use this file to search for specific content in order to answer user queries.
+                                        If you don&apos;t have a file yet, it is because you haven&apos;t published any files yet, files need to be uploaded prior to creating a Front-Desk Assistant. 
                                     </FormDescription>
                                     <FormMessage />
                                 </FormItem>
@@ -228,7 +229,7 @@ export function ChatbotForm({ chatbot, currentFiles, models, files, className, .
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel htmlFor="chatbotErrorMessage">
-                                        Chatbot Error Message
+                                        Assistant Error Message
                                     </FormLabel>
                                     <Textarea
                                         defaultValue={chatbot.chatbotErrorMessage}
@@ -236,7 +237,7 @@ export function ChatbotForm({ chatbot, currentFiles, models, files, className, .
                                         id="chatbotErrorMessage"
                                     />
                                     <FormDescription>
-                                        The message that will be displayed when the chatbot encounters an error and can&apos;t reply to a user.
+                                        The message that will be displayed when the assistant encounters an error and can&apos;t reply to a user.
                                     </FormDescription>
                                     <FormMessage />
                                 </FormItem>

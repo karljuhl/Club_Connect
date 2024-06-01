@@ -79,7 +79,7 @@ export default async function FilePage() {
                         </EmptyPlaceholder>
                     </div>
                 }
-                <div className="my-4" />
+                {/*<div className="my-4" />
                 <div className="mb-4 flex items-center justify-between px-2">
                     <Label className="text-lg">Crawlers&apos; files</Label>
                     <CrawlerCreateButton variant={"outline"} />
@@ -104,6 +104,8 @@ export default async function FilePage() {
                         </EmptyPlaceholder>
                     </div>
                 }
+
+                */}
             </div>
         </DashboardShell>
     )

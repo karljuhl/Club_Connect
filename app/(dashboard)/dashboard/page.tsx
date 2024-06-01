@@ -184,6 +184,8 @@ export default async function DashboardPage() {
               <div className="text-2xl font-bold">{bots}</div>
             </CardContent>
           </Card>
+          {/*
+          
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
@@ -194,7 +196,9 @@ export default async function DashboardPage() {
             <CardContent>
               <div className="text-2xl font-bold">{crawlers}</div>
             </CardContent>
-          </Card>
+      </Card>
+      
+      */}
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">

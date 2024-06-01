@@ -86,7 +86,9 @@ export default async function OnboardingPage() {
                 {currentStep == 1 &&
                   <CardContent>
                     <p className="text-sm text-gray-500">
-                      This step is where you upload a file for your chatbot to use. This file can be a PDF, a Word document, or a text file. It will be used to train your chatbot.
+                      This step is where you upload a file for your assistant to use. This file can be a PDF, a Word document, or a text file. It will be used to train your assistant.
+                      Create a document twith any needed information, from services and rates, to links for creating an account, update an account, appropriate contacts for differetn types of inquiries etc... 
+                      If you need help creating your document please refer to documentation here (link) 
                     </p>
                   </CardContent>
                 }
@@ -95,14 +97,14 @@ export default async function OnboardingPage() {
                 <CardHeader>
                   <div className="flex items-center">
                     <Badge className="mr-2">2</Badge>
-                    <h3 className="text-lg font-medium">Create your Chatbot</h3>
+                    <h3 className="text-lg font-medium">Create your Assistant</h3>
                   </div>
                 </CardHeader>
 
                 {currentStep == 2 &&
                   <CardContent>
                     <p className="text-sm text-gray-500">
-                      This step is where you create your first smart chatbot. Then we will be able to chat with him. 🤖
+                      This step is where you create your first Front-Desk Assistant. Then you will be able to chat with it. 🤖
                     </p>
                   </CardContent>
                 }
@@ -118,7 +120,7 @@ export default async function OnboardingPage() {
                 {currentStep == 3 &&
                   <CardContent>
                     <p className="text-sm text-gray-500">
-                      Chat with your chatbot for the first time! 🎉
+                      Chat with your assistant for the first time! 🎉
                     </p>
                   </CardContent>
                 }
