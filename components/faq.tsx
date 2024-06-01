@@ -11,7 +11,7 @@ export function FAQ() {
         <AccordionTrigger className="hover:underline-none">
           What is ClubConnect?
         </AccordionTrigger>
-        <AccordionContent className="text-muted-foreground">
+        <AccordionContent className="text-white">
           ClubConnect is an advanced chatbot solution designed to answer questions, assist with understanding facility services & offerings, and provide information to users in real-time. It allows your team to focus on enriching the experience of in-person customers, while having peace of mind that those on the website and calling are getting the answers they are looking for.
         </AccordionContent>
       </AccordionItem>
@@ -19,7 +19,7 @@ export function FAQ() {
         <AccordionTrigger className="hover:underline-none">
           How does the chatbot adapt to changing information?
         </AccordionTrigger>
-        <AccordionContent className="text-muted-foreground">
+        <AccordionContent className="text-white">
           We use custom crawlers that are created to extract the information then this content is used to continusouly train the chatbot so it is providing the most up-to-date information.
         </AccordionContent>
       </AccordionItem>
