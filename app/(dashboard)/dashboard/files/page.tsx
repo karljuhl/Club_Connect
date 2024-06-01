@@ -63,18 +63,20 @@ export default async function FilePage() {
                     <Label className="text-lg">Uploaded files</Label>
                     <FileUploadButton variant={"outline"} />
                 </div>
-                    <Accordion className="w-full mt-2 mb-2" type="multiple">
+                    <Accordion className="w-full mb-4" type="multiple">
                         <AccordionItem value="item-0">
                             <AccordionTrigger className="hover:underline-none text-muted-foreground">
                                 Best Practices for Creating your File
                             </AccordionTrigger>
                             <AccordionContent className="text-muted-foreground">
-                                The document which you are creating is what your Front-Desk Assistant will use as the source knowledge document and will be used to answer custmoers questions and get them pointed in the right direction. From a high level view your document should include services/products offered, rates, policies etc...  
-                                    - What are the services/products offered?
-                                    - What are the rates for members/visitors for the different services?
-                                    - Do cusotmers need accounts? How can they trouble shoot issues like: resetting password adding a facility etc...
-                                    - What policies exist for your facility: sign-up, weather, cancellation, refunds etc... 
-                                    - Is there any needed information that is not covered above i.e. recommending partner services, offering special deals/packages, recommended contacts for certain topics such as facility rental, tournaments, CX etc...
+                                    <p>The document which you are creating is what your Front-Desk Assistant will use as the source knowledge document and will be used to answer customers&apos; questions and get them pointed in the right direction. From a high-level view, your document should include services/products offered, rates, policies etc...</p>
+                                        <ul className="list-disc pl-4">
+                                            <li>What are the services/products offered?</li>
+                                            <li>What are the rates for members/visitors for the different services?</li>
+                                            <li>Do customers need accounts? How can they troubleshoot issues like resetting passwords, adding a facility etc...</li>
+                                            <li>What policies exist for your facility: sign-up, weather, cancellation, refunds etc...</li>
+                                            <li>Is there any needed information that is not covered above i.e. recommending partner services, offering special deals/packages, recommended contacts for certain topics such as facility rental, tournaments, other CX items...</li>
+                                        </ul>
                             </AccordionContent>
                         </AccordionItem>
                     </Accordion>
