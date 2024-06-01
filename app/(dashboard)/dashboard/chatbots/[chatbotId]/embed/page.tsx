@@ -42,7 +42,7 @@ export default async function EmbedOnSitePage({ params }: ChatbotSettingsProps) 
 
     return (
         <DashboardShell>
-            <DashboardHeader heading="Embed On Website" text="Make your chatbot publicly accessible for users.">
+            <DashboardHeader heading="Embed On Website" text="Make your assistant publicly accessible for users.">
                 <Link
                     href={`/dashboard/chatbots`}
                     className={cn(
