@@ -52,7 +52,7 @@ export default async function Login() {
             <GithubLoginForm />
           </div>
           <p className="text-sm text-muted-foreground">
-            By connecting your account, you agree to our <a href="/docs/legal/terms">Terms of Service</a> and <a href="/docs/legal/privacy">Privacy Policy</a>.
+            By connecting your account, you agree to our <a href="/terms/of-use">Terms of Service</a> and <a href="/terms/privacy-policy">Privacy Policy</a>.
           </p>
         </div>
       </div>

@@ -7,7 +7,7 @@ const TermsOfUsePage = () => {
       <div className="max-w-4xl mx-auto px-4 py-6">
         <h1 className="text-2xl font-bold">Terms of Use</h1>
         <p className="mt-4">Last updated April 05, 2024</p>
-        <p>Please read these Terms of Use (&quot;Terms&quot;, &quot;Terms of Use&quot;) carefully before using the ClubConnect application (the "Service") operated by Asger Analytics, LLC (&quot;us&quot;, &quot;we&quot;, or &quot;our&quot;).</p>
+        <p>Please read these Terms of Use (&quot;Terms&quot;, &quot;Terms of Use&quot;) carefully before using the ClubConnect application (the &quot;Service&quot;) operated by Asger Analytics, LLC (&quot;us&quot;, &quot;we&quot;, or &quot;our&quot;).</p>
         
         <h2 className="mt-4 mb-2 font-semibold">Intellectual Property</h2>
         <p>The Service and its original content, features, and functionality are and will remain the exclusive property of ClubConnect and its licensors. The Service is protected by copyright, trademark, and other laws of both the United States and foreign countries. Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of ClubConnect.</p>
