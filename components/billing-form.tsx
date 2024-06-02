@@ -15,7 +15,7 @@ import { Icons } from "@/components/icons"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { formatDate } from "@/lib/utils"
 import { toast } from "@/components/ui/use-toast"
-import { freePlan, basicPlan, hobbyPlan, proPlan, HIDDEN, managedWeb } from "@/config/subscriptions"
+import { freePlan, basicPlan, hobbyPlan, proPlan, HIDDEN, managedWeb, webplusPlan, webunlimitedPlan } from "@/config/subscriptions"
 
 interface BillingFormProps extends React.HTMLAttributes<HTMLFormElement> {
     subscriptionPlan: UserSubscriptionPlan & {
@@ -102,7 +102,7 @@ export function BillingForm({
             </Card>
             <Card className="border-0 shadow-0">
                 <div className="flex flex-wrap gap-6 mt-8 md:gap-8">
-                    {[freePlan, hobbyPlan, managedWeb, basicPlan, proPlan].map((plan, i) => {
+                    {[freePlan, hobbyPlan, managedWeb, webplusPlan, webunlimitedPlan].map((plan, i) => {
                         if (plan.name === managedWeb.name) {
                             return (
                                 <div key={i} className={`relative flex flex-col p-2 bg-white rounded-lg justify-between border ${plan.availability === "COMING SOON" ? "bg-gray-200" : "bg-zinc-850"} hover:shadow-sm`}>

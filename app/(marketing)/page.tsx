@@ -5,7 +5,7 @@ import Image from "next/image";
 import { siteConfig } from "@/config/site";
 import { Icons } from "@/components/icons";
 import { FAQ } from '@/components/faq';
-import { freePlan, basicPlan, hobbyPlan, proPlan, managedWeb } from "@/config/subscriptions";
+import { freePlan, basicPlan, hobbyPlan, proPlan, managedWeb, webunlimitedPlan, webplusPlan } from "@/config/subscriptions";
 
 export default function IndexPage() {
 
@@ -179,49 +179,62 @@ export default function IndexPage() {
         </div>
         <div className="mx-auto mt-10 grid max-w-sm items-start gap-12 sm:max-w-4xl sm:grid-cols-1 lg:max-w-5xl lg:grid-cols-3">
         <div className="relative flex flex-col space-y-2 px-3 py-3 rounded-md bg-gray-100">
-                <div className="space-y-2">
-                    <h3 className="text-2xl font-bold tracking-tighter">{freePlan.name}</h3>
-                    <p className="text-2xl font-bold tracking-tighter">${freePlan.price}</p>
-                    <p className="text-sm">Ideal for smaller facilities who do not worry about phone load.</p>
-                </div>
-                <ul className="grid gap-2 py-4">
-                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {freePlan.maxChatbots} Assistants</li>
-                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {freePlan.maxFiles} Files</li>
-                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> 250 messages per month</li>
-                </ul>
-            </div>
-        <div className="relative flex flex-col space-y-2 px-3 py-3 rounded-md bg-gray-100">
             <div className="absolute inset-0 bg-gray-300 bg-opacity-50 flex items-center justify-center text-zinc-950 text-xl font-bold rounded-md z-10">Coming Soon</div>
-              <div className="blur-sm">
                 <div className="space-y-2">
                     <h3 className="text-2xl font-bold tracking-tighter">{hobbyPlan.name}</h3>
                     <p className="text-2xl font-bold tracking-tighter">${hobbyPlan.price}</p>
-                    <p className="text-sm">Ideal for smaller facilities who do not worry about phone load.</p>
+                    <p className="text-sm">Ideal for smaller facilities who have tend to have a lighter load.</p>
                 </div>
                 <ul className="grid gap-2 py-4">
-                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {hobbyPlan.maxChatbots} Assistants</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {hobbyPlan.maxChatbots} Assistant</li>
                     <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {hobbyPlan.maxFiles} Files</li>
                     <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Customizations</li>
                     <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Unlimited Messages</li>
                 </ul>
             </div>
+            <div className="relative flex flex-col space-y-2 px-3 py-3 rounded-md bg-gray-100">
+            <div className="absolute inset-0 bg-gray-400 bg-opacity-50 flex items-center justify-center text-zinc-950 text-xl font-bold rounded-md z-10">Coming Soon</div>
+                <div className="space-y-2">
+                    <h3 className="text-2xl font-bold tracking-tighter">{webplusPlan.name}</h3>
+                    <p className="text-2xl font-bold tracking-tighter">${webplusPlan.price}</p>
+                    <p className="text-sm text-gray-700">For medium-sized facilities who often need to lighten the front-desk&apos;s load.</p>
+                </div>
+                <ul className="grid gap-2 py-4">
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {webplusPlan.maxChatbots} Assistants</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {webplusPlan.maxFiles} Files</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Customizations</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Unlimited Messages</li>
+                </ul>
             </div>
             <div className="relative flex flex-col space-y-2 px-3 py-3 rounded-md bg-gray-100">
             <div className="absolute inset-0 bg-gray-400 bg-opacity-50 flex items-center justify-center text-zinc-950 text-xl font-bold rounded-md z-10">Coming Soon</div>
-              <div className="blur-sm">
+                <div className="space-y-2">
+                    <h3 className="text-2xl font-bold tracking-tighter">{webunlimitedPlan.name}</h3>
+                    <p className="text-2xl font-bold tracking-tighter">${webunlimitedPlan.price}</p>
+                    <p className="text-sm text-gray-700">For large facilities who always need to lighten the front-desk&apos;s load.</p>
+                </div>
+                <ul className="grid gap-2 py-4">
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {webunlimitedPlan.maxChatbots} Assistants</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {webunlimitedPlan.maxFiles} Files</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Customizations</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Unlimited Messages</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Premium support</li>
+                </ul>
+            </div>
+            <div className="relative flex flex-col space-y-2 px-3 py-3 rounded-md bg-gray-100">
+            <div className="absolute inset-0 bg-gray-400 bg-opacity-50 flex items-center justify-center text-zinc-950 text-xl font-bold rounded-md z-10">Coming Soon</div>
                 <div className="space-y-2">
                     <h3 className="text-2xl font-bold tracking-tighter">{managedWeb.name}</h3>
                     <p className="text-2xl font-bold tracking-tighter">${managedWeb.price}</p>
-                    <p className="text-sm text-gray-700">For modern facilities which may not have a phone and deal with all customers on their website.</p>
+                    <p className="text-sm text-gray-700">For modern facilities that have a large customer load through web channels, with proactive support and monitoring form the Club Connect team.</p>
                 </div>
                 <ul className="grid gap-2 py-4">
                     <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {managedWeb.maxChatbots} Assistants</li>
                     <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {managedWeb.maxFiles} Files</li>
                     <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Customizations</li>
                     <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Unlimited Messages</li>
-                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Frontline support</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Proactive support from the ClubConnect Team</li>
                 </ul>
-            </div>
             </div>
           </div>
     </div>

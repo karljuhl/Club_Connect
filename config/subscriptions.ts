@@ -18,41 +18,76 @@ export const freePlan: SubscriptionPlan = {
 }
 
 export const hobbyPlan: SubscriptionPlan = {
-    name: "WEB",
-    availability: "COMING SOON",
+    name: "Web",
     description: "The WEB plan is limited 1 chatbot, 2 crawlers, 3 files and unlimited messages.",
     stripePriceId: process.env.NEXT_PUBLIC_STRIPE_WEB_PRICE_ID || "",
 
     maxChatbots: 1,
-    maxCrawlers: 2,
+    maxCrawlers: 1,
     maxFiles: 3,
-    unlimitedMessages: true,
-    maxMessagesPerMonth: 12000,
+    unlimitedMessages: false,
+    maxMessagesPerMonth: 2500,
     basicCustomization: true,
     userInquiries: false,
+    phoneHandoff: false,
+
+    price: 37,
+}
+
+export const webplusPlan: SubscriptionPlan = {
+    name: "Web+",
+    description: "The Web+ plan is limited 1 assistant, 3 files, customizations and unlimited messages.",
+    stripePriceId: process.env.NEXT_PUBLIC_STRIPE_WEB_PRICE_ID || "",
+
+    maxChatbots: 1,
+    maxCrawlers: 1,
+    maxFiles: 3,
+    unlimitedMessages: false,
+    maxMessagesPerMonth: 6500,
+    basicCustomization: true,
+    userInquiries: true,
     phoneHandoff: false,
 
     price: 87,
 }
 
+export const webunlimitedPlan: SubscriptionPlan = {
+    name: "Web Unlimited",
+    description: "The Web Unlimited plan includes 3 assistants, 8 files, customizations and unlimited messages.",
+    stripePriceId: process.env.NEXT_PUBLIC_STRIPE_WEB_PRICE_ID || "",
+
+    maxChatbots: 1,
+    maxCrawlers: 1,
+    maxFiles: 3,
+    unlimitedMessages: true,
+    maxMessagesPerMonth: undefined,
+    basicCustomization: true,
+    userInquiries: true,
+    phoneHandoff: false,
+
+    premiumSupport: true,
+
+
+    price: 157,
+}
+
 export const managedWeb: SubscriptionPlan = {
-    name: "MANAGED WEB",
-    availability: "COMING SOON",
-    description: "The MANAGED WEB plan has 2 chatbots, 2 crawlers, 4 files, unlimited messages and with our experienced team helping you set up and keeping a close eye on the day-to-day performance.",
+    name: "Managed Web Unlimited",
+    description: "The Managed Web Unlimited plan has 4 assistants, 12 files, customizations and unlimited messages in conjunciton with our experienced team helping you set up and keeping a close eye on the day-to-day performance. We will notify you when updates to information are needed are provide reports on performance",
     stripePriceId: process.env.NEXT_PUBLIC_STRIPE_MW_PRICE_ID || "",
 
     maxChatbots: 2,
     maxCrawlers: 2,
     maxFiles: 4,
     unlimitedMessages: true,
-    maxMessagesPerMonth: 24000,
+    maxMessagesPerMonth: undefined,
     basicCustomization: true,
     userInquiries: true,
     phoneHandoff: true,
 
     premiumSupport: true,
 
-    price: 197,
+    price: 347,
 }
 
 export const basicPlan: SubscriptionPlan = {
