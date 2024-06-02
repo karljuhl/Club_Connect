@@ -22,7 +22,7 @@ export default function IndexPage() {
             Empower your Team with a Front-Desk Assistant from ClubConnect
           </h1>
           <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-            A platform for building and managing chatbots which interact on your website and your phone system. We offer seamless integration for effortlessly incorporating a Front-Desk Assistant as frontline support for your facility.
+            A platform for building and managing chatbots which interact on your website. We offer seamless integration for effortlessly incorporating a Front-Desk Assistant as frontline support for your facility.
           </p>
           <div className="space-x-4 space-y-4">
             <Link href="/login" className={cn(buttonVariants({ size: "lg" }))}>
@@ -173,7 +173,7 @@ export default function IndexPage() {
             <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Find the Right Plan for your Facility</h2>
                 <p className="max-w-[800px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                    All plans include everything that is required to build a assitant. No rush, try the free plan first and see what our Front-Desk Assistants can do!
+                    All plans include everything that is required to build a assitant.
                 </p>
             </div>
         </div>
@@ -191,7 +191,7 @@ export default function IndexPage() {
                 </ul>
             </div>
         <div className="relative flex flex-col space-y-2 px-3 py-3 rounded-md bg-gray-100">
-            <div className="absolute inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center text-zinc-950 text-xl font-bold rounded-md z-10">Coming Soon</div>
+            <div className="absolute inset-0 bg-gray-300 bg-opacity-50 flex items-center justify-center text-zinc-950 text-xl font-bold rounded-md z-10">Coming Soon</div>
               <div className="blur-sm">
                 <div className="space-y-2">
                     <h3 className="text-2xl font-bold tracking-tighter">{hobbyPlan.name}</h3>
@@ -207,7 +207,7 @@ export default function IndexPage() {
             </div>
             </div>
             <div className="relative flex flex-col space-y-2 px-3 py-3 rounded-md bg-gray-100">
-            <div className="absolute inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center text-zinc-950 text-xl font-bold rounded-md z-10">Coming Soon</div>
+            <div className="absolute inset-0 bg-gray-400 bg-opacity-50 flex items-center justify-center text-zinc-950 text-xl font-bold rounded-md z-10">Coming Soon</div>
               <div className="blur-sm">
                 <div className="space-y-2">
                     <h3 className="text-2xl font-bold tracking-tighter">{managedWeb.name}</h3>

@@ -33,7 +33,7 @@ export default function GoogleLoginForm() {
           <LoadingDots color="#808080" />
         ) : (
           <div className="flex flex-row">
-            <Icons.google className="mr-4 h-4 w-4" />
+            <Icons.google className="mr-10 h-4 w-4" />
             <p>Sign In With Google</p>
           </div>
         )}
