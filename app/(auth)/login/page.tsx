@@ -47,9 +47,9 @@ export default async function Login() {
             Use your Google or Github account to sign in.
           </p>
           <div className="py-4">
-            <GithubLoginForm />
             <AzureADLoginForm />
             <GoogleLoginForm />
+            <GithubLoginForm />
           </div>
           <p className="text-sm text-muted-foreground">
             By connecting your account, you agree to our <a href="/docs/legal/terms">Terms of Service</a> and <a href="/docs/legal/privacy">Privacy Policy</a>.

@@ -23,7 +23,7 @@ export default function AzureADLoginForm() {
                 });
                 setLoading(false);
             }}
-            className="flex flex-col space-y-4 px-4 sm:px-16"
+            className="flex flex-col space-y-4 px-4 mb-4 sm:px-16"
         >
             <button
                 disabled={loading}
@@ -37,7 +37,7 @@ export default function AzureADLoginForm() {
                 ) : (
                     <div className="flex flex-row">
                         <Icons.microsoft className="mr-2 h-4 w-4" />
-                        <p>Sign In With Azure AD</p>
+                        <p>Sign In With Microsoft</p>
                     </div>
                 )}
             </button>
