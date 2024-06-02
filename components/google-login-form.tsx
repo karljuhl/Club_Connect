@@ -20,7 +20,7 @@ export default function GoogleLoginForm() {
           callbackUrl: searchParams?.get("from") || "/welcome",
         })
       }}
-      className="flex flex-col space-y-4 px-4 sm:px-16"
+      className="flex flex-col space-y-4 px-4 mb-4 sm:px-16"
     >
       <button
         disabled={loading}
