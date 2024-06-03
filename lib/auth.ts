@@ -42,38 +42,42 @@ export const authOptions: NextAuthOptions = {
         })
   ],
   callbacks: {
-    async session({ token, session }) {
-      if (token) {
-        session!.user!.id = token.id
-        session!.user!.name = token.name
-        session!.user!.email = token.email
-        session!.user!.image = token.picture
+    async jwt({ token, account, user }) {
+      // If account and user are defined, it's an initial login
+      if (account && user) {
+        token.accessToken = account.access_token;
+        token.tokenType = account.token_type;
+        token.expiresIn = account.expires_in;
+        token.extExpiresIn = account.ext_expires_in;
+  
+        // Find or create the user in your database and add the database user ID to the token
+        const dbUser = await db.user.upsert({
+          where: { email: user.email },
+          update: {},
+          create: {
+            email: user.email,
+            name: user.name,
+          },
+        });
+  
+        token.id = dbUser.id;  // Save user ID from the database into the token
       }
-
-      return session
+  
+      return token;
     },
-    async jwt({ token, user }) {
-      const dbUser = await db.user.findFirst({
-        where: {
-          email: token.email,
-        },
-      })
-
-      if (!dbUser) {
-        if (user) {
-          token.id = user?.id
-        }
-        return token
-      }
-
-      return {
-        id: dbUser.id,
-        name: dbUser.name,
-        email: dbUser.email,
-        picture: dbUser.image,
-      }
+  
+    async session({ session, token }) {
+      // Pass custom claims to the session
+      session.user.id = token.id;  // Ensure the user's ID is passed to the session
+      session.accessToken = token.accessToken;
+      session.tokenType = token.tokenType;
+      session.expiresIn = token.expiresIn;
+      session.extExpiresIn = token.extExpiresIn;
+  
+      return session;
     },
   },
+  
   events: {
     async createUser(message) {
       // Prepare the welcome email parameters

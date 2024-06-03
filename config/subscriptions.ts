@@ -37,7 +37,7 @@ export const hobbyPlan: SubscriptionPlan = {
 export const webplusPlan: SubscriptionPlan = {
     name: "Web+",
     description: "The Web+ plan is limited 1 assistant, 3 files, customizations and unlimited messages.",
-    stripePriceId: process.env.NEXT_PUBLIC_STRIPE_WEB_PRICE_ID || "",
+    stripePriceId: process.env.NEXT_PUBLIC_STRIPE_WEBPLUS_PRICE_ID || "",
 
     maxChatbots: 1,
     maxCrawlers: 1,
@@ -54,7 +54,7 @@ export const webplusPlan: SubscriptionPlan = {
 export const webunlimitedPlan: SubscriptionPlan = {
     name: "Web Unlimited",
     description: "The Web Unlimited plan includes 3 assistants, 8 files, customizations and unlimited messages.",
-    stripePriceId: process.env.NEXT_PUBLIC_STRIPE_WEB_PRICE_ID || "",
+    stripePriceId: process.env.NEXT_PUBLIC_STRIPE_WEBUNLIMITED_PRICE_ID || "",
 
     maxChatbots: 1,
     maxCrawlers: 1,
