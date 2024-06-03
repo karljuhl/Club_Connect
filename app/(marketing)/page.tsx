@@ -36,7 +36,7 @@ export default function IndexPage() {
       <section data-aos="fade-up" id="chat" className="container py-12 md:py-24 lg:py-32">
         <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
           <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">
-            Test our front-desk assistant
+            Try out our front-desk assistant
           </h2>
           <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
             Ask any question about ClubConnect to our chatbot powered by OpenAI and see how it responds. You can also try the chatbot buttom right of the window.
