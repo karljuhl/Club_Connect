@@ -1,10 +1,10 @@
 import { type NextAuthOptions } from "next-auth";
-import { PrismaAdapter } from "@next-auth/prisma-adapter"
-import GithubProvider from "next-auth/providers/github"
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import AzureADProvider from "next-auth/providers/azure-ad";
 
-import { db } from "@/lib/db"
+import { db } from "@/lib/db";
 import { sendWelcomeEmail } from "./emails/send-welcome";
 
 export const authOptions: NextAuthOptions = {
@@ -18,85 +18,79 @@ export const authOptions: NextAuthOptions = {
   },
   providers: [
     GithubProvider({
-      clientId: process.env.GITHUB_ID as string,
-      clientSecret: process.env.GITHUB_SECRET as string,
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
       allowDangerousEmailAccountLinking: true,
       authorization: {
         params: {
           prompt: "consent",
           access_type: "offline",
-          response_type: "code"
-        }
-      }
+          response_type: "code",
+        },
+      },
     }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       allowDangerousEmailAccountLinking: true,
     }),
-        AzureADProvider({
-          clientId: process.env.AZURE_AD_CLIENT_ID,
-          clientSecret: process.env.AZURE_AD_CLIENT_SECRET,
-          tenantId: process.env.AZURE_AD_TENANT_ID,
-          authorization: { params: { scope: 'openid email profile User.Read' } },
-        })
+    AzureADProvider({
+      clientId: process.env.AZURE_AD_CLIENT_ID,
+      clientSecret: process.env.AZURE_AD_CLIENT_SECRET,
+      tenantId: process.env.AZURE_AD_TENANT_ID,
+      authorization: { params: { scope: 'openid email profile User.Read' } },
+    }),
   ],
   callbacks: {
-    async jwt({ token, account, user }) {
-      // If account and user are defined, it's an initial login
-      if (account && user) {
-        token.accessToken = account.access_token;
-        token.tokenType = account.token_type;
-        token.expiresIn = account.expires_in;
-        token.extExpiresIn = account.ext_expires_in;
-  
-        // Find or create the user in your database and add the database user ID to the token
-        const dbUser = await db.user.upsert({
+    async signIn({ user, account, profile, email }) {
+      // Check if the user already exists with a different provider
+      const existingUser = await db.user.findUnique({
+        where: { email: user.email },
+      });
+
+      if (existingUser && existingUser.provider !== account.provider) {
+        // Link the new account to the existing user if email addresses match
+        await db.user.update({
           where: { email: user.email },
-          update: {},
-          create: {
-            email: user.email,
-            name: user.name,
+          data: {
+            provider: account.provider,
+            providerAccountId: account.providerAccountId,
           },
         });
-  
-        token.id = dbUser.id;  // Save user ID from the database into the token
+        return true;  // Sign-in successful, user linked
       }
-  
-      return token;
+
+      return true;  // Normal sign-in, no linking required
     },
-  
     async session({ session, token }) {
-      // Pass custom claims to the session
-      session.user.id = token.id;  // Ensure the user's ID is passed to the session
-      session.accessToken = token.accessToken;
-      session.tokenType = token.tokenType;
-      session.expiresIn = token.expiresIn;
-      session.extExpiresIn = token.extExpiresIn;
-  
+      session.user.id = token.id;
+      session.user.name = token.name;
+      session.user.email = token.email;
+      session.user.image = token.picture;
       return session;
     },
+    async jwt({ token, user, account }) {
+      if (user) {
+        token.id = user.id;
+        token.email = user.email;
+      }
+      return token;
+    },
   },
-  
   events: {
     async createUser(message) {
-      // Prepare the welcome email parameters
       const params = {
         name: message.user.name,
         email: message.user.email,
       };
 
-      // Send the welcome email
       await sendWelcomeEmail(params);
 
-      // Set the default OpenAI API key for the new user
       try {
-        const apiKey = process.env.DEFAULT_CONFIG_API_KEY; // Ensure this environment variable is correctly set
-
-        // Insert the OpenAI configuration for the new user
+        const apiKey = process.env.DEFAULT_CONFIG_API_KEY;
         await db.openAIConfig.create({
           data: {
-            userId: message.user.id,  // Assuming 'id' is available and correct
+            userId: message.user.id,
             globalAPIKey: apiKey,
           },
         });
@@ -104,10 +98,7 @@ export const authOptions: NextAuthOptions = {
         console.log("OpenAI API Key set successfully for user:", message.user.id);
       } catch (error) {
         console.error("Error setting OpenAI API Key during user creation:", error);
-        // Handle the error appropriately, maybe log it or send an alert
       }
     }
   },
-
 };
-
