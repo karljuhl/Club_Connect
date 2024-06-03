@@ -12,7 +12,7 @@ export function FAQ() {
           What is ClubConnect?
         </AccordionTrigger>
         <AccordionContent className="text-white">
-          ClubConnect is a solution designed to help your customers while relieving pressure on your Front-Desk Team, assist with understanding facility services & offerings, and provide information to users in real-time. It allows your team to focus on enriching the experience of in-person customers, while having peace of mind that those on the website and calling are getting the answers they are looking for.
+          ClubConnect is a solution designed to support your customers while reducing the load on your Front-Desk Team. Our Front-Desk Assistants help users understand facility services and offerings, providing real-time information. This allows your team to focus on enhancing the experience of in-person customers, knowing that those on the web are receiving accurate and timely answers.
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2">
