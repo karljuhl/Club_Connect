@@ -184,9 +184,6 @@ export function BillingForm({
                                                 - {plan.maxChatbots} Chatbots
                                             </li>
                                             <li className="flex items-center">
-                                                - {plan.maxCrawlers} Crawlers
-                                            </li>
-                                            <li className="flex items-center">
                                                 - {plan.maxFiles} Files
                                             </li>
                                             {
