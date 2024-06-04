@@ -119,10 +119,7 @@ export function BillingForm({
                                         <CardContent>
                                             <ul className="mt-4 space-y-2">
                                                 <li className="flex items-center">
-                                                    - {plan.maxChatbots} Chatbots
-                                                </li>
-                                                <li className="flex items-center">
-                                                    - {plan.maxCrawlers} Crawlers
+                                                    - {plan.maxChatbots} Assistant(s)
                                                 </li>
                                                 <li className="flex items-center">
                                                     - {plan.maxFiles} Files
@@ -181,7 +178,7 @@ export function BillingForm({
                                     <CardContent>
                                         <ul className="mt-4 space-y-2" style={{ color: plan.availability === "COMING SOON" ? "gray" : "black" }}>
                                             <li className="flex items-center">
-                                                - {plan.maxChatbots} Chatbots
+                                                - {plan.maxChatbots} Assistant(s)
                                             </li>
                                             <li className="flex items-center">
                                                 - {plan.maxFiles} Files

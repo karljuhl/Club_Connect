@@ -173,7 +173,7 @@ export default function IndexPage() {
             <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Find the Right Plan for your Facility</h2>
                 <p className="max-w-[800px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                    All plans include everything that is required to build a assitant.
+                    All plans include everything that is required to build an assitant.
                 </p>
             </div>
         </div>
