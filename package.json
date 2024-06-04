@@ -91,7 +91,7 @@
     "@types/aos": "^3.0.7",
     "@types/bcrypt": "^5.0.0",
     "autoprefixer": "^10.4.4",
-    "eslint": "8.11.0",
+    "eslint": "8.56.0",
     "eslint-config-next": "^14.0.3",
     "postcss": "^8.4.12",
     "prisma": "^5.11.0",

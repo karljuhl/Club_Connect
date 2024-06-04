@@ -3,6 +3,7 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google";
 import EmailProvider from "next-auth/providers/email";
+import nodemailer from "nodemailer";
 
 import { db } from "@/lib/db"
 import { sendWelcomeEmail } from "./emails/send-welcome";
@@ -38,10 +39,9 @@ export const authOptions: NextAuthOptions = {
       server: process.env.EMAIL_SERVER,
       from: process.env.EMAIL_FROM,
       sendVerificationRequest: async ({ identifier, url, token, baseUrl, provider }) => {
-        const { ResendClient } = require('resend-node-client');
-        const client = new ResendClient({ apiKey: process.env.RESEND_TOKEN });
+        const transporter = nodemailer.createTransport(process.env.EMAIL_SERVER);
         
-        await client.sendEmail({
+        await transporter.sendMail({
           to: identifier,
           subject: 'Sign in to ClubConnect',
           text: `Sign in by clicking on this link: ${url}`,

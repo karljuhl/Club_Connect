@@ -9,10 +9,10 @@ import { getCurrentUser } from "@/lib/session";
 import { redirect } from "next/navigation";
 import GithubLoginForm from "@/components/github-login-form";
 import GoogleLoginForm from "@/components/google-login-form";
-import EmailLoginForm from "@/components/g-email-login-form";
+import EmailLoginForm from "@/components/g-email-login-form.tsx";
 
 export const metadata: Metadata = {
-  title: "Login",
+  title: "Login - ClubConnect",
   description: "Login to your account",
 }
 
