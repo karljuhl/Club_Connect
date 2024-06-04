@@ -35,12 +35,25 @@ export const authOptions: NextAuthOptions = {
       allowDangerousEmailAccountLinking: true,
     }),
     AzureADB2CProvider({
-      tenantId: process.env.AZURE_AD_B2C_TENANT_NAME,
       clientId: process.env.AZURE_AD_B2C_CLIENT_ID,
       clientSecret: process.env.AZURE_AD_B2C_CLIENT_SECRET,
+      tenantId: process.env.AZURE_AD_B2C_TENANT_NAME,
       primaryUserFlow: process.env.AZURE_AD_B2C_PRIMARY_USER_FLOW,
-      authorization: { params: { scope: "openid email profile offline_access" } },
-    })
+      authorization: { params: { scope: "openid offline_access" } },
+      profile(profile) {
+        // Map the claims to the NextAuth user profile
+        return {
+          id: profile.sub, // "sub" is typically the name for the user's ID in OIDC
+          name: profile.displayName,
+          email: profile.emails, // Ensure this is correctly received as an array or string
+          image: profile.picture, // You might need to adjust this if not using standard OIDC fields
+          firstName: profile.givenName,
+          lastName: profile.surname,
+          accessToken: profile.identityProviderAccessToken, // If you are storing this
+          identityProvider: profile.identityProvider
+        };
+      },
+    }),
   ],
   callbacks: {
     async session({ token, session }) {
@@ -49,6 +62,8 @@ export const authOptions: NextAuthOptions = {
         session!.user!.name = token.name
         session!.user!.email = token.email
         session!.user!.image = token.picture
+        session.user.identityProvider = token.identityProvider;
+        session.user.accessToken = token.accessToken;
       }
 
       return session
