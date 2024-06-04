@@ -57,6 +57,7 @@
     "next": "^14.2.2",
     "next-contentlayer": "^0.3.4",
     "next-themes": "^0.3.0",
+    "nodemailer": "^6.9.13",
     "oas": "^24.1.0",
     "openai": "^4.47.1",
     "openai-edge": "^1.2.2",
