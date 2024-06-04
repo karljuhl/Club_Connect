@@ -122,7 +122,7 @@ export function BillingForm({
                                                     - {plan.maxChatbots} Assistant(s)
                                                 </li>
                                                 <li className="flex items-center">
-                                                    - {plan.maxFiles} Files
+                                                    - {plan.maxFiles} File(s)
                                                 </li>
                                                 {
                                                     plan.basicCustomization &&
@@ -181,7 +181,7 @@ export function BillingForm({
                                                 - {plan.maxChatbots} Assistant(s)
                                             </li>
                                             <li className="flex items-center">
-                                                - {plan.maxFiles} Files
+                                                - {plan.maxFiles} File(s)
                                             </li>
                                             {
                                                 plan.basicCustomization &&
