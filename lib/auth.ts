@@ -2,7 +2,7 @@ import { type NextAuthOptions } from "next-auth";
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google";
-import AzureADProvider from "next-auth/providers/azure-ad";
+import AzureADB2CProvider from "next-auth/providers/azure-ad-b2c";
 
 import { db } from "@/lib/db"
 import { sendWelcomeEmail } from "./emails/send-welcome";
@@ -34,12 +34,13 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
       allowDangerousEmailAccountLinking: true,
     }),
-        AzureADProvider({
-          clientId: process.env.AZURE_AD_CLIENT_ID,
-          clientSecret: process.env.AZURE_AD_CLIENT_SECRET,
-          tenantId: process.env.AZURE_AD_TENANT_ID,
-          authorization: { params: { scope: 'openid email profile' } },
-        })
+    AzureADB2CProvider({
+      tenantId: process.env.AZURE_AD_B2C_TENANT_NAME,
+      clientId: process.env.AZURE_AD_B2C_CLIENT_ID,
+      clientSecret: process.env.AZURE_AD_B2C_CLIENT_SECRET,
+      primaryUserFlow: process.env.AZURE_AD_B2C_PRIMARY_USER_FLOW,
+      authorization: { params: { scope: "openid email profile offline_access" } },
+    })
   ],
   callbacks: {
     async session({ token, session }) {

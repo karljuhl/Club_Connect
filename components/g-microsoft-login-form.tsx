@@ -1,7 +1,6 @@
 // AzureADLoginForm.tsx
 "use client";
 
-
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
@@ -17,7 +16,7 @@ export default function AzureADLoginForm() {
             onSubmit={async (e) => {
                 e.preventDefault();
                 setLoading(true);
-                await signIn("azure-ad", {
+                await signIn("azure-ad-b2c", {
                     redirect: false,
                     callbackUrl: searchParams?.get("from") || "/welcome",
                 });
