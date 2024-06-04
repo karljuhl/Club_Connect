@@ -31,7 +31,7 @@ export default async function SupportPage() {
             <div >
                 <p className="text-lg font-semibold">How can we help you?</p>
                 <p className="text-muted-foreground">
-                    First, before reaching out you can always try our chatbot. He knows a lot about our platform he might be able to help you.
+                    First, before reaching out you can always try our assistant. He knows a lot about our platform and may be able to help you.
                     <br />
                     If you still have issue with our app you can email us at <a href="mailto:support@clubconnect.com">support@clubconnect.com</a>
                 </p>
