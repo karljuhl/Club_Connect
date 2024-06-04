@@ -2,7 +2,7 @@ import { type NextAuthOptions } from "next-auth";
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google";
-import AzureADB2CProvider from "next-auth/providers/azure-ad-b2c";
+import EmailProvider from "next-auth/providers/email";
 
 import { db } from "@/lib/db"
 import { sendWelcomeEmail } from "./emails/send-welcome";
@@ -34,26 +34,22 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
       allowDangerousEmailAccountLinking: true,
     }),
-    AzureADB2CProvider({
-      clientId: process.env.AZURE_AD_B2C_CLIENT_ID,
-      clientSecret: process.env.AZURE_AD_B2C_CLIENT_SECRET,
-      tenantId: process.env.AZURE_AD_B2C_TENANT_NAME,
-      primaryUserFlow: process.env.AZURE_AD_B2C_PRIMARY_USER_FLOW,
-      authorization: { params: { scope: "openid offline_access" } },
-      profile(profile) {
-        // Map the claims to the NextAuth user profile
-        return {
-          id: profile.sub, // "sub" is typically the name for the user's ID in OIDC
-          name: profile.displayName,
-          email: profile.emails, // Ensure this is correctly received as an array or string
-          image: profile.picture, // You might need to adjust this if not using standard OIDC fields
-          firstName: profile.givenName,
-          lastName: profile.surname,
-          accessToken: profile.identityProviderAccessToken, // If you are storing this
-          identityProvider: profile.identityProvider
-        };
-      },
-    }),
+    EmailProvider({
+      server: process.env.EMAIL_SERVER,
+      from: process.env.EMAIL_FROM,
+      sendVerificationRequest: async ({ identifier, url, token, baseUrl, provider }) => {
+        const { ResendClient } = require('resend-node-client');
+        const client = new ResendClient({ apiKey: process.env.RESEND_TOKEN });
+        
+        await client.sendEmail({
+          to: identifier,
+          subject: 'Sign in to ClubConnect',
+          text: `Sign in by clicking on this link: ${url}`,
+          html: `<p>Sign in by clicking <a href="${url}">here</a>.</p>`,
+        });
+      }
+    })
+    
   ],
   callbacks: {
     async session({ token, session }) {
@@ -62,8 +58,6 @@ export const authOptions: NextAuthOptions = {
         session!.user!.name = token.name
         session!.user!.email = token.email
         session!.user!.image = token.picture
-        session.user.identityProvider = token.identityProvider;
-        session.user.accessToken = token.accessToken;
       }
 
       return session

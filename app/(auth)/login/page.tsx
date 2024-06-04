@@ -9,7 +9,7 @@ import { getCurrentUser } from "@/lib/session";
 import { redirect } from "next/navigation";
 import GithubLoginForm from "@/components/github-login-form";
 import GoogleLoginForm from "@/components/google-login-form";
-import AzureADLoginForm from "@/components/g-microsoft-login-form";
+import EmailLoginForm from "@/components/g-email-login-form";
 
 export const metadata: Metadata = {
   title: "Login",
@@ -47,7 +47,7 @@ export default async function Login() {
             Use your Google or Github account to sign in.
           </p>
           <div className="py-4">
-            <AzureADLoginForm />
+            <EmailLoginForm />
             <GoogleLoginForm />
             <GithubLoginForm />
           </div>
