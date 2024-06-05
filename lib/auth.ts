@@ -45,7 +45,7 @@ export const authOptions: NextAuthOptions = {
         },
         secure: true, // Required for port 465, optional for other ports
       },
-      from: process.env.EMAIL_FROM,
+      from: "no-reply@clubconnect.pro",
       sendVerificationRequest: ({ identifier, url }) => {
         const transport = nodemailer.createTransport({
           host: process.env.EMAIL_SERVER_HOST,
@@ -58,7 +58,7 @@ export const authOptions: NextAuthOptions = {
         });
         return transport.sendMail({
           to: identifier,
-          from: process.env.EMAIL_FROM,
+          from: "no-reply@clubconnect.pro",
           subject: 'Sign in to ClubConnect',
           text: `Sign in by clicking on this link: ${url}`,
           html: `<p>Sign in by clicking <a href="${url}">here</a>.</p>`,
