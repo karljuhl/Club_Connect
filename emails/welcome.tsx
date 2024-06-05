@@ -30,8 +30,10 @@ export default function WelcomeEmail({ name }: WelcomeEmailProps) {
                 <Body className="bg-white my-auto mx-auto font-sans">
                     <Container className="my-10 mx-auto p-5 w-[465px]">
                         <Section className="flex justify-center items-center mb-4">
-                            <Icons.bell />
-                            <Text className="text-lg font-semibold ml-2">ClubConnect</Text>
+                            <div className="flex items-center justify-center">
+                                <Icons.bell className="mr-6" />
+                                <Text className="text-lg font-semibold">ClubConnect</Text>
+                            </div>
                         </Section>
                         <Heading className="text-2xl font-normal text-center p-0 my-8 mx-0">
                             Welcome to {siteConfig.name}!
