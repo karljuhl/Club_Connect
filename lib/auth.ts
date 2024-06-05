@@ -120,7 +120,7 @@ export const authOptions: NextAuthOptions = {
           <body>
             <div class="container">
               <div class="header">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-concierge-bell">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-concierge-bell">
                     <path d="M3 20a1 1 0 0 1-1-1v-1a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1Z"/>
                     <path d="M20 16a8 8 0 1 0-16 0"/>
                     <path d="M12 4v4"/>
@@ -129,7 +129,7 @@ export const authOptions: NextAuthOptions = {
                 ClubConnect Sign-In 
               </div>
               <div class="content">
-                <h4>Please click the button below to verify your email address and sign in to your account.</h4>
+                <p>Please click the button below to verify your email address and sign in to your account.</p>
                 <a href="${url}" class="button">Verify Email</a>
                 <br>
                 <p>Any time you need to log in to your account you can use the magic link and input the same email used previously then we send you a link which will log you in, like magic.</p>
