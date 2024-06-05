@@ -61,7 +61,71 @@ export const authOptions: NextAuthOptions = {
           from: "no-reply@clubconnect.pro",
           subject: 'Sign in to ClubConnect',
           text: `Sign in by clicking on this link: ${url}`,
-          html: `<p>Sign in by clicking <a href="${url}">here</a>.</p>`,
+          html: `
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+      }
+      .container {
+        background-color: #fff;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      }
+      .header {
+        background-color: #004a99;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+      }
+      .content {
+        padding: 20px;
+        text-align: center;
+      }
+      .button {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 20px 0;
+        background-color: #0084ff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+      .footer {
+        font-size: 12px;
+        color: #666;
+        text-align: center;
+        padding: 20px;
+      }
+    </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="header">
+          ClubConnect Verification
+        </div>
+        <div class="content">
+          <p>Please click the button below to verify your email address and sign in to your account.</p>
+          <a href="${url}" class="button">Verify Email</a>
+        </div>
+        <div class="footer">
+          &copy; 2024 ClubConnect, Inc. All rights reserved.
+        </div>
+      </div>
+    </body>
+    </html>
+          `,
         });
       }
     })
