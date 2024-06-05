@@ -6,13 +6,14 @@ import {
     Head,
     Heading,
     Html,
+    Img,
     Preview,
     Text,
     Tailwind,
     Section,
 } from "@react-email/components";
+import { Icons } from "@/components/icons"; // Import the Icons component
 import { siteConfig } from "@/config/site";
-
 
 interface WelcomeEmailProps {
     name: string | null | undefined;
@@ -28,6 +29,10 @@ export default function WelcomeEmail({ name }: WelcomeEmailProps) {
             <Tailwind>
                 <Body className="bg-white my-auto mx-auto font-sans">
                     <Container className="my-10 mx-auto p-5 w-[465px]">
+                        <Section className="flex justify-center items-center mb-4">
+                            <Icons.bell />
+                            <Text className="text-lg font-semibold ml-2">ClubConnect</Text>
+                        </Section>
                         <Heading className="text-2xl font-normal text-center p-0 my-8 mx-0">
                             Welcome to {siteConfig.name}!
                         </Heading>
