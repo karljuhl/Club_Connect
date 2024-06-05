@@ -62,73 +62,80 @@ export const authOptions: NextAuthOptions = {
           subject: 'Sign in to ClubConnect',
           text: `Sign in by clicking on this link: ${url}`,
           html: `
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 20px;
-      }
-      .container {
-        background-color: #fff;
-        width: 100%;
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      }
-      .header {
-        background-color: #004a99;
-        color: white;
-        padding: 10px 20px;
-        text-align: center;
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-      }
-      .content {
-        padding: 20px;
-        text-align: center;
-      }
-      .button {
-        display: inline-block;
-        padding: 10px 20px;
-        margin: 20px 0;
-        background-color: #0084ff;
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
-      }
-      .footer {
-        font-size: 12px;
-        color: #666;
-        text-align: center;
-        padding: 20px;
-      }
-    </style>
-    </head>
-    <body>
-      <div class="container">
-        <div class="header">
-          ClubConnect Verification
-        </div>
-        <div class="content">
-          <p>Please click the button below to verify your email address and sign in to your account.</p>
-          <a href="${url}" class="button">Verify Email</a>
-        </div>
-        <div class="footer">
-          &copy; 2024 ClubConnect, Inc. All rights reserved.
-        </div>
-      </div>
-    </body>
-    </html>
-          `,
-        });
-      }
-    })
+          <!DOCTYPE html>
+          <html>
+          <head>
+          <style>
+            body {
+              font-family: Arial, sans-serif;
+              background-color: #f4f4f4;
+              margin: 0;
+              padding: 20px;
+            }
+            .container {
+              background-color: #fff;
+              width: 100%;
+              max-width: 600px;
+              margin: 0 auto;
+              padding: 20px;
+              border-radius: 8px;
+              box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+            .header {
+              background-color: #ffffff;
+              color: #000000;
+              padding: 10px 20px;
+              text-align: center;
+              border-top-left-radius: 8px;
+              border-top-right-radius: 8px;
+              border: 2px solid #000000;
+            }
+            .content {
+              padding: 20px;
+              text-align: center;
+            }
+            .button {
+              display: inline-block;
+              padding: 10px 20px;
+              margin: 20px 0;
+              background-color: #ffffff;
+              color: #000000;
+              text-decoration: none;
+              border-radius: 5px;
+              border: 2px solid #000000;
+              transition: background-color 0.3s, color 0.3s;
+            }
+            .button:hover {
+              background-color: #000000;
+              color: #ffffff;
+            }
+            .footer {
+              font-size: 12px;
+              color: #666;
+              text-align: center;
+              padding: 20px;
+            }
+          </style>
+          </head>
+          <body>
+            <div class="container">
+              <div class="header">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNvbmNpZXJnZS1iZWxsIj48cGF0aCBkPSJNMyAyMGExIDEgMCAwIDEtMS0xdi0xYTIgMiAwIDAgMSAyLTJoMTZhMiAyIDAgMCAxIDIgMnYxYTEgMSAwIDAgMS0xIDFaIi8+PHBhdGggZD0iTTIwIDE2YTggOCAwIDEgMC0xNiAwIi8+PHBhdGggZD0iTTEyIDR2NCIvPjxwYXRoIGQ9Ik0xMCA0aDQiLz48L3N2Zz4=" alt="Bell Icon" style="vertical-align: middle; margin-right: 10px;"> ClubConnect Verification
+              </div>
+              <div class="content">
+                <p>Please click the button below to verify your email address and sign in to your account.</p>
+                <a href="${url}" class="button">Verify Email</a>
+              </div>
+              <div class="footer">
+                &copy; 2024 ClubConnect, Inc. All rights reserved.
+              </div>
+            </div>
+          </body>
+          </html>
+                `,
+              });
+            }
+          })
   ],
   callbacks: {
     async session({ token, session }) {
