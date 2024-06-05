@@ -24,7 +24,7 @@ export default function EmailLoginForm() {
         });
         setLoading(false);
       }}
-      className="flex flex-col space-y-4 px-4 mt-4 sm:px-16"
+      className="flex flex-col space-y-4 px-4 mt-4 mb-8 sm:px-16"
     >
       <input
         type="email"
