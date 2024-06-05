@@ -120,7 +120,13 @@ export const authOptions: NextAuthOptions = {
           <body>
             <div class="container">
               <div class="header">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNvbmNpZXJnZS1iZWxsIj48cGF0aCBkPSJNMyAyMGExIDEgMCAwIDEtMS0xdi0xYTIgMiAwIDAgMSAyLTJoMTZhMiAyIDAgMCAxIDIgMnYxYTEgMSAwIDAgMS0xIDFaIi8+PHBhdGggZD0iTTIwIDE2YTggOCAwIDEgMC0xNiAwIi8+PHBhdGggZD0iTTEyIDR2NCIvPjxwYXRoIGQ9Ik0xMCA0aDQiLz48L3N2Zz4=" alt="Bell Icon" style="vertical-align: middle; margin-right: 10px;"> ClubConnect Verification
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-concierge-bell">
+                    <path d="M3 20a1 1 0 0 1-1-1v-1a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1Z"/>
+                    <path d="M20 16a8 8 0 1 0-16 0"/>
+                    <path d="M12 4v4"/>
+                    <path d="M10 4h4"/>
+                  </svg>
+                ClubConnect Verification
               </div>
               <div class="content">
                 <p>Please click the button below to verify your email address and sign in to your account.</p>
