@@ -126,12 +126,13 @@ export const authOptions: NextAuthOptions = {
                     <path d="M12 4v4"/>
                     <path d="M10 4h4"/>
                   </svg>
-                ClubConnect Verification
+                ClubConnect Sign-In 
               </div>
               <div class="content">
                 <p>Please click the button below to verify your email address and sign in to your account.</p>
-                <subtitle>ClubConnect will never ask for your password</subtitle>
                 <a href="${url}" class="button">Verify Email</a>
+                <br>
+                <p>Any time you need to log in to your account you can use the magic link and input the same email used previously then we send you a link which will log you in, like magic.</p>
               </div>
               <div class="footer">
                 &copy; 2024 ClubConnect, Inc. All rights reserved.
