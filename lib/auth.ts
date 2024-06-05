@@ -3,7 +3,6 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google";
 import EmailProvider from "next-auth/providers/email";
-import nodemailer from "nodemailer";
 
 import { db } from "@/lib/db"
 import { sendWelcomeEmail } from "./emails/send-welcome";
@@ -36,20 +35,16 @@ export const authOptions: NextAuthOptions = {
       allowDangerousEmailAccountLinking: true,
     }),
     EmailProvider({
-      server: process.env.EMAIL_SERVER,
+      server: {
+        host: process.env.EMAIL_SERVER_HOST,
+        port: process.env.EMAIL_SERVER_PORT,
+        auth: {
+          user: process.env.EMAIL_SERVER_USER,
+          pass: process.env.EMAIL_SERVER_PASSWORD,
+        },
+      },
       from: process.env.EMAIL_FROM,
-      sendVerificationRequest: async ({ identifier, url, token, baseUrl, provider }) => {
-        const transporter = nodemailer.createTransport(process.env.EMAIL_SERVER);
-        
-        await transporter.sendMail({
-          to: identifier,
-          subject: 'Sign in to ClubConnect',
-          text: `Sign in by clicking on this link: ${url}`,
-          html: `<p>Sign in by clicking <a href="${url}">here</a>.</p>`,
-        });
-      }
-    })
-    
+    })    
   ],
   callbacks: {
     async session({ token, session }) {
