@@ -42,7 +42,7 @@ export default function WelcomeEmail({ name }: WelcomeEmailProps) {
                             hope you enjoy your journey with us. If you have any questions or
                             need assistance, feel free to reach out.
                         </Text>
-                        <Text>
+                        <Text className="text-sm">
                             You can contact us directly with the email support@clubconnect.pro
                         </Text>
                         <Section className="text-center mt-[32px] mb-[32px]">
@@ -56,7 +56,7 @@ export default function WelcomeEmail({ name }: WelcomeEmailProps) {
                         <Text className="text-sm">
                             Cheers,
                             <br />
-                            The {siteConfig.name} Team
+                            Your Team at {siteConfig.name}
                         </Text>
                     </Container>
                 </Body>
