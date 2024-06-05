@@ -130,6 +130,7 @@ export const authOptions: NextAuthOptions = {
               </div>
               <div class="content">
                 <p>Please click the button below to verify your email address and sign in to your account.</p>
+                <subtitle>ClubConnect will never ask for your password</subtitle>
                 <a href="${url}" class="button">Verify Email</a>
               </div>
               <div class="footer">
