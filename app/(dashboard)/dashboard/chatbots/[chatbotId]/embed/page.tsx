@@ -116,6 +116,24 @@ export default async function EmbedOnSitePage({ params }: ChatbotSettingsProps) 
                                     </AccordionItem>
                                 </Accordion>
                             </li>
+                            <li>
+                                <Accordion className="w-full my-2">
+                                    <AccordionItem value="other">
+                                        <AccordionTrigger className="hover:underline-none text-muted-foreground">
+                                            Other hosting services
+                                        </AccordionTrigger>
+                                        <AccordionContent className="text-muted-foreground">
+                                                 <ul>
+                                                    <li>Copy the widget code from ClubConnect</li>
+                                                    <li>Login to your web hosting provider and navigate to your &apos;File Manager&apos;</li>
+                                                    <li>Navigate past &apos;public_html&apos; if needed and find &apos;index.html&apos;</li>
+                                                    <li>Paste the code into the footer of the body section</li>
+                                                    <li>Refresh your website and see your Assistant in action</li>
+                                                </ul>
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                </Accordion>
+                            </li>
                         </ul>
                     </AccordionContent>
                 </AccordionItem>
