@@ -44,6 +44,19 @@ export default async function EmbedOnSitePage({ params }: ChatbotSettingsProps) 
     return (
         <DashboardShell>
             <DashboardHeader heading="Embed On Website" text="Make your assistant publicly accessible for users.">
+            <Link
+                    href={`/dashboard/chatbots`}
+                    className={cn(
+                        buttonVariants({ variant: "ghost" }),
+                        "md:left-8 md:top-8"
+                    )}
+                >
+                    <>
+                        <Icons.chevronLeft className="mr-2 h-4 w-4" />
+                        Back
+                    </>
+                </Link>
+            </DashboardHeader>
             <div className="flex flex-col">
                     <Accordion className="w-full mb-4" type="multiple">
                         <AccordionItem value="item-0">
@@ -134,19 +147,6 @@ export default async function EmbedOnSitePage({ params }: ChatbotSettingsProps) 
                         </AccordionItem>
                     </Accordion>
                 </div>
-                <Link
-                    href={`/dashboard/chatbots`}
-                    className={cn(
-                        buttonVariants({ variant: "ghost" }),
-                        "md:left-8 md:top-8"
-                    )}
-                >
-                    <>
-                        <Icons.chevronLeft className="mr-2 h-4 w-4" />
-                        Back
-                    </>
-                </Link>
-            </DashboardHeader>
             <Tabs className="w-full overflow-x-auto max-w-full" defaultValue="widget">
                 <TabsList className="mb-10 grid w-full grid-cols-5 gap-4">
                     <TabsTrigger value="widget">Widget</TabsTrigger>
