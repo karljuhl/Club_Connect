@@ -58,99 +58,68 @@ export default async function EmbedOnSitePage({ params }: ChatbotSettingsProps) 
                 </Link>
             </DashboardHeader>
             <div className="flex flex-col">
-                    <Accordion className="w-full mb-4" type="multiple">
-                        <AccordionItem value="item-0">
-                            <AccordionTrigger className="hover:underline-none text-muted-foreground">
-                                Not Sure How to Embed Your Assistant?
-                            </AccordionTrigger>
-                            <AccordionContent className="text-muted-foreground">
-                                    <p>So there are two ways you can embed your assistant into your website, using the window (iframe) or the widget (chat bubble in the bottom right)</p>
-                                        <ul className="list-disc pl-4">
-                                        <br></br>
-                                            <li><AccordionTrigger className="hover:underline-none text-muted-foreground">
-                                                    Wordpress
-                                                </AccordionTrigger>
-                                                    <AccordionContent className="text-muted-foreground">
-                                                        <ul>
-                                                            <li>Go to &apos;plugins&apos; sections and add new plugin &apos;WPCode&apos;</li>
-                                                            <li>Activate the plugin and navigate to &apos;Code Snippets&apos; area</li>
-                                                            <li>Copy the widget code from ClubConnect, paste into the footer of the body section</li>
-                                                            <li>Refresh your website and see your Assistant in action</li>
-                                                        </ul>
-                                                    </AccordionContent>
-                                                    </li>
-                                        <br></br>
-                                            <li>Shopify</li>
-                                                <ul>
-                                                    <li>Copy the widget code from ClubConnect</li>
-                                                    <li>Go to your Shopify themes code and paste the code inside the body tag</li>
-                                                    <li>Refresh your website and see your Assistant in action</li>
-                                                </ul>
-                                        <br></br>
-                                            <li>Squarespace</li>
-                                                <ul>
-                                                    <li>Copy the widget code from ClubConenct</li>
-                                                    <li>Navigate to &apos;Settings&apos; in the left sidebar, open &apos;Advanced Settings&apos;</li>
-                                                    <li>Click on &apos;Code Injection&apos; and paste in the footer section the code you got from ClubConnect</li>
-                                                    <li>Refresh your website and see your Assistant in action</li>
-                                                </ul>
-                                        <br></br>
-                                            <li>Most other website hosting services</li>
-                                                 <ul>
-                                                    <li>Copy the widget code from ClubConnect</li>
-                                                    <li>Login to your web hosting provider and navigate to your &apos;File Manager&apos;</li>
-                                                    <li>Navigate past &apos;public_html&apos; if needed and find &apos;index.html&apos;</li>
-                                                    <li>Paste the code into the footer of the body section</li>
-                                                    <li>Refresh your website and see your Assistant in action</li>
-                                                </ul>
-                                        </ul>
-                                        <Accordion className="w-full mb-4" type="multiple">
-                        <AccordionItem value="item-0">
-                            <AccordionTrigger className="hover:underline-none text-muted-foreground">
-                                Unsure of the terminology? Let us help!
-                            </AccordionTrigger>
-                            <AccordionContent className="text-muted-foreground">
-                                    <p>So there are two ways you can embed your assistant into your website, using the window (iframe) or the widget (chat bubble in the bottom right)</p>
-                                        <ul className="list-disc pl-4">
-                                        <br></br>
-                                            <li>Wordpress</li>
-                                                <ul>
-                                                    <li>Go to &apos;plugins&apos; sections and add new plugin &apos;WPCode&apos;</li>
-                                                    <li>Activate the plugin and navigate to &apos;Code Snippets&apos; area</li>
-                                                    <li>Copy the widget code from ClubConnect, paste into the footer of the body section</li>
-                                                    <li>Refresh your website and see your Assistant in action</li>
-                                                </ul>
-                                        <br></br>
-                                            <li>Shopify</li>
-                                                <ul>
-                                                    <li>Copy the widget code from ClubConnect</li>
-                                                    <li>Go to your Shopify themes code and paste the code inside the body tag</li>
-                                                    <li>Refresh your website and see your Assistant in action</li>
-                                                </ul>
-                                        <br></br>
-                                            <li>Squarespace</li>
-                                                <ul>
-                                                    <li>Copy the widget code from ClubConenct</li>
-                                                    <li>Navigate to &apos;Settings&apos; in the left sidebar, open &apos;Advanced Settings&apos;</li>
-                                                    <li>Click on &apos;Code Injection&apos; and paste in the footer section the code you got from ClubConnect</li>
-                                                    <li>Refresh your website and see your Assistant in action</li>
-                                                </ul>
-                                        <br></br>
-                                            <li>Most other website hosting services</li>
-                                                 <ul>
-                                                    <li>Copy the widget code from ClubConnect</li>
-                                                    <li>Login to your web hosting provider and navigate to your &apos;File Manager&apos;</li>
-                                                    <li>Navigate past &apos;public_html&apos; if needed and find &apos;index.html&apos;</li>
-                                                    <li>Paste the code into the footer of the body section</li>
-                                                    <li>Refresh your website and see your Assistant in action</li>
-                                                </ul>
-                                        </ul>
-                            </AccordionContent>
-                        </AccordionItem>
-                    </Accordion>
-                            </AccordionContent>
-                        </AccordionItem>
-                    </Accordion>
+            <Accordion className="w-full mb-4" type="multiple">
+                <AccordionItem value="item-0">
+                    <AccordionTrigger className="hover:underline-none text-muted-foreground">
+                        Not Sure How to Embed Your Assistant?
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">
+                        <p>There are two ways you can embed your assistant into your website, using the window (iframe) or the widget (chat bubble in the bottom right):</p>
+                        <ul className="list-disc pl-4">
+                            <li>
+                                <Accordion className="w-full my-2">
+                                    <AccordionItem value="wordpress">
+                                        <AccordionTrigger className="hover:underline-none text-muted-foreground">
+                                            WordPress
+                                        </AccordionTrigger>
+                                        <AccordionContent className="text-muted-foreground">
+                                            <ul>
+                                                <li>Go to 'plugins' sections and add new plugin 'WPCode'</li>
+                                                <li>Activate the plugin and navigate to 'Code Snippets' area</li>
+                                                <li>Copy the widget code from ClubConnect, paste into the footer of the body section</li>
+                                                <li>Refresh your website and see your Assistant in action</li>
+                                            </ul>
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                </Accordion>
+                            </li>
+                            <li>
+                                <Accordion className="w-full my-2">
+                                    <AccordionItem value="shopify">
+                                        <AccordionTrigger className="hover:underline-none text-muted-foreground">
+                                            Shopify
+                                        </AccordionTrigger>
+                                        <AccordionContent className="text-muted-foreground">
+                                            <ul>
+                                                <li>Copy the widget code from ClubConnect</li>
+                                                <li>Go to your Shopify themes code and paste the code inside the body tag</li>
+                                                <li>Refresh your website and see your Assistant in action</li>
+                                            </ul>
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                </Accordion>
+                            </li>
+                            <li>
+                                <Accordion className="w-full my-2">
+                                    <AccordionItem value="squarespace">
+                                        <AccordionTrigger className="hover:underline-none text-muted-foreground">
+                                            Squarespace
+                                        </AccordionTrigger>
+                                        <AccordionContent className="text-muted-foreground">
+                                            <ul>
+                                                <li>Copy the widget code from ClubConnect</li>
+                                                <li>Navigate to 'Settings' in the left sidebar, open 'Advanced Settings'</li>
+                                                <li>Click on 'Code Injection' and paste in the footer section the code you got from ClubConnect</li>
+                                                <li>Refresh your website and see your Assistant in action</li>
+                                            </ul>
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                </Accordion>
+                            </li>
+                        </ul>
+                    </AccordionContent>
+                </AccordionItem>
+            </Accordion>
                 </div>
             <Tabs className="w-full overflow-x-auto max-w-full" defaultValue="widget">
                 <TabsList className="mb-10 grid w-full grid-cols-5 gap-4">
