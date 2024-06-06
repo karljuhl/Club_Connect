@@ -75,8 +75,11 @@ export default async function EmbedOnSitePage({ params }: ChatbotSettingsProps) 
                                         <AccordionContent className="text-muted-foreground">
                                             <ul>
                                                 <li>Go to &apos;plugins&apos; sections and add new plugin &apos;WPCode&apos;</li>
+                                                <br></br>
                                                 <li>Activate the plugin and navigate to &apos;Code Snippets&apos; area</li>
+                                                <br></br>
                                                 <li>Copy the widget code from ClubConnect, paste into the footer of the body section</li>
+                                                <br></br>
                                                 <li>Refresh your website and see your Assistant in action</li>
                                             </ul>
                                         </AccordionContent>
@@ -92,7 +95,9 @@ export default async function EmbedOnSitePage({ params }: ChatbotSettingsProps) 
                                         <AccordionContent className="text-muted-foreground">
                                             <ul>
                                                 <li>Copy the widget code from ClubConnect</li>
+                                                <br></br>
                                                 <li>Go to your Shopify themes code and paste the code inside the body tag</li>
+                                                <br></br>
                                                 <li>Refresh your website and see your Assistant in action</li>
                                             </ul>
                                         </AccordionContent>
@@ -108,8 +113,11 @@ export default async function EmbedOnSitePage({ params }: ChatbotSettingsProps) 
                                         <AccordionContent className="text-muted-foreground">
                                             <ul>
                                                 <li>Copy the widget code from ClubConnect</li>
+                                                <br></br>
                                                 <li>Navigate to &apos;Settings&apos; in the left sidebar, open &apos;Advanced Settings&apos;</li>
+                                                <br></br>
                                                 <li>Click on &apos;Code Injection&apos; and paste in the footer section the code you got from ClubConnect</li>
+                                                <br></br>
                                                 <li>Refresh your website and see your Assistant in action</li>
                                             </ul>
                                         </AccordionContent>
@@ -125,9 +133,13 @@ export default async function EmbedOnSitePage({ params }: ChatbotSettingsProps) 
                                         <AccordionContent className="text-muted-foreground">
                                                  <ul>
                                                     <li>Copy the widget code from ClubConnect</li>
+                                                    <br></br>
                                                     <li>Login to your web hosting provider and navigate to your &apos;File Manager&apos;</li>
+                                                    <br></br>
                                                     <li>Navigate past &apos;public_html&apos; if needed and find &apos;index.html&apos;</li>
+                                                    <br></br>
                                                     <li>Paste the code into the footer of the body section</li>
+                                                    <br></br>
                                                     <li>Refresh your website and see your Assistant in action</li>
                                                 </ul>
                                         </AccordionContent>
