@@ -44,7 +44,7 @@ export default async function EmbedOnSitePage({ params }: ChatbotSettingsProps) 
     return (
         <DashboardShell>
             <DashboardHeader heading="Embed On Website" text="Make your assistant publicly accessible for users.">
-                <div>
+            <div className="flex flex-col">
                     <Accordion className="w-full mb-4" type="multiple">
                         <AccordionItem value="item-0">
                             <AccordionTrigger className="hover:underline-none text-muted-foreground">
