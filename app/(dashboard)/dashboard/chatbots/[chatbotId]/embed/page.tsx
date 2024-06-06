@@ -74,8 +74,8 @@ export default async function EmbedOnSitePage({ params }: ChatbotSettingsProps) 
                                         </AccordionTrigger>
                                         <AccordionContent className="text-muted-foreground">
                                             <ul>
-                                                <li>Go to 'plugins' sections and add new plugin 'WPCode'</li>
-                                                <li>Activate the plugin and navigate to 'Code Snippets' area</li>
+                                                <li>Go to &apos;plugins&apos; sections and add new plugin &apos;WPCode&apos;</li>
+                                                <li>Activate the plugin and navigate to &apos;Code Snippets&apos; area</li>
                                                 <li>Copy the widget code from ClubConnect, paste into the footer of the body section</li>
                                                 <li>Refresh your website and see your Assistant in action</li>
                                             </ul>
@@ -108,8 +108,8 @@ export default async function EmbedOnSitePage({ params }: ChatbotSettingsProps) 
                                         <AccordionContent className="text-muted-foreground">
                                             <ul>
                                                 <li>Copy the widget code from ClubConnect</li>
-                                                <li>Navigate to 'Settings' in the left sidebar, open 'Advanced Settings'</li>
-                                                <li>Click on 'Code Injection' and paste in the footer section the code you got from ClubConnect</li>
+                                                <li>Navigate to &apos;Settings&apos; in the left sidebar, open &apos;Advanced Settings&apos;</li>
+                                                <li>Click on &apos;Code Injection&apos; and paste in the footer section the code you got from ClubConnect</li>
                                                 <li>Refresh your website and see your Assistant in action</li>
                                             </ul>
                                         </AccordionContent>
