@@ -67,13 +67,18 @@ export default async function EmbedOnSitePage({ params }: ChatbotSettingsProps) 
                                     <p>So there are two ways you can embed your assistant into your website, using the window (iframe) or the widget (chat bubble in the bottom right)</p>
                                         <ul className="list-disc pl-4">
                                         <br></br>
-                                            <li>Wordpress</li>
-                                                <ul>
-                                                    <li>Go to &apos;plugins&apos; sections and add new plugin &apos;WPCode&apos;</li>
-                                                    <li>Activate the plugin and navigate to &apos;Code Snippets&apos; area</li>
-                                                    <li>Copy the widget code from ClubConnect, paste into the footer of the body section</li>
-                                                    <li>Refresh your website and see your Assistant in action</li>
-                                                </ul>
+                                            <li><AccordionTrigger className="hover:underline-none text-muted-foreground">
+                                                    Wordpress
+                                                </AccordionTrigger>
+                                                    <AccordionContent className="text-muted-foreground">
+                                                        <ul>
+                                                            <li>Go to &apos;plugins&apos; sections and add new plugin &apos;WPCode&apos;</li>
+                                                            <li>Activate the plugin and navigate to &apos;Code Snippets&apos; area</li>
+                                                            <li>Copy the widget code from ClubConnect, paste into the footer of the body section</li>
+                                                            <li>Refresh your website and see your Assistant in action</li>
+                                                        </ul>
+                                                    </AccordionContent>
+                                                    </li>
                                         <br></br>
                                             <li>Shopify</li>
                                                 <ul>
