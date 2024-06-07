@@ -42,10 +42,7 @@ export default function WelcomeEmail({ name }: WelcomeEmailProps) {
                         <Text className="text-sm">
                             We&apos;re excited to have you onboard at <span>{siteConfig.name}</span>. We
                             hope you enjoy your journey with us. If you have any questions or
-                            need assistance, feel free to reach out.
-                        </Text>
-                        <Text className="text-sm">
-                            You can contact us directly with the email support@clubconnect.pro
+                            need assistance, feel free to reach out. You can contact us directly with the email support@clubconnect.pro
                         </Text>
                         <Section className="text-center mt-[32px] mb-[32px]">
                             <Button
