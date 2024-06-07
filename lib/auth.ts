@@ -38,24 +38,114 @@ export const authOptions: NextAuthOptions = {
     }),
     EmailProvider({
       server: {
+        host: process.env.EMAIL_SERVER_HOST,
+        port: parseInt(process.env.EMAIL_SERVER_PORT, 10),
+        auth: {
+          user: process.env.EMAIL_SERVER_USER,
+          pass: process.env.EMAIL_SERVER_PASSWORD,
+        },
+        secure: true, // Required for port 465, optional for other ports
+      },
+      from: "Club Connect <no-reply@clubconnect.pro>",
+      sendVerificationRequest: ({ identifier, url }) => {
+        const transport = nodemailer.createTransport({
           host: process.env.EMAIL_SERVER_HOST,
           port: parseInt(process.env.EMAIL_SERVER_PORT, 10),
           auth: {
-              user: process.env.EMAIL_SERVER_USER,
-              pass: process.env.EMAIL_SERVER_PASSWORD,
+            user: process.env.EMAIL_SERVER_USER,
+            pass: process.env.EMAIL_SERVER_PASSWORD,
           },
           secure: true, // Required for port 465, optional for other ports
-      },
-      sendVerificationRequest: async ({ identifier, url }) => {
-          // Use your customized function to send the login email
-          await sendLoginEmail({
-              name: identifier, // Assuming the identifier is the email; update accordingly if you have the user's name
-              email: identifier,
-              url: url, // Passing the magic link URL
-          });
-      },
-  }),
-],
+        });
+        return transport.sendMail({
+          to: identifier,
+          from: "Club Connect <no-reply@clubconnect.pro>",
+          subject: 'Sign in to ClubConnect',
+          text: `Sign in with magic link: ${url}`,
+          html: `
+          <!DOCTYPE html>
+          <html>
+          <head>
+          <style>
+            body {
+              font-family: Arial, sans-serif;
+              background-color: #f4f4f4;
+              margin: 0;
+              padding: 20px;
+            }
+            .container {
+              background-color: #fff;
+              width: 100%;
+              max-width: 600px;
+              margin: 0 auto;
+              padding: 20px;
+              border-radius: 8px;
+              box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+            .header {
+              background-color: #ffffff;
+              color: #000000;
+              padding: 10px 20px;
+              text-align: center;
+              border-top-left-radius: 8px;
+              border-top-right-radius: 8px;
+              border: 2px solid #000000;
+            }
+            .content {
+              padding: 20px;
+              text-align: center;
+            }
+            .button {
+              display: inline-block;
+              padding: 10px 20px;
+              margin: 20px 0;
+              background-color: #ffffff;
+              color: #000000;
+              text-decoration: none;
+              border-radius: 5px;
+              border: 2px solid #000000;
+              transition: background-color 0.3s, color 0.3s;
+            }
+            .button:hover {
+              background-color: #000000;
+              color: #ffffff;
+            }
+            .footer {
+              font-size: 12px;
+              color: #666;
+              text-align: center;
+              padding: 20px;
+            }
+          </style>
+          </head>
+          <body>
+            <div class="container">
+              <div class="header">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-concierge-bell">
+                    <path d="M3 20a1 1 0 0 1-1-1v-1a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1Z"/>
+                    <path d="M20 16a8 8 0 1 0-16 0"/>
+                    <path d="M12 4v4"/>
+                    <path d="M10 4h4"/>
+                  </svg>
+                ClubConnect Sign-In 
+              </div>
+              <div class="content">
+                <p>Please click the button below to verify your email address and sign in to your account.</p>
+                <a href="${url}" class="button">Verify Email</a>
+                <br>
+                <p>Any time you need to log in to your account you can use the magic link and input the same email used previously then we send you a link which will log you in, like magic.</p>
+              </div>
+              <div class="footer">
+                &copy; 2024 ClubConnect, Inc. All rights reserved.
+              </div>
+            </div>
+          </body>
+          </html>
+                `,
+              });
+            }
+          })
+  ],
   callbacks: {
     async session({ token, session }) {
       if (token) {
