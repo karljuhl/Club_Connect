@@ -1,4 +1,4 @@
-import LoginEmail from "@/emails/LoginEmail";
+import LoginEmail from "@/emails/login";
 import { siteConfig } from "@/config/site";
 import { email as EmailClient } from "@/lib/email";
 
