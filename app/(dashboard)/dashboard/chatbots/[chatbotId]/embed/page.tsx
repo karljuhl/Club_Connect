@@ -138,7 +138,7 @@ export default async function EmbedOnSitePage({ params }: ChatbotSettingsProps) 
                                                     <br></br>
                                                     <li>Navigate past &apos;public_html&apos; if needed and find &apos;index.html&apos;</li>
                                                     <br></br>
-                                                    <li>Paste the code into the footer of the body section</li>
+                                                    <li>Paste the code into the footer of the body section just before the &apos;/body&apos; tag</li>
                                                     <br></br>
                                                     <li>Refresh your website and see your Assistant in action</li>
                                                 </ul>
