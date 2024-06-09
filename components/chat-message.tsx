@@ -29,7 +29,7 @@ export function ChatMessage({ message, children, chatbotLogoURL, ...props }: Cha
                     chatbotLogoURL ? (
                         <Image src={chatbotLogoURL} alt="Chatbot Logo" width={40} height={40} className="rounded-full" />
                     ) : (
-                        <Icons.bell />
+                        <Icons.bot />
                     )
                 )}
             </div>
