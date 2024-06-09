@@ -2,7 +2,6 @@ import { Message } from 'ai'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 
-import { db } from "@/lib/db"
 import { MathJax, MathJaxContext } from 'better-react-mathjax'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
