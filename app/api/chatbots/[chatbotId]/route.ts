@@ -43,6 +43,7 @@ export async function GET(
         id: true,
         name: true,
         createdAt: true,
+        chatbotLogoURL: true
       },
       where: {
         id: params.chatbotId,
