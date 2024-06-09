@@ -3,8 +3,6 @@ import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 
 import { MathJax, MathJaxContext } from 'better-react-mathjax'
-
-
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import { CodeBlock } from '@/components/ui/codeblock'
@@ -15,26 +13,30 @@ import { ExternalLink } from '@/components/external-link'
 export interface ChatMessageProps {
     message: Message
     children?: React.ReactNode
+    chatbotLogoURL?: string;
 }
 
-export function ChatMessage({ message, children, ...props }: ChatMessageProps) {
+export function ChatMessage({ message, children, chatbotLogoURL, ...props }: ChatMessageProps) {
     return (
-        <div
-            className={cn('group relative mb-4 flex items-start ')}
-            {...props}
-        >
-            <div
-                className={cn(
-                    'flex size-8 shrink-0 select-none items-center justify-center rounded-md border shadow',
-                    message.role === 'user'
-                        ? 'bg-background'
-                        : 'bg-primary text-primary-foreground'
+        <div className={cn('group relative mb-4 flex items-start')} {...props}>
+            <div className={cn(
+                'flex size-8 shrink-0 select-none items-center justify-center rounded-md border shadow',
+                message.role === 'user' ? 'bg-background' : 'bg-primary text-primary-foreground'
+            )}>
+                {message.role === 'user' ? (
+                    <Icons.user />
+                ) : (
+                    chatbotLogoURL ? (
+                        <Image src={chatbotLogoURL} alt="Chatbot Logo" width={40} height={40} className="rounded-full" />
+                    ) : (
+                        <Icons.bell />
+                    )
                 )}
-            >
-                {message.role === 'user' ? <Icons.user /> : <Icons.bell />}
             </div>
             <div className="flex-1 px-1 ml-4 space-y-2 overflow-hidden">
-                {message.content == "loading" ? <Icons.loading className="animate-spin" /> :
+                {message.content === "loading" ? (
+                    <Icons.loading className="animate-spin" />
+                ) : (
                     <MemoizedReactMarkdown
                         className="prose break-words prose-p:leading-relaxed prose-pre:p-0"
                         remarkPlugins={[remarkGfm, remarkMath]}
@@ -81,7 +83,7 @@ export function ChatMessage({ message, children, ...props }: ChatMessageProps) {
                     >
                         {message.content.replace(/\【.*?】/g, "")}
                     </MemoizedReactMarkdown>
-                }
+                )}
                 {/*<ChatMessageActions message={message} />*/}
             </div>
         </div>
