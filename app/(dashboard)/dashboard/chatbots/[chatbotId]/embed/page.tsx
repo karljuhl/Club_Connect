@@ -76,9 +76,9 @@ export default async function EmbedOnSitePage({ params }: ChatbotSettingsProps) 
                                             <ul>
                                                 <li>Go to &apos;plugins&apos; sections and add new plugin &apos;WPCode&apos;</li>
                                                 <br></br>
-                                                <li>Activate the plugin and navigate to &apos;Code Snippets&apos; area</li>
+                                                <li>Activate the plugin and navigate to &apos;Code Snippets&apos; in the left sidebar, and click &apos;header & Footer&apos;</li>
                                                 <br></br>
-                                                <li>Copy the widget code from ClubConnect, paste into the footer of the body section</li>
+                                                <li>Copy the widget code from ClubConnect, paste into the footer section and save</li>
                                                 <br></br>
                                                 <li>Refresh your website and see your Assistant in action</li>
                                             </ul>
@@ -138,7 +138,7 @@ export default async function EmbedOnSitePage({ params }: ChatbotSettingsProps) 
                                                     <br></br>
                                                     <li>Navigate past &apos;public_html&apos; if needed and find &apos;index.html&apos;</li>
                                                     <br></br>
-                                                    <li>Paste the code into the footer of the body section just before the &apos;/body&apos; tag</li>
+                                                    <li>Paste the code into the footer section just before the &apos;/footer&apos; tag</li>
                                                     <br></br>
                                                     <li>Refresh your website and see your Assistant in action</li>
                                                 </ul>
