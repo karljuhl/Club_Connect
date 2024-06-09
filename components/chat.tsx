@@ -151,7 +151,7 @@ export function Chat({ chatbot, defaultMessage, className, withExitX = false, cl
         </div>
         {status !== "awaiting_message" &&
           <div className="mt-4">
-            <ChatMessage message={{ id: 'waiting', role: "assistant", content: 'loading' }} />
+            <ChatMessage message={{ id: 'waiting', role: "assistant", content: 'loading' }} chatbotLogoURL={chatbotLogoURL} />
           </div>
         }
         <div id="end" ref={containerRef}> </div>
