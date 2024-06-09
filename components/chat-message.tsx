@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import { Message } from 'ai'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
@@ -17,7 +18,7 @@ export interface ChatMessageProps {
 }
 
 export function ChatMessage({ message, children, chatbotLogoURL, ...props }: ChatMessageProps) {
-    
+
     useEffect(() => {
         console.log("Chatbot Logo URL:", chatbotLogoURL);
     }, [chatbotLogoURL]);
