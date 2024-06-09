@@ -17,6 +17,11 @@ export interface ChatMessageProps {
 }
 
 export function ChatMessage({ message, children, chatbotLogoURL, ...props }: ChatMessageProps) {
+    
+    useEffect(() => {
+        console.log("Chatbot Logo URL:", chatbotLogoURL);
+    }, [chatbotLogoURL]);
+
     return (
         <div className={cn('group relative mb-4 flex items-start')} {...props}>
             <div className={cn(
@@ -27,7 +32,7 @@ export function ChatMessage({ message, children, chatbotLogoURL, ...props }: Cha
                     <Icons.user />
                 ) : (
                     chatbotLogoURL ? (
-                        <Image src={chatbotLogoURL} alt="Chatbot Logo" width={40} height={40} className="rounded-full" />
+                        <Image src={chatbotLogoURL} alt="Assistant Logo" width={40} height={40} className="rounded-full" />
                     ) : (
                         <Icons.bell />
                     )
