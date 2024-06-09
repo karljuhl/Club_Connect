@@ -43,14 +43,14 @@ export function ChatMessage({ message, children, chatbot, ...props }: ChatMessag
                         className={cn('pr-10 group relative mb-4 flex items-start ')}
                         {...props}
                     >
-                    { chatbot.chatbotLogoURL ? <Image className='border shadow rounded-md size-8' width={50} height={50} src={chatbot.chatbotLogoURL} alt="chatbot logo" /> : 
+                    { chatbot.chatbotLogoURL ? <Image className='border shadow rounded-md size-8' width={50} height={50} src={chatbot.chatbotLogoURL} alt="assistant icon" /> : 
                         <div
                             className={cn(
                                 'flex size-8 shrink-0 select-none items-center justify-center rounded-md border shadow',
                                 'bg-primary text-primary-foreground'
                             )}
                         >
-                            <Icons.bot />
+                            <Icons.bell />
                         </div>
                     }
                         <div className="flex-1 px-1 ml-4 space-y-2 overflow-hidden">
