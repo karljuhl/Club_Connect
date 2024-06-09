@@ -27,13 +27,13 @@ export function ChatMessage({ message, children, chatbotLogoURL, ...props }: Cha
         <div className={cn('group relative mb-4 flex items-start')} {...props}>
             <div className={cn(
                 'flex size-8 shrink-0 select-none items-center justify-center rounded-md border shadow',
-                message.role === 'user' ? 'bg-background' : 'bg-primary text-primary-foreground'
+                message.role === 'user' ? 'bg-background' : 'text-primary-foreground'
             )}>
                 {message.role === 'user' ? (
                     <Icons.user />
                 ) : (
                     chatbotLogoURL ? (
-                        <Image src={chatbotLogoURL} alt="Assistant Logo" width={40} height={40} className="rounded-full" />
+                        <Image src={chatbotLogoURL} alt="Assistant Logo" width={32} height={32} className="rounded-full" />
                     ) : (
                         <Icons.bell />
                     )
