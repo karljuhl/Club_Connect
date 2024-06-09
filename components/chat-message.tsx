@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Message } from 'ai'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
@@ -18,13 +18,8 @@ export interface ChatMessageProps {
 }
 
 export function ChatMessage({ message, children, chatbotLogoURL, ...props }: ChatMessageProps) {
-    
-    const [imageLoaded, setImageLoaded] = useState(false);
 
-    useEffect(() => {
-        // Reset image loaded state when URL changes
-        setImageLoaded(false);
-    }, [chatbotLogoURL]);
+
 
     return (
         <div className={cn('group relative mb-4 flex items-start')} {...props}>
@@ -36,18 +31,7 @@ export function ChatMessage({ message, children, chatbotLogoURL, ...props }: Cha
                     <Icons.user />
                 ) : (
                     chatbotLogoURL ? (
-                        imageLoaded ? (
-                            <Image
-                                src={chatbotLogoURL}
-                                alt="Assistant Logo"
-                                width={32}
-                                height={32}
-                                className="rounded-full"
-                                onLoadingComplete={() => setImageLoaded(true)}
-                            />
-                        ) : (
-                            <Icons.bell />
-                        )
+                        <Image src={chatbotLogoURL} alt="Assistant Logo" width={32} height={32} className="rounded-full" />
                     ) : (
                         <Icons.bell />
                     )
