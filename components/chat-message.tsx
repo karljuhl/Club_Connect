@@ -16,6 +16,8 @@ export interface ChatMessageProps {
     chatbotLogoURL?: string;
 }
 
+console.log('Chatbot Logo URL:', chatbotLogoURL);
+
 export function ChatMessage({ message, children, chatbotLogoURL, ...props }: ChatMessageProps) {
     return (
         <div className={cn('group relative mb-4 flex items-start')} {...props}>
@@ -27,9 +29,9 @@ export function ChatMessage({ message, children, chatbotLogoURL, ...props }: Cha
                     <Icons.user />
                 ) : (
                     chatbotLogoURL ? (
-                        <Image src={chatbotLogoURL} alt="Chatbot Logo" width={40} height={40} className="rounded-full" />
+                        <Image src={chatbots.chatbotLogoURL} alt="Chatbot Logo" width={40} height={40} className="rounded-full" />
                     ) : (
-                        <Icons.bot />
+                        <Icons.bell />
                     )
                 )}
             </div>
