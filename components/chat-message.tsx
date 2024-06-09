@@ -4,6 +4,8 @@ import remarkMath from 'remark-math'
 
 import { MathJax, MathJaxContext } from 'better-react-mathjax'
 
+
+import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import { CodeBlock } from '@/components/ui/codeblock'
 import { MemoizedReactMarkdown } from '@/components/markdown'
