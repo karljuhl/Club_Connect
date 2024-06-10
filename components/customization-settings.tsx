@@ -343,7 +343,7 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
                                 Choose assistant image
                             </FormLabel>
                             <FormDescription>
-                                Choose the image you want to use for your assistant. The image will be displayed as the assistant's profile picture.
+                                Choose the image you want to use for your assistant. The image will be displayed as the assistant&apos;s profile picture.
                             </FormDescription>
                             <FormControl>
                                 <Input
