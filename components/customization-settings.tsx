@@ -163,10 +163,10 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
                                     <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
                                         <div className="space-y-0.5">
                                             <FormLabel className="text-base">
-                                                OpenAssistantGPT Branding Label
+                                                ClubConnect Branding
                                             </FormLabel>
                                             <FormDescription>
-                                                Remove &quot;Powered by OpenAssistantGPT&quot; from the chatbot.
+                                                Remove &quot;Powered by ClubConnect&quot; from the assistant.
                                             </FormDescription>
                                         </div>
                                         <FormControl>
@@ -231,15 +231,15 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
                                 render={({ field }) => (
                                     <FormItem className="flex flex-col items-left justify-between rounded-lg border p-4">
                                         <div className="space-y-4">
-                                            <h1>Customize Your Chatbot Widget</h1>
+                                            <h1>Customize Your Assistant Widget</h1>
                                             <div className="flex">
                                                 <div className="flex flex-col w-full justify space-y-4">
                                                     <div className="space-y-0.5">
                                                         <FormLabel className="text-base">
-                                                            Chatbot Background Bubble Color
+                                                            Assistant Background Bubble Color
                                                         </FormLabel>
                                                         <FormDescription>
-                                                            Select the color you want to use for your chatbot bubble
+                                                            Select the color you want to use for your assistant bubble
                                                         </FormDescription>
                                                         <FormControl>
                                                             <GradientPicker background={bubbleColor} setBackground={setBubbleColor} />
@@ -248,10 +248,10 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
 
                                                     <div className="space-y-0.5">
                                                         <FormLabel className="text-base">
-                                                            Chatbot Logo Color
+                                                            Assistant Logo Color
                                                         </FormLabel>
                                                         <FormDescription>
-                                                            Select the color you want to use for your chatbot logo color
+                                                            Select the color you want to use for your Assistant logo color
                                                         </FormDescription>
                                                         <FormControl>
                                                             <GradientPicker withGradient={false} background={bubbleLogoColor} setBackground={setBubbleLogoColor} />
@@ -278,7 +278,7 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
                                                 <div className="flex flex-col w-full justify space-y-4">
                                                     <div className="space-y-0.5">
                                                         <FormLabel className="text-base">
-                                                            Chatbot Header Background Color
+                                                            Assistant Header Background Color
                                                         </FormLabel>
                                                         <FormDescription>
                                                             Select the color you want to use for your chatbox header background
@@ -290,10 +290,10 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
 
                                                     <div className="space-y-0.5">
                                                         <FormLabel className="text-base">
-                                                            Chatbot Header Text Color
+                                                        Assistant Header Text Color
                                                         </FormLabel>
                                                         <FormDescription>
-                                                            Select the color you want to use for your chatbot header text color
+                                                            Select the color you want to use for your assistant header text color
                                                         </FormDescription>
                                                         <FormControl>
                                                             <GradientPicker withGradient={false} background={chatHeaderTextColor} setBackground={setChatHeaderTextColor} />
@@ -320,12 +320,12 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
                                 render={({ field }) => (
                                     <FormItem className="flex flex-col items-left justify-between rounded-lg border p-4">
                                         <div className="space-y-4">
-                                            <h1>Images</h1>
+                                            <h1>Image</h1>
                                             <div className="flex">
                                                 <div className="flex flex-col w-full justify space-y-4">
                                                     <div className="space-y-0.5">
                                                         <FormLabel className="text-base">
-                                                            Choose chatbot image
+                                                            Choose assistant image
                                                         </FormLabel>
                                                         <FormDescription>
                                                             Choose the image you want to use for your chatbot. The image used will be displayed as the chatbot profile picture.
@@ -359,6 +359,42 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
                                     </FormItem>
                                 )}
                             />
+                            <FormField
+                                name="assistantImageBackgroundColor"
+                                render={({ field }) => (
+                                    <FormItem className="flex flex-col items-left justify-between rounded-lg border p-4">
+                                        <div className="space-y-4">
+                                            <h1>Customize Your Assistant Image Background</h1>
+                                                <div className="flex">
+                                                <div className="flex flex-col w-full justify space-y-4">
+                                                    <div className="space-y-0.5">
+                                                        <FormLabel className="text-base">
+                                                            Assistant Image Background Color
+                                                        </FormLabel>
+                                                        <FormDescription>
+                                                            Select the color you want to use for the background of the assistant image
+                                                        </FormDescription>
+                                                        <FormControl>
+                                                            <GradientPicker background={assistantImageBackgroundColor} setBackground={setAssistantImageBackgroundColor} />
+                                                        </FormControl>
+                        </div>
+                    </div>
+                    <div className="flex w-full items-center text-center justify-center">
+                        <div style={{ background: assistantImageBackgroundColor }} className="flex rounded-lg shadow justify-center items-center p-4">
+                            <Image
+                                src={chatbotLogoURL} // Make sure chatbotLogoURL is defined and fetched accordingly
+                                alt="Assistant Logo"
+                                width={64}
+                                height={64}
+                                className="rounded-full"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </FormItem>
+    )}
+/>
                         </div>
                     </div>
                     <button
