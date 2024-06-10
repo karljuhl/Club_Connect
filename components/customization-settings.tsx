@@ -1,5 +1,4 @@
 "use client"
-import React, { useRef, useState, useEffect } from 'react';
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
@@ -17,7 +16,7 @@ import { Switch } from "@/components/ui/switch"
 import { toast } from "@/components/ui/use-toast"
 import { Chatbot } from "@prisma/client"
 import { customizationSchema } from "@/lib/validations/customization"
-import { useEffect, useRef, useState } from "react"
+import React, { useRef, useState, useEffect } from 'react';
 import { Icons } from "@/components/icons"
 import { Input } from "@/components/ui/input"
 import { GradientPicker } from "@/components/gradient-picker"
