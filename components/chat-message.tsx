@@ -32,7 +32,7 @@ export function ChatMessage({ message, children, chatbotLogoURL, assistantImageB
                     <Icons.user />
                 ) : (
                     chatbotLogoURL ? (
-                        <Image src={chatbotLogoURL} alt="Assistant Logo" width={32} height={32} className="rounded-full" />
+                        <Image src={chatbotLogoURL} alt="Assistant Logo" width={40} height={40} className="rounded-full" />
                     ) : (
                         <Icons.bell />
                     )
