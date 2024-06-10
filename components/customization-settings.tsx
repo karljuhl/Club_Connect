@@ -73,13 +73,20 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
             setChatHeaderTextColor(data.chatHeaderTextColor);
             setUserBubbleColor(data.userReplyBackgroundColor);
             setUserBubbleMessageColor(data.userReplyTextColor);
-            setChatbotLogoURL(data.chatbotLogoURL);
             setAssistantImageBackgroundColor(data.assistantImageBackgroundColor || "#777777");
-            
-            // Adjusted to check the existence and validity of the logo URL
-            setUseDefaultImage(!data.chatbotLogoURL || data.chatbotLogoURL.length === 0);
+            setChatbotLogoURL(data.chatbotLogoURL);
+    
+            // Check if a chatbot logo URL exists and set it as the preview image
+            if (data.chatbotLogoURL) {
+                setImagePreviewUrl(data.chatbotLogoURL);
+                setUseDefaultImage(false);
+            } else {
+                setUseDefaultImage(true);
+                setImagePreviewUrl(""); // Clear any existing preview URL
+            }
         });
     }, []);
+    
     
     
     const handleFileChange = (e) => {
@@ -375,20 +382,6 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
                                 </div>
                             </FormControl>
                         </div>
-                    </div>
-                    <div className="flex w-full items-center text-center justify-center">
-                        {/* The preview or the default icon is shown here */}
-                        {imagePreviewUrl ? (
-                            <Image
-                                className="border rounded shadow"
-                                width={64}
-                                height={64}
-                                src={imagePreviewUrl}
-                                alt="Assistant Logo"
-                            />
-                        ) : (
-                            <Icons.bell className="h-10 w-10" />
-                        )}
                     </div>
                 </div>
             </div>
