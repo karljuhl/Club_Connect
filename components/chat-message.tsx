@@ -15,9 +15,10 @@ export interface ChatMessageProps {
     message: Message
     children?: React.ReactNode
     chatbotLogoURL?: string;
+    assistantImageBackgroundColor?: string;
 }
 
-export function ChatMessage({ message, children, chatbotLogoURL, ...props }: ChatMessageProps) {
+export function ChatMessage({ message, children, chatbotLogoURL, assistantImageBackgroundColor, ...props }: ChatMessageProps) {
 
 
 
@@ -25,7 +26,7 @@ export function ChatMessage({ message, children, chatbotLogoURL, ...props }: Cha
         <div className={cn('group relative mb-4 flex items-start')} {...props}>
             <div className={cn(
                 'flex size-8 shrink-0 select-none items-center justify-center rounded-md border shadow',
-                message.role === 'user' ? 'bg-background' : 'bg-primary text-primary-foreground'
+                message.role === 'user' ? 'bg-background' : assistantImageBackgroundColor || 'bg-primary text-primary-foreground'
             )}>
                 {message.role === 'user' ? (
                     <Icons.user />
