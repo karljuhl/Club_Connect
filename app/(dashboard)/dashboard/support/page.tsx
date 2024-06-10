@@ -10,23 +10,37 @@ export const metadata = {
     title: `${siteConfig.name} - Support`,
 }
 
-export default async function SupportPage() {
+export default function SupportPage() {
 
     return (
         <DashboardShell>
             <DashboardHeader heading="Support" text="Welcome to Our Support Page.">
-                <Link
-                    href="/dashboard"
-                    className={cn(
-                        buttonVariants({ variant: "ghost" }),
-                        "md:left-8 md:top-8"
-                    )}
-                >
-                    <>
-                        <Icons.chevronLeft className="mr-2 h-4 w-4" />
-                        Back
-                    </>
-                </Link>
+                <div className="flex space-x-4">
+                    <Link
+                        href="/dashboard"
+                        className={cn(
+                            buttonVariants({ variant: "ghost" }),
+                            "md:left-8 md:top-8"
+                        )}
+                    >
+                        <>
+                            <Icons.chevronLeft className="mr-2 h-4 w-4" />
+                            Back
+                        </>
+                    </Link>
+                    <Link
+                        href="/roadmap"
+                        className={cn(
+                            buttonVariants({ variant: "primary" }),
+                            "md:right-8 md:top-8"
+                        )}
+                    >
+                        <>
+                            <Icons.bulb className="mr-2 h-4 w-4" />
+                            Need a feature, have a suggestion?
+                        </>
+                    </Link>
+                </div>
             </DashboardHeader>
             <div >
                 <p className="text-lg font-semibold">How can we help you?</p>
@@ -41,6 +55,6 @@ export default async function SupportPage() {
                     ></iframe>
                 </div>
             </div>
-        </DashboardShell >
+        </DashboardShell>
     )
 }

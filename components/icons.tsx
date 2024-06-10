@@ -42,6 +42,7 @@ import {
   RefreshCcw,
   ConciergeBell,
   MailCheck,
+  Lightbulb,
 } from "lucide-react"
 
 export type Icon = LucideIcon
@@ -122,4 +123,5 @@ export const Icons = {
   twitter: Twitter,
   check: Check,
   bell: ConciergeBell,
+  bulb: Lightbulb,
 }
