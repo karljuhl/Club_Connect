@@ -342,7 +342,7 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
                                 Choose assistant image
                             </FormLabel>
                             <FormDescription>
-                                Choose the image you want to use for your assistant. The image will be displayed as the assistant's profile picture.
+                                Choose the image you want to use for your assistant. The image will be displayed as the assistant&apos;s profile picture.
                                 Image size should be optimal for the display size (e.g., 32x32 pixels).
                             </FormDescription>
                             <FormControl>
