@@ -1,5 +1,4 @@
 "use client"
-import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { buttonVariants } from "@/components/ui/button"
@@ -24,7 +23,6 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { Checkbox } from "@/components/ui/checkbox"
 
-
 interface ChatbotOperationsProps {
     chatbot: Pick<Chatbot, "id" | "name" | "modelId">
 }
@@ -40,6 +38,7 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
     const [userBubbleMessageColor, setUserBubbleMessageColor] = useState('')
     const [chatbotLogoURL, setChatbotLogoURL] = useState('')
     const [useDefaultImage, setUseDefaultImage] = useState<boolean>(true)
+    const [assistantImageBackgroundColor, setAssistantImageBackgroundColor] = useState('')
 
     const [isSaving, setIsSaving] = useState<boolean>(false)
 
@@ -57,6 +56,7 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
             userReplyTextColor: "",
         },
     })
+
     useEffect(() => {
         fetch(`/api/chatbots/${chatbot.id}/config`, {
             method: "GET",
@@ -134,7 +134,7 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
             } else if (response.status === 402) {
                 return toast({
                     title: "Chatbot not customizable.",
-                    description: "Please upgrade to the a higher plan.",
+                    description: "Please upgrade to a higher plan.",
                     variant: "destructive",
                 })
             }
@@ -377,24 +377,24 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
                                                         <FormControl>
                                                             <GradientPicker background={assistantImageBackgroundColor} setBackground={setAssistantImageBackgroundColor} />
                                                         </FormControl>
-                        </div>
-                    </div>
-                    <div className="flex w-full items-center text-center justify-center">
-                        <div style={{ background: assistantImageBackgroundColor }} className="flex rounded-lg shadow justify-center items-center p-4">
-                            <Image
-                                src={chatbotLogoURL} // Make sure chatbotLogoURL is defined and fetched accordingly
-                                alt="Assistant Logo"
-                                width={64}
-                                height={64}
-                                className="rounded-full"
+                                                    </div>
+                                                </div>
+                                                <div className="flex w-full items-center text-center justify-center">
+                                                    <div style={{ background: assistantImageBackgroundColor }} className="flex rounded-lg shadow justify-center items-center p-4">
+                                                        <Image
+                                                            src={chatbotLogoURL} // Make sure chatbotLogoURL is defined and fetched accordingly
+                                                            alt="Assistant Logo"
+                                                            width={64}
+                                                            height={64}
+                                                            className="rounded-full"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </FormItem>
+                                )}
                             />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </FormItem>
-    )}
-/>
                         </div>
                     </div>
                     <button
