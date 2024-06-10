@@ -68,6 +68,7 @@ export async function PATCH(
                 chatHeaderBackgroundColor: payload.chatHeaderBackgroundColor,
                 chatHeaderTextColor: payload.chatHeaderTextColor,
                 chatbotLogoURL: blob ? blob.url : '',
+                assistantImageBackgroundColor: payload.assistantImageBackgroundColor,
             },
             select: {
                 id: true,
