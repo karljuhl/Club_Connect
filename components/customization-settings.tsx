@@ -1,4 +1,5 @@
 "use client"
+import React, { useRef, useState, useEffect } from 'react';
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
@@ -40,6 +41,7 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
     const [chatbotLogoURL, setChatbotLogoURL] = useState('')
     const [useDefaultImage, setUseDefaultImage] = useState<boolean>(true)
     const [assistantImageBackgroundColor, setAssistantImageBackgroundColor] = useState('')
+    const [imagePreviewUrl, setImagePreviewUrl] = useState('');
 
     const [isSaving, setIsSaving] = useState<boolean>(false)
 
@@ -88,6 +90,15 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
             setUseDefaultImage(false)
         }
     }, [inputFileRef.current?.files])
+
+    const handleFileChange = (e) => {
+        if (e.target.files.length > 0) {
+            const file = e.target.files[0];
+            const imageUrl = URL.createObjectURL(file);
+            setImagePreviewUrl(imageUrl);
+            setUseDefaultImage(false);  // Update to use the selected image
+        }
+    };
 
     async function onSubmit(data: z.infer<typeof customizationSchema>) {
         setIsSaving(true)
@@ -320,85 +331,118 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
                                 )}
                             />
                             <FormField
-                                name="chatbotLogo"
-                                render={({ field }) => (
-                                    <FormItem className="flex flex-col items-left justify-between rounded-lg border p-4">
-                                        <div className="space-y-4">
-                                            <h1>Image</h1>
-                                            <div className="flex">
-                                                <div className="flex flex-col w-full justify space-y-4">
-                                                    <div className="space-y-0.5">
-                                                        <FormLabel className="text-base">
-                                                            Choose assistant image
-                                                        </FormLabel>
-                                                        <FormDescription>
-                                                            Choose the image you want to use for your chatbot. The image used will be displayed as the chatbot profile picture.
-                                                            Image size must be 32x32 pixels.
-                                                        </FormDescription>
-                                                        <FormControl>
-                                                            <div className="space-y-2">
-                                                                <Input name="file" ref={inputFileRef} type="file" onChange={
-                                                                    (e) => {
-                                                                        if (e.target.files && e.target.files.length > 0) {
-                                                                            setUseDefaultImage(false)
-                                                                        } else {
-                                                                            setUseDefaultImage(true)
-                                                                         }
-                                                                    }
-                                                                } />
-                                                                <div className="flex space-x-2 flex-row">
-                                                                    <Checkbox onCheckedChange={() => {
-                                                                        setUseDefaultImage(!useDefaultImage)
-                                                                    }} checked={useDefaultImage} ></Checkbox> <span className="text-sm text-muted-foreground">Use default chatbot image</span>
-                                                                </div>
-                                                            </div>
-                                                        </FormControl>
-                                                    </div>
-                                                </div>
-                                                <div className="flex w-full items-center text-center justify-center">
-                                                    {chatbotLogoURL ? <Image className="boder rounded shadow" width={32} height={32} src={chatbotLogoURL} alt="chatbot logo" /> : <Icons.bell className="h-10 w-10" />}
-                                                </div>
-                                            </div>
+    name="chatbotLogo"
+    render={({ field }) => (
+        <FormItem className="flex flex-col items-left justify-between rounded-lg border p-4">
+            <div className="space-y-4">
+                <h1>Image</h1>
+                <div className="flex">
+                    <div className="flex flex-col w-full justify space-y-4">
+                        <div className="space-y-0.5">
+                            <FormLabel className="text-base">
+                                Choose assistant image
+                            </FormLabel>
+                            <FormDescription>
+                                Choose the image you want to use for your assistant. The image will be displayed as the assistant's profile picture.
+                                Image size should be optimal for the display size (e.g., 32x32 pixels).
+                            </FormDescription>
+                            <FormControl>
+                                <div className="space-y-2">
+                                    <Input
+                                        name="file"
+                                        ref={inputFileRef}
+                                        type="file"
+                                        onChange={handleFileChange}  // This is where the new handleFileChange function comes into play
+                                    />
+                                    <div className="flex space-x-2 flex-row">
+                                        <Checkbox
+                                            onCheckedChange={() => setUseDefaultImage(!useDefaultImage)}
+                                            checked={useDefaultImage}
+                                        ></Checkbox>
+                                        <span className="text-sm text-muted-foreground">Use default assistant image</span>
+                                    </div>
+                                    {imagePreviewUrl && (
+                                        <div className="mt-4">
+                                            <Image
+                                                src={imagePreviewUrl}
+                                                alt="Assistant Preview"
+                                                width={64}
+                                                height={64}
+                                                className="rounded-full"
+                                            />
                                         </div>
-                                    </FormItem>
-                                )}
+                                    )}
+                                </div>
+                            </FormControl>
+                        </div>
+                    </div>
+                    <div className="flex w-full items-center text-center justify-center">
+                        {/* The preview or the default icon is shown here */}
+                        {imagePreviewUrl ? (
+                            <Image
+                                className="border rounded shadow"
+                                width={64}
+                                height={64}
+                                src={imagePreviewUrl}
+                                alt="Assistant Logo"
                             />
-                            <FormField
-                                name="assistantImageBackgroundColor"
-                                render={({ field }) => (
-                                    <FormItem className="flex flex-col items-left justify-between rounded-lg border p-4">
-                                        <div className="space-y-4">
-                                            <h1>Customize Your Assistant Image Background</h1>
-                                                <div className="flex">
-                                                <div className="flex flex-col w-full justify space-y-4">
-                                                    <div className="space-y-0.5">
-                                                        <FormLabel className="text-base">
-                                                            Assistant Image Background Color
-                                                        </FormLabel>
-                                                        <FormDescription>
-                                                            Select the color you want to use for the background of the assistant image
-                                                        </FormDescription>
-                                                        <FormControl>
-                                                            <GradientPicker background={assistantImageBackgroundColor} setBackground={setAssistantImageBackgroundColor} />
-                                                        </FormControl>
-                                                    </div>
-                                                </div>
-                                                <div className="flex w-full items-center text-center justify-center">
-                                                    <div style={{ background: assistantImageBackgroundColor }} className="flex rounded-lg shadow justify-center items-center p-4">
-                                                        <Image
-                                                            src={chatbotLogoURL} // Make sure chatbotLogoURL is defined and fetched accordingly
-                                                            alt="Assistant Logo"
-                                                            width={64}
-                                                            height={64}
-                                                            className="rounded-full"
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </FormItem>
-                                )}
+                        ) : (
+                            <Icons.bell className="h-10 w-10" />
+                        )}
+                    </div>
+                </div>
+            </div>
+        </FormItem>
+    )}
+/>
+
+<FormField
+    name="assistantImageBackgroundColor"
+    render={({ field }) => (
+        <FormItem className="flex flex-col items-left justify-between rounded-lg border p-4">
+            <div className="space-y-4">
+                <h1>Customize Your Assistant Image Background</h1>
+                <div className="flex">
+                    <div className="flex flex-col w-full justify space-y-4">
+                        <div className="space-y-0.5">
+                            <FormLabel className="text-base">
+                                Assistant Image Background Color
+                            </FormLabel>
+                            <FormDescription>
+                                Select the color you want to use for the background of the assistant image
+                            </FormDescription>
+                            <FormControl>
+                                <GradientPicker
+                                    background={assistantImageBackgroundColor}
+                                    setBackground={(newColor) => {
+                                        setAssistantImageBackgroundColor(newColor);
+                                        // Additionally, update any other state or perform actions when color changes.
+                                    }}
+                                />
+                            </FormControl>
+                        </div>
+                    </div>
+                    <div className="flex w-full items-center text-center justify-center">
+                        <div
+                            style={{ background: assistantImageBackgroundColor }}
+                            className="flex rounded-lg shadow justify-center items-center p-4"
+                        >
+                            {/* The image preview is displayed within a div that takes the background color from the picker */}
+                            <Image
+                                src={chatbotLogoURL || "/default-assistant-logo.png"}  // Ensures there's a default if no URL is provided
+                                alt="Assistant Logo"
+                                width={64}
+                                height={64}
+                                className="rounded-full"
                             />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </FormItem>
+    )}
+/>
+
                         </div>
                     </div>
                     <button
