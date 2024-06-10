@@ -74,6 +74,7 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
             setUserBubbleColor(data.userReplyBackgroundColor)
             setUserBubbleMessageColor(data.userReplyTextColor)
             setChatbotLogoURL(data.chatbotLogoURL)
+            setassistantImageBackgroundColor(data.assistantImageBackgroundColor || "#777777")
 
             if (data.chatbotLogoURL) {
                 setUseDefaultImage(false)
@@ -108,6 +109,7 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
         formData.append('chatHeaderTextColor', chatHeaderTextColor);
         formData.append('userReplyBackgroundColor', userBubbleColor);
         formData.append('userReplyTextColor', userBubbleMessageColor);
+        formData.append('assistantImageBackgroundColor', assistantImageBackgroundColor);
 
         if (useDefaultImage) {
             formData.set('chatbotLogoFilename', '');
