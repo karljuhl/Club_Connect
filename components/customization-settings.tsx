@@ -92,7 +92,6 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
             setUseDefaultImage(true);  // No file selected, use default image
         }
     };
-    
 
     useEffect(() => {
         if (inputFileRef.current?.files && inputFileRef.current.files.length > 0) {
@@ -345,39 +344,45 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
                             </FormLabel>
                             <FormDescription>
                                 Choose the image you want to use for your assistant. The image will be displayed as the assistant&apos;s profile picture.
+                                Image size should be optimal for the display size (e.g., 32x32 pixels).
                             </FormDescription>
                             <FormControl>
-                                <Input
-                                    name="file"
-                                    ref={inputFileRef}
-                                    type="file"
-                                    onChange={handleFileChange}
-                                />
-                                <div className="flex space-x-2 flex-row">
-                                    <Checkbox
-                                        onCheckedChange={() => setUseDefaultImage(!useDefaultImage)}
-                                        checked={useDefaultImage}
-                                    ></Checkbox>
-                                    <span className="text-sm text-muted-foreground">Use default assistant image</span>
-                                </div>
-                                {imagePreviewUrl && (
-                                    <Image
-                                        src={imagePreviewUrl}
-                                        alt="Assistant Preview"
-                                        width={64}
-                                        height={64}
-                                        className="rounded-full"
+                                <div className="space-y-2">
+                                    <Input
+                                        name="file"
+                                        ref={inputFileRef}
+                                        type="file"
+                                        onChange={handleFileChange}  // This is where the new handleFileChange function comes into play
                                     />
-                                )}
+                                    <div className="flex space-x-2 flex-row">
+                                        <Checkbox
+                                            onCheckedChange={() => setUseDefaultImage(!useDefaultImage)}
+                                            checked={useDefaultImage}
+                                        ></Checkbox>
+                                        <span className="text-sm text-muted-foreground">Use default assistant image</span>
+                                    </div>
+                                    {imagePreviewUrl && (
+                                        <div className="mt-4">
+                                            <Image
+                                                src={imagePreviewUrl}
+                                                alt="Assistant Preview"
+                                                width={64}
+                                                height={64}
+                                                className="rounded-full"
+                                            />
+                                        </div>
+                                    )}
+                                </div>
                             </FormControl>
                         </div>
                     </div>
                     <div className="flex w-full items-center text-center justify-center">
+                        {/* The preview or the default icon is shown here */}
                         {imagePreviewUrl ? (
                             <Image
                                 className="border rounded shadow"
-                                width={32}
-                                height={32}
+                                width={64}
+                                height={64}
                                 src={imagePreviewUrl}
                                 alt="Assistant Logo"
                             />
@@ -390,6 +395,7 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
         </FormItem>
     )}
 />
+
 <FormField
     name="assistantImageBackgroundColor"
     render={({ field }) => (
@@ -436,6 +442,7 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
         </FormItem>
     )}
 />
+
                         </div>
                     </div>
                     <button
