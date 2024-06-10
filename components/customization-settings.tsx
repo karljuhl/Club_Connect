@@ -88,7 +88,6 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
     }, []);
     
     
-    
     const handleFileChange = (e) => {
         if (e.target.files.length > 0) {
             const file = e.target.files[0];
@@ -402,7 +401,7 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
                                 Assistant Image Background Color
                             </FormLabel>
                             <FormDescription>
-                                Select the color you want to use for the background of the assistant image
+                                Select the color you want to use for the background of the assistant image.
                             </FormDescription>
                             <FormControl>
                                 <GradientPicker
@@ -420,14 +419,17 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
                             style={{ background: assistantImageBackgroundColor }}
                             className="flex rounded-lg shadow justify-center items-center p-4"
                         >
-                            {/* The image preview is displayed within a div that takes the background color from the picker */}
-                            <Image
-                                src={chatbotLogoURL || "/default-assistant-logo.png"}  // Ensures there's a default if no URL is provided
-                                alt="Assistant Logo"
-                                width={64}
-                                height={64}
-                                className="rounded-full"
-                            />
+                            {useDefaultImage ? (
+                                <Icons.bell className="h-10 w-10" />
+                            ) : (
+                                <Image
+                                    src={imagePreviewUrl || "/default-assistant-logo.png"}
+                                    alt="Assistant Logo"
+                                    width={64}
+                                    height={64}
+                                    className="rounded-full"
+                                />
+                            )}
                         </div>
                     </div>
                 </div>
@@ -435,6 +437,7 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
         </FormItem>
     )}
 />
+
 
                         </div>
                     </div>
