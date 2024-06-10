@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import futureFeatures from '../../../config/roadmap/futureFeatures.json';
 import integratedFeatures from '../../../config/roadmap/integratedFeatures.json';
