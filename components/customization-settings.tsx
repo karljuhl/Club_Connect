@@ -75,11 +75,12 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
             setUserBubbleMessageColor(data.userReplyTextColor);
             setChatbotLogoURL(data.chatbotLogoURL);
             setAssistantImageBackgroundColor(data.assistantImageBackgroundColor || "#777777");
-    
-            // Set useDefaultImage based on whether a logo URL is present
-            setUseDefaultImage(!data.chatbotLogoURL);
+            
+            // Adjusted to check the existence and validity of the logo URL
+            setUseDefaultImage(!data.chatbotLogoURL || data.chatbotLogoURL.length === 0);
         });
     }, []);
+    
     
     const handleFileChange = (e) => {
         if (e.target.files.length > 0) {
@@ -389,8 +390,6 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
         </FormItem>
     )}
 />
-
-
 <FormField
     name="assistantImageBackgroundColor"
     render={({ field }) => (
@@ -437,7 +436,6 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
         </FormItem>
     )}
 />
-
                         </div>
                     </div>
                     <button
