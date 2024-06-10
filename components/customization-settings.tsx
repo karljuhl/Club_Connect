@@ -1,5 +1,6 @@
 "use client"
 import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { buttonVariants } from "@/components/ui/button"
 import {
@@ -54,6 +55,7 @@ export function CustomizationSettings({ chatbot }: ChatbotOperationsProps) {
             chatHeaderTextColor: "",
             userReplyBackgroundColor: "",
             userReplyTextColor: "",
+            assistantImageBackgroundColor: "",
         },
     })
 
