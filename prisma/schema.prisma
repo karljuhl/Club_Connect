@@ -58,6 +58,7 @@ model Chatbot {
   userReplyBackgroundColor        String            @default("#3b82f6")
   userReplyTextColor              String            @default("#FFFFFF")
   chatbotLogoURL                  String?
+  assistantImageBackgroundColor   String?           @default("#777777")
   inquiryEnabled                  Boolean           @default(false)
   inquiryLinkText                 String            @default("Contact our support team")
   inquiryTitle                    String            @default("Contact our support team")
@@ -73,7 +74,7 @@ model Chatbot {
   model                           ChatbotModel?     @relation(fields: [modelId], references: [id])
   user                            User              @relation(fields: [userId], references: [id])
 
-  @@map("chatbots")
+  @@map("chatbots") 
 }
 
 model File {
