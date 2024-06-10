@@ -1,19 +1,19 @@
 import React from 'react';
-import { Message } from 'ai'
-import remarkGfm from 'remark-gfm'
-import remarkMath from 'remark-math'
+import { Message } from 'ai';
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
 
-import { MathJax, MathJaxContext } from 'better-react-mathjax'
-import Image from 'next/image'
-import { cn } from '@/lib/utils'
-import { CodeBlock } from '@/components/ui/codeblock'
-import { MemoizedReactMarkdown } from '@/components/markdown'
-import { Icons } from '@/components/icons'
-import { ExternalLink } from '@/components/external-link'
+import { MathJax, MathJaxContext } from 'better-react-mathjax';
+import Image from 'next/image';
+import { cn } from '@/lib/utils';
+import { CodeBlock } from '@/components/ui/codeblock';
+import { MemoizedReactMarkdown } from '@/components/markdown';
+import { Icons } from '@/components/icons';
+import { ExternalLink } from '@/components/external-link';
 
 export interface ChatMessageProps {
-    message: Message
-    children?: React.ReactNode
+    message: Message;
+    children?: React.ReactNode;
     chatbotLogoURL?: string;
     assistantImageBackgroundColor?: string;
 }
@@ -21,14 +21,14 @@ export interface ChatMessageProps {
 export function ChatMessage({ message, children, chatbotLogoURL, assistantImageBackgroundColor, ...props }: ChatMessageProps) {
     const backgroundStyle = message.role === 'user' ? 'bg-background' : assistantImageBackgroundColor ? { backgroundColor: assistantImageBackgroundColor } : 'bg-primary text-primary-foreground';
 
-
     return (
         <div className={cn('group relative mb-4 flex items-start')} {...props}>
-            <div className={cn(
-                'flex size-8 shrink-0 select-none items-center justify-center rounded-md border shadow',
-                message.role === 'user' ? 'bg-background' : 'text-primary-foreground'
-            )}
-            style={typeof backgroundStyle === 'object' ? backgroundStyle : {}}
+            <div 
+                className={cn(
+                    'flex size-8 shrink-0 select-none items-center justify-center rounded-md border shadow',
+                    message.role === 'user' ? 'bg-background' : 'text-primary-foreground'
+                )}
+                style={backgroundStyle}
             >
                 {message.role === 'user' ? (
                     <Icons.user />
@@ -59,7 +59,7 @@ export function ChatMessage({ message, children, chatbotLogoURL, assistantImageB
                                 return <p className="mb-2 last:mb-0">{children}</p>
                             },
                             code({ node, className, children, ...props }) {
-                                const match = /language-(\w+)/.exec(className || '')
+                                const match = /language-(\w+)/.exec(className || '');
 
                                 if (!match) {
                                     return (
@@ -91,7 +91,6 @@ export function ChatMessage({ message, children, chatbotLogoURL, assistantImageB
                         {message.content.replace(/\【.*?】/g, "")}
                     </MemoizedReactMarkdown>
                 )}
-                {/*<ChatMessageActions message={message} />*/}
             </div>
         </div>
     )
