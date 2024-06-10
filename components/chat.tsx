@@ -38,6 +38,7 @@ export function Chat({ chatbot, defaultMessage, className, withExitX = false, cl
   const [userMessage, setUserMessage] = useState('')
   const [inquiryLoading, setInquiryLoading] = useState(false)
   const [chatbotLogoURL, setChatbotLogoURL] = useState(chatbot.chatbotLogoURL);
+  const [assistantImageBackgroundColor, setAssistantImageBackgroundColor] = useState(chatbot.assistantImageBackgroundColor || '#defaultColor');
 
   const { status, messages, input, submitMessage, handleInputChange, error, threadId } =
     useAssistant({ api: `/api/chatbots/${chatbot.id}/chat`, body: { clientSidePrompt: clientSidePrompt } });
@@ -141,17 +142,17 @@ export function Chat({ chatbot, defaultMessage, className, withExitX = false, cl
       <div
         className={cn('pb-[200px] overflow-auto pr-2 pl-10 md:pl-20 md:pr-20 md:pb-[200px] pt-4 md:pt-10', className)}
       >
-        <ChatMessage message={{ id: '0', role: "assistant", content: chatbot.welcomeMessage }} chatbotLogoURL={chatbotLogoURL} />
+        <ChatMessage message={{ id: '0', role: "assistant", content: chatbot.welcomeMessage }} chatbotLogoURL={chatbotLogoURL} assistantImageBackgroundColor={chatbot.assistantImageBackgroundColor || '#777777'} />
         <div className="flex-grow overflow-y-auto space-y-4 flex flex-col order-2">
           {messages.map((message: Message, index) => {
             return (
-              <ChatMessage key={index} message={message} chatbotLogoURL={chatbotLogoURL} />
+              <ChatMessage key={index} message={message} chatbotLogoURL={chatbotLogoURL} assistantImageBackgroundColor={chatbot.assistantImageBackgroundColor || '#777777'} />
             );
           })}
         </div>
         {status !== "awaiting_message" &&
           <div className="mt-4">
-            <ChatMessage message={{ id: 'waiting', role: "assistant", content: 'loading' }} chatbotLogoURL={chatbotLogoURL} />
+            <ChatMessage message={{ id: 'waiting', role: "assistant", content: 'loading' }} chatbotLogoURL={chatbotLogoURL} assistantImageBackgroundColor={chatbot.assistantImageBackgroundColor || '##777777'} />
           </div>
         }
         <div id="end" ref={containerRef}> </div>

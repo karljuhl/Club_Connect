@@ -92,6 +92,7 @@ export type ChatbotConfig = {
   inquiryAutomaticReplyText: string,
   inquiryDisplayLinkAfterXMessage: number,
   chatbotLogoURL: string,
+  assistantImageBackgroundColor: string,
 }
 
 
