@@ -101,6 +101,16 @@ export default function IndexPage() {
         </div>
       </section>
 
+      <section className="container mx-auto text-center py-12 md:py-24">
+        <div className="space-y-4">
+            <h2 className="text-2xl font-bold">Explore Our Roadmap</h2>
+              <p>Check out what&apos;s next for our platform and suggest new features.</p>
+                <button className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                <a href="/roadmap">View Roadmap</a>
+                </button>
+        </div>
+      </section>
+
       <section data-aos="fade-up" id="integrations" className="containerpy-12 md:py-24 lg:py-32">
         <div className="container px-4">
           <div className="flex flex-col items-center justify-center space-y-4 md:space-y-6">
