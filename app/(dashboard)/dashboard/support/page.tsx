@@ -11,35 +11,37 @@ export const metadata = {
 }
 
 export default function SupportPage() {
-
     return (
         <DashboardShell>
             <DashboardHeader heading="Support">
-                <div className="flex space-x-4">
-                    <Link
-                        href="/dashboard"
-                        className={cn(
-                            buttonVariants({ variant: "ghost" }),
-                            "md:left-8 md:top-8"
-                        )}
-                    >
-                        <>
-                            <Icons.chevronLeft className="mr-2 h-4 w-4" />
-                            Back
-                        </>
-                    </Link>
-                    <Link
-                        href="/roadmap"
-                        className={cn(
-                            buttonVariants({ variant: "primary" }),
-                            "md:right-8 md:top-8"
-                        )}
-                    >
-                        <>
-                            <Icons.bulb className="mr-2 h-4 w-4" />
-                            Need a feature, have a suggestion?
-                        </>
-                    </Link>
+                <div className="flex justify-between items-center w-full">
+                    <div className="flex space-x-4">
+                        <Link
+                            href="/dashboard"
+                            className={cn(
+                                buttonVariants({ variant: "ghost" }),
+                                "md:left-8 md:top-8"
+                            )}
+                        >
+                            <>
+                                <Icons.chevronLeft className="mr-2 h-4 w-4" />
+                                Back
+                            </>
+                        </Link>
+                    </div>
+                    <div className="mt-4">
+                        <Link
+                            href="/roadmap"
+                            className={cn(
+                                buttonVariants({ variant: "primary" }),
+                            )}
+                        >
+                            <>
+                                <Icons.bulb className="mr-2 h-4 w-4" />
+                                Need a feature, have a suggestion?
+                            </>
+                        </Link>
+                    </div>
                 </div>
             </DashboardHeader>
             <div >
