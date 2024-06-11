@@ -1,30 +1,31 @@
-// pages/api/roadmap.js
-import { NextApiRequest, NextApiResponse } from 'next';
 import { z } from 'zod';
 import { sendFeatureEmail } from "@/lib/emails/send-feature";
+import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
 
 const SuggestionSchema = z.object({
     suggestion: z.string().min(1, "Suggestion cannot be empty"),
 });
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    if (req.method !== 'POST') {
-        res.setHeader('Allow', ['POST']);
-        return res.status(405).end('Method Not Allowed');
-    }
-
+export async function POST(request: NextRequest) {
     try {
-        const { suggestion } = SuggestionSchema.parse(req.body);
-        console.log('Parsed suggestion:', suggestion);
+        const requestBody = await request.json();
+        console.log('Request Body:', requestBody); // Log the request body to verify its structure
+        const { suggestion } = SuggestionSchema.parse(requestBody);
 
+        console.log('Parsed Suggestion:', suggestion); // Ensure suggestion is correctly parsed
         await sendFeatureEmail(suggestion);
-        return res.status(200).json({ message: 'Suggestion sent successfully' });
+        return new NextResponse(JSON.stringify({ message: 'Thank you for your Suggestion' }), {
+            status: 200,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
     } catch (error) {
-        console.error('Error during request handling:', error);
+        console.error('Error occurred:', error); // Detailed error logging
         if (error instanceof z.ZodError) {
-            return res.status(400).json({ errors: error.errors });
-        } else {
-            return res.status(500).json({ error: 'Failed to send suggestion' });
+            return new NextResponse(JSON.stringify({ errors: error.errors }), { status: 400 });
         }
+        return new NextResponse(JSON.stringify({ error: 'Failed to send suggestion' }), { status: 500 });
     }
 }
