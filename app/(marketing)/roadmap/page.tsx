@@ -8,7 +8,7 @@ function RoadmapPage() {
         e.preventDefault();
         const suggestion = e.target.elements.suggestion.value; 
 
-        const response = await fetch('/api/roadmap', {
+        const response = await fetch('/roadmap', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
