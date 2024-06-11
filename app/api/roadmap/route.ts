@@ -7,7 +7,7 @@ const SuggestionSchema = z.object({
     suggestion: z.string().min(1, "Suggestion cannot be empty"),
 });
 
-export default async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
     console.log('Received method:', req.method);  // Log the method of the request
 
     if (req.method === 'POST') {
@@ -24,22 +24,21 @@ export default async function POST(req: Request, res: Response) {
 
             // Respond with success if email is sent
             console.log('Suggestion email sent successfully');
-            res.status(200).json({ message: 'Suggestion sent successfully' });
+            return new Response(JSON.stringify({ message: 'Suggestion sent successfully' }), { status: 200 });
         } catch (error) {
             if (error instanceof z.ZodError) {
                 // Log validation errors
                 console.error('Validation failed:', error.errors);
-                res.status(400).json({ errors: error.errors });
+                return new Response(JSON.stringify({ errors: error.errors }), { status: 400 });
             } else {
                 // Log other types of errors
                 console.error('Error processing request:', error);
-                res.status(500).json({ error: 'Failed to send suggestion' });
+                return new Response(JSON.stringify({ error: 'Failed to send suggestion' }), { status: 500 });
             }
         }
     } else {
         // If the method is not POST, specify which methods are allowed
         console.log('Incorrect HTTP method', req.method);
-        res.setHeader('Allow', ['POST']);
-        res.status(405).end(`Method ${req.method} Not Allowed`);
+        return new Response(`Method ${req.method} Not Allowed`, { status: 405, headers: { 'Allow': 'POST' } });
     }
 }

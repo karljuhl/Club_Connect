@@ -10,7 +10,7 @@ function RoadmapPage() {
         const suggestion = e.target.elements.suggestion.value;
         console.log('Submitting suggestion:', suggestion); // Log the suggestion being submitted
 
-        const response = await fetch('/api/roadmap', {
+        const response = await fetch('/api/roadmap/route.ts', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
