@@ -11,7 +11,6 @@ export async function POST(request: NextRequest) {
     try {
         const requestBody = await request.json();
         console.log('Request Body:', requestBody); // Log the request body to verify its structure
-        const { suggestion } = SuggestionSchema.parse(requestBody);
 
         console.log('Parsed Suggestion:', suggestion); // Ensure suggestion is correctly parsed
         const { suggestion } = SuggestionSchema.parse(requestBody);
