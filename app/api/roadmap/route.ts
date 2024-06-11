@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { z } from 'zod';  // Assuming you want to use Zod for validation
+import { z } from 'zod';  // Zod for validation
 import { sendFeatureEmail } from "@/lib/emails/send-feature";
 
 // Define a schema for the incoming request body
@@ -7,7 +7,7 @@ const SuggestionSchema = z.object({
     suggestion: z.string().min(1, "Suggestion cannot be empty"),
 });
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function POST(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
         try {
             // Validate the request body
