@@ -16,7 +16,20 @@ export default function SupportPage() {
             <DashboardHeader heading="Support">
                 <div className="flex justify-between items-center w-full">
                     <div className="flex space-x-4">
-                        <Link
+                    <Link
+                            href="/roadmap"
+                            className={cn(
+                                buttonVariants({ variant: "primary" }),
+                            )}
+                        >
+                            <>
+                                <Icons.bulb className="mr-2 h-4 w-4" />
+                                Need a feature, have a suggestion?
+                            </>
+                        </Link>
+                    </div>
+                    <div className="mt-4">
+                    <Link
                             href="/dashboard"
                             className={cn(
                                 buttonVariants({ variant: "ghost" }),
@@ -26,19 +39,6 @@ export default function SupportPage() {
                             <>
                                 <Icons.chevronLeft className="mr-2 h-4 w-4" />
                                 Back
-                            </>
-                        </Link>
-                    </div>
-                    <div className="flex mt-4">
-                        <Link
-                            href="/roadmap"
-                            className={cn(
-                                buttonVariants({ variant: "primary" }),
-                            )}
-                        >
-                            <>
-                                <Icons.bulb className="mr-2 h-4 w-4" />
-                                Need a feature, have a suggestion?
                             </>
                         </Link>
                     </div>
