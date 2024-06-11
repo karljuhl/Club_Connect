@@ -14,6 +14,8 @@ interface MobileNavProps {
 
 export function MobileNav({ items, children }: MobileNavProps) {
   useLockBody()
+  console.log(items);  // Add this in both MainNav and MobileNav to check what items are being passed.
+
 
   return (
     <div

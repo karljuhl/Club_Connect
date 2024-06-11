@@ -18,6 +18,7 @@ interface MainNavProps {
 export function MainNav({ items, children }: MainNavProps) {
   const segment = useSelectedLayoutSegment()
   const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false)
+  console.log(items);  // Add this in both MainNav and MobileNav to check what items are being passed.
 
   return (
     <div className="flex gap-6 md:gap-10">
