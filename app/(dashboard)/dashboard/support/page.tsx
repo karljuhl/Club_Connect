@@ -45,7 +45,7 @@ export default function SupportPage() {
             <div>
                 <p className="text-lg font-semibold">How can we help you?</p>
                 <p className="text-muted-foreground">
-                    First, before reaching out you can always try our assistant. Our Assistant knows a lot about our platform and may be able to help you, if not an option will pop up in chat to 'Contact our Team'.
+                    First, before reaching out you can always try our assistant. Our Assistant knows a lot about our platform and may be able to help you, if not an option will pop up in chat to &apos;Contact our Team&apos;.
                 </p>
                 <div className="min-w-[85%] min-h-[15rem] text-left items-left pt-6">
                     <iframe
