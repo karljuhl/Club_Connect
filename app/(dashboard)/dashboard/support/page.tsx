@@ -28,7 +28,7 @@ export default function SupportPage() {
                                 Need a feature, have a suggestion?
                             </>
                         </Link>
-                        <div className="mr-0"
+                        <div className="mr-0">
                         <Link
                             href="/dashboard"
                             className={cn(
@@ -41,6 +41,7 @@ export default function SupportPage() {
                                 Back
                             </>
                         </Link>
+                        </div>
                     </div>
                 </div>
             </DashboardHeader>
