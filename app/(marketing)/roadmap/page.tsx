@@ -8,7 +8,7 @@ function RoadmapPage() {
     const handleSuggestionSubmit = async (e) => {
         e.preventDefault();
         const suggestion = e.target.elements.suggestion.value;
-        console.log('Submitting suggestion:', suggestion);  // Log the suggestion being submitted
+        console.log('Submitting suggestion:', suggestion); // Log the suggestion being submitted
 
         const response = await fetch('/api/roadmap', {
             method: 'POST',
