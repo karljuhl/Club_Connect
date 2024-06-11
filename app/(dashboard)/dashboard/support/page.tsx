@@ -15,12 +15,12 @@ export default function SupportPage() {
         <DashboardShell>
             <DashboardHeader heading="Support">
                 <div className="flex justify-between items-center w-full">
-                    <div className="flex space-x-4">
+                    <div className="flex space-x-4 ml-4">
                     <Link
                             href="/roadmap"
                             className={cn(
-                                buttonVariants({ variant: "primary" }),
-                                "hover:bg-gray-200"
+                                buttonVariants({ variant: "ghost" }),
+                                "hover:bg-gray-200 md:left-8 md:top-8"
                             )}
                         >
                             <>
