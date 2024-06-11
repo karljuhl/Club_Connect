@@ -15,7 +15,7 @@ export default function SupportPage() {
         <DashboardShell>
             <DashboardHeader heading="Support">
                 <div className="flex justify-between items-center w-full">
-                    <div className="mt-4">
+                    <div className="flex space-x-4">
                         <Link
                             href="/dashboard"
                             className={cn(
@@ -29,7 +29,7 @@ export default function SupportPage() {
                             </>
                         </Link>
                     </div>
-                    <div className="flex space-x-4">
+                    <div className="flex mt-4">
                         <Link
                             href="/roadmap"
                             className={cn(
