@@ -107,9 +107,9 @@ export default function IndexPage() {
 
       <section className="container mx-auto text-center py-12 md:py-24">
         <div className="space-y-4">
-            <h2 className="text-2xl font-bold">Explore Our Roadmap</h2>
+            <h3 className="text-2xl font-bold">Explore Our Roadmap</h3>
               <p>Check out what&apos;s next for our platform and suggest new features.</p>
-                <button className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                <button className="mt-4 bg-black hover:bg-gray-950 text-white font-bold py-2 px-4 rounded">
                 <a href="/roadmap">View Roadmap</a>
                 </button>
         </div>
