@@ -14,13 +14,13 @@ export default function SupportPage() {
     return (
         <DashboardShell>
             <DashboardHeader heading="Support">
-                <div className="flex justify-between items-center w-full">
-                    <div className="flex space-x-4 ml-4">
-                    <Link
+                <div className="flex flex-col sm:flex-row justify-between items-center w-full">
+                    <div className="flex flex-col sm:flex-row space-x-0 sm:space-x-4 my-2">
+                        <Link
                             href="/roadmap"
                             className={cn(
                                 buttonVariants({ variant: "ghost" }),
-                                "hover:bg-gray-200 md:left-8 md:top-8"
+                                "hover:bg-gray-200 mb-2 sm:mb-0" // Added margin-bottom for mobile only
                             )}
                         >
                             <>
@@ -28,13 +28,11 @@ export default function SupportPage() {
                                 Need a feature, have a suggestion?
                             </>
                         </Link>
-                    </div>
-                    <div className="mt-4">
-                    <Link
+                        <Link
                             href="/dashboard"
                             className={cn(
                                 buttonVariants({ variant: "ghost" }),
-                                "md:left-8 md:top-8"
+                                "hover:bg-gray-200"
                             )}
                         >
                             <>
@@ -45,7 +43,7 @@ export default function SupportPage() {
                     </div>
                 </div>
             </DashboardHeader>
-            <div >
+            <div>
                 <p className="text-lg font-semibold">How can we help you?</p>
                 <p className="text-muted-foreground">
                     First, before reaching out you can always try our assistant. Our Assistant knows a lot about our platform and may be able to help you, if not an option will pop up in chat to &apos;Contact our Team&apos;.
