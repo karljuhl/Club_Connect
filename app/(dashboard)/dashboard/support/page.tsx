@@ -20,6 +20,7 @@ export default function SupportPage() {
                             href="/roadmap"
                             className={cn(
                                 buttonVariants({ variant: "primary" }),
+                                "hover:bg-gray-200"
                             )}
                         >
                             <>
