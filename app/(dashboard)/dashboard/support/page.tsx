@@ -20,7 +20,7 @@ export default function SupportPage() {
                             href="/roadmap"
                             className={cn(
                                 buttonVariants({ variant: "ghost" }),
-                                "hover:bg-gray-200 mb-2 sm:mb-0" // Added margin-bottom for mobile only
+                                "hover:bg-gray-200 mb-2 sm:mb-0 ml-2"
                             )}
                         >
                             <>
@@ -28,6 +28,7 @@ export default function SupportPage() {
                                 Need a feature, have a suggestion?
                             </>
                         </Link>
+                        <div className="mr-0"
                         <Link
                             href="/dashboard"
                             className={cn(
