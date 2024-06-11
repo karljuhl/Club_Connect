@@ -1,4 +1,5 @@
 "use client";
+
 // RoadmapPage component
 import React from 'react';
 import futureFeatures from '../../../config/roadmap/futureFeatures.json';
@@ -8,23 +9,17 @@ function RoadmapPage() {
     const handleSuggestionSubmit = async (e) => {
         e.preventDefault();
         const suggestion = e.target.elements.suggestion.value;
-        console.log('Submitting suggestion:', suggestion); // Log the suggestion being submitted
 
-        const response = await fetch('/api/roadmap/route.ts', {
+        const response = await fetch('/api/roadmap', {  // Ensure this is the correct path to your API route
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ suggestion }),
         });
 
-        console.log('Response status:', response.status);  // Log the response status
         if (response.ok) {
-            console.log('Suggestion submitted successfully');
             alert('Thank you for your suggestion!');
             e.target.reset();
         } else {
-            console.log('Failed to submit suggestion');
             alert('Failed to send suggestion. Please try again.');
         }
     };
@@ -57,20 +52,20 @@ function RoadmapPage() {
             <section className="mt-8 px-3">
                 <div className="p-4 border border-gray-300 rounded-lg">
                     <h2 className="text-xl font-semibold mb-4">Suggest a Feature</h2>
-                    <form onSubmit={handleSuggestionSubmit} className="space-y-4">
-                        <textarea
-                            name="suggestion"
-                            className="w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                            placeholder="Your feature suggestion..."
-                            required
-                        />
-                        <button
-                            type="submit"
-                            className="w-full sm:w-auto px-5 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                        >
-                            Submit
-                        </button>
-                    </form>
+                    <form action={handleSuggestionSubmit}>
+                <textarea
+                    name="suggestion"
+                    className="w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Your feature suggestion..."
+                    required
+                />
+                <button
+                    type="submit"
+                    className="mt-4 w-full sm:w-auto px-5 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
+                    Submit
+                </button>
+            </form>
                 </div>
             </section>
         </div>
