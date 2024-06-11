@@ -1,4 +1,4 @@
-'use server'
+"use server";
 
 import { z } from 'zod';
 import { sendFeatureEmail } from "@/lib/emails/send-feature";
