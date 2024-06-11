@@ -8,13 +8,12 @@ import Link from "next/link"
 
 export const metadata = {
     title: `${siteConfig.name} - Support`,
-}
+};
 
 export default function SupportPage() {
-
     return (
         <DashboardShell>
-            <DashboardHeader heading="Support" text="Welcome to Our Support Page.">
+            <div className="flex justify-between items-center p-4">
                 <div className="flex space-x-4">
                     <Link
                         href="/dashboard"
@@ -28,24 +27,25 @@ export default function SupportPage() {
                             Back
                         </>
                     </Link>
-                    <Link
-                        href="/roadmap"
-                        className={cn(
-                            buttonVariants({ variant: "primary" }),
-                            "md:right-8 md:top-8"
-                        )}
-                    >
-                        <>
-                            <Icons.bulb className="mr-2 h-4 w-4" />
-                            Need a feature, have a suggestion?
-                        </>
-                    </Link>
                 </div>
-            </DashboardHeader>
-            <div >
+                <h1 className="text-xl font-bold">Support</h1>
+                <Link
+                    href="/roadmap"
+                    className={cn(
+                        buttonVariants({ variant: "primary" }),
+                        "md:right-8 md:top-8"
+                    )}
+                >
+                    <>
+                        <Icons.bulb className="mr-2 h-4 w-4" />
+                        Need a feature, have a suggestion?
+                    </>
+                </Link>
+            </div>
+            <div>
                 <p className="text-lg font-semibold">How can we help you?</p>
                 <p className="text-muted-foreground">
-                    First, before reaching out you can always try our assistant. Our Assistant knows a lot about our platform and may be able to help you, if not an option will pop up in chat to &apos;Contact our Team&apos;.
+                    First, before reaching out you can always try our assistant. Our Assistant knows a lot about our platform and may be able to help you, if not an option will pop up in chat to 'Contact our Team'.
                 </p>
                 <div className="min-w-[85%] min-h-[15rem] text-left items-left pt-6">
                     <iframe
@@ -56,5 +56,5 @@ export default function SupportPage() {
                 </div>
             </div>
         </DashboardShell>
-    )
+    );
 }
