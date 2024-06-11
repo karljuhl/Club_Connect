@@ -7,7 +7,6 @@ import integratedFeatures from '../../../config/roadmap/integratedFeatures.json'
 
 function RoadmapPage() {
     const handleSuggestionSubmit = async (e) => {
-        e.preventDefault();
         const suggestion = e.target.elements.suggestion.value;
 
         const response = await fetch('/api/roadmap', {  // Ensure this is the correct path to your API route
