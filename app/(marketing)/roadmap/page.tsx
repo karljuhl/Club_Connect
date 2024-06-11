@@ -32,7 +32,7 @@ function RoadmapPage() {
                     <h2 className="text-xl font-semibold text-center mb-4">Future Features</h2>
                     <div className="space-y-4">
                         {futureFeatures.map((feature, index) => (
-                            <div key={index} className="p-4 bg-red-100 border border-red-500 rounded-lg">
+                            <div key={index} className="p-4 bg-rose-50 border border-red-300 rounded-lg">
                                 {feature}
                             </div>
                         ))}
@@ -42,7 +42,7 @@ function RoadmapPage() {
                     <h2 className="text-xl font-semibold text-center mb-4">Integrated Features</h2>
                     <div className="space-y-4">
                         {integratedFeatures.map((feature, index) => (
-                            <div key={index} className="p-4 bg-green-100 border border-green-500 rounded-lg">
+                            <div key={index} className="p-4 bg-emerald-50 border border-green-300 rounded-lg">
                                 {feature}
                             </div>
                         ))}
