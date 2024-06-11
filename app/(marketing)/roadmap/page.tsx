@@ -1,4 +1,5 @@
 "use client";
+// RoadmapPage component
 import React from 'react';
 import futureFeatures from '../../../config/roadmap/futureFeatures.json';
 import integratedFeatures from '../../../config/roadmap/integratedFeatures.json';
@@ -6,7 +7,8 @@ import integratedFeatures from '../../../config/roadmap/integratedFeatures.json'
 function RoadmapPage() {
     const handleSuggestionSubmit = async (e) => {
         e.preventDefault();
-        const suggestion = e.target.elements.suggestion.value; 
+        const suggestion = e.target.elements.suggestion.value;
+        console.log('Submitting suggestion:', suggestion);  // Log the suggestion being submitted
 
         const response = await fetch('/api/roadmap', {
             method: 'POST',
@@ -16,10 +18,13 @@ function RoadmapPage() {
             body: JSON.stringify({ suggestion }),
         });
 
+        console.log('Response status:', response.status);  // Log the response status
         if (response.ok) {
+            console.log('Suggestion submitted successfully');
             alert('Thank you for your suggestion!');
             e.target.reset();
         } else {
+            console.log('Failed to submit suggestion');
             alert('Failed to send suggestion. Please try again.');
         }
     };
