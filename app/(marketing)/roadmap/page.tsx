@@ -4,6 +4,26 @@ import futureFeatures from '../../../config/roadmap/futureFeatures.json';
 import integratedFeatures from '../../../config/roadmap/integratedFeatures.json';
 
 function RoadmapPage() {
+    const handleSuggestionSubmit = async (e) => {
+        e.preventDefault();
+        const suggestion = e.target.elements.suggestion.value; 
+
+        const response = await fetch('/api/roadmap', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ suggestion }),
+        });
+
+        if (response.ok) {
+            alert('Thank you for your suggestion!');
+            e.target.reset();
+        } else {
+            alert('Failed to send suggestion. Please try again.');
+        }
+    };
+
     return (
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 my-12">
             <h1 className="text-3xl font-bold text-center mb-12">Product Roadmap</h1>
@@ -34,6 +54,7 @@ function RoadmapPage() {
                     <h2 className="text-xl font-semibold mb-4">Suggest a Feature</h2>
                     <form onSubmit={handleSuggestionSubmit} className="space-y-4">
                         <textarea
+                            name="suggestion"
                             className="w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                             placeholder="Your feature suggestion..."
                             required
@@ -51,13 +72,6 @@ function RoadmapPage() {
     );
 }
 
-function handleSuggestionSubmit(e) {
-    e.preventDefault();
-    const suggestion = e.target[0].value;
-    console.log(suggestion); // Handle the suggestion
-    e.target.reset();
-    alert('Thank you for your suggestion!');
-}
-
 export default RoadmapPage;
+
 
