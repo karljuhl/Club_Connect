@@ -7,6 +7,7 @@ import integratedFeatures from '../../../config/roadmap/integratedFeatures.json'
 
 function RoadmapPage() {
     const handleSuggestionSubmit = async (e) => {
+        e.preventDefault();
         const suggestion = e.target.elements.suggestion.value;
 
         const response = await fetch('/api/roadmap', {  // Ensure this is the correct path to your API route
@@ -51,7 +52,7 @@ function RoadmapPage() {
             <section className="mt-8 px-3">
                 <div className="p-4 border border-gray-300 rounded-lg">
                     <h2 className="text-xl font-semibold mb-4">Suggest a Feature</h2>
-                    <form action={handleSuggestionSubmit}>
+                    <form onSubmit={handleSuggestionSubmit}>
                 <textarea
                     name="suggestion"
                     className="w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
