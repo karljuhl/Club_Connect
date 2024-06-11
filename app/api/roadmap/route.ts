@@ -14,7 +14,8 @@ export async function POST(request: NextRequest) {
         const { suggestion } = SuggestionSchema.parse(requestBody);
 
         console.log('Parsed Suggestion:', suggestion); // Ensure suggestion is correctly parsed
-        await sendFeatureEmail(suggestion);
+        const { suggestion } = SuggestionSchema.parse(requestBody);
+        await sendFeatureEmail({ suggestion, name: null, email: null });
         return new NextResponse(JSON.stringify({ message: 'Thank you for your Suggestion' }), {
             status: 200,
             headers: {
