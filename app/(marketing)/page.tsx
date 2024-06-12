@@ -13,11 +13,11 @@ export default function IndexPage() {
     <>
       <section 
   style={{ 
-    backgroundImage: "url('/paper-background.png')",
+    backgroundImage: "url('/grid.svg')",
     backgroundAttachment: "fixed",
     backgroundPosition: "center top",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "auto"
+    backgroundRepeat: "repeat",
+    backgroundSize: cover"
   }}
 >
       <section data-aos="fade-up" className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 py-12 md:py-24 lg:py-32">
