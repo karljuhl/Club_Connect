@@ -200,6 +200,7 @@ model User {
   Crawler                Crawler[]
   File                   File[]
   Message                Message[]
+  Integrations           Integration[]
 }
 
 model VerificationToken {
