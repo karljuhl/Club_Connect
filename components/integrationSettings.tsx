@@ -2,13 +2,16 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { upsertIntegration, disconnectIntegration, listChatbotIntegrations } from '@/lib/prismaOperations';
+import { Form, FormField, FormItem, FormControl, FormLabel, FormDescription, FormMessage } from '@/components/ui/form';
+import { buttonVariants } from '@/components/ui/button';
+import { Switch } from '@/components/ui/switch';
 
 function IntegrationSettings({ chatbot }) {
     const [integrations, setIntegrations] = useState([]);
 
     useEffect(() => {
         fetchIntegrations();
-    }, []);
+    }, [chatbot.id]);
 
     const fetchIntegrations = async () => {
         const integrationData = await listChatbotIntegrations(chatbot.id);
@@ -16,8 +19,7 @@ function IntegrationSettings({ chatbot }) {
     };
 
     const handleConnect = async (platform) => {
-        // This should trigger the OAuth flow and handle integration logic
-        const { platformId, accessToken } = await triggerOAuthFlow(platform);
+        const { platformId, accessToken } = await triggerOAuthFlow(platform); // Ensure this function handles OAuth flow
         await upsertIntegration(chatbot.id, platform, platformId, accessToken);
         fetchIntegrations();
     };
@@ -28,21 +30,38 @@ function IntegrationSettings({ chatbot }) {
     };
 
     return (
-        <div>
-            <h3>Manage Your Integrations</h3>
-            {integrations.map(integration => (
-                <div key={integration.platform}>
-                    <p>{integration.platform} is {integration.connected ? 'connected' : 'not connected'}.</p>
-                    <button onClick={() => integration.connected ? handleDisconnect(integration.platform) : handleConnect(integration.platform)}>
-                        {integration.connected ? 'Disconnect' : 'Connect'}
+        <Form>
+            <div className="space-y-6">
+                <h3 className="text-lg font-semibold">Manage Your Integrations</h3>
+                {integrations.map(integration => (
+                    <FormField key={integration.platform}>
+                        <FormItem className="flex justify-between items-center p-4 border rounded-lg">
+                            <div>
+                                <FormLabel>{integration.platform.charAt(0).toUpperCase() + integration.platform.slice(1)}</FormLabel>
+                                <FormDescription>
+                                    {integration.connected ? 'Integration is currently connected.' : 'Integration is not connected.'}
+                                </FormDescription>
+                            </div>
+                            <FormControl>
+                                <Switch
+                                    checked={integration.connected}
+                                    onCheckedChange={() => integration.connected ? handleDisconnect(integration.platform) : handleConnect(integration.platform)}
+                                />
+                            </FormControl>
+                        </FormItem>
+                    </FormField>
+                ))}
+                {/* Additional button to connect to Facebook if not already connected */}
+                {!integrations.some(int => int.platform === 'facebook' && int.connected) && (
+                    <button
+                        onClick={() => handleConnect('facebook')}
+                        className={buttonVariants({ variant: 'solid' })}
+                    >
+                        Connect to Facebook
                     </button>
-                </div>
-            ))}
-            {/* Button to connect to Facebook if not already connected */}
-            {!integrations.some(int => int.platform === 'facebook' && int.connected) && (
-                <button onClick={() => handleConnect('facebook')}>Connect to Facebook</button>
-            )}
-        </div>
+                )}
+            </div>
+        </Form>
     );
 }
 
