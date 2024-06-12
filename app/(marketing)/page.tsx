@@ -11,15 +11,19 @@ export default function IndexPage() {
 
   return (
     <>
+      <Head>
+        <link rel="preload" href="/paper-background.png" as="image" />
+      </Head>
       <section 
-  style={{ 
-    backgroundImage: "url('/grid.svg'), url('/paper-background.png')",
-    backgroundAttachment: "fixed, fixed",
-    backgroundPosition: "center top, center top",
-    backgroundRepeat: "no-repeat, no-repeat",
-    backgroundSize: "cover, cover"
-  }}
->
+        style={{ 
+          backgroundImage: "url('/paper-background.png')",
+          backgroundAttachment: "fixed",
+          backgroundPosition: "center top",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover"
+        }}
+      >
+        <div style={{ width: '100%', height: '100%', background: "url('/grid.svg') repeat", filter: 'grayscale(100%) brightness(50%)' }}>
       <section data-aos="fade-up" className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 py-12 md:py-24 lg:py-32">
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
           <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
@@ -252,6 +256,7 @@ export default function IndexPage() {
           </div>
         </div>
       </section>
+      </div>
       </section>
     </>
   );
