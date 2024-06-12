@@ -6,7 +6,7 @@ import { AccordionTrigger, AccordionContent, AccordionItem, Accordion } from "@/
 
 export function FAQ() {
   return (
-    <Accordion className="w-full mt-4" type="multiple">
+    <Accordion className="w-full mt-4 bg-slate-200 shadow-2xl" type="multiple">
       <AccordionItem value="item-0">
         <AccordionTrigger className="hover:underline-none text-black">
           What is ClubConnect?
@@ -35,7 +35,7 @@ export function FAQ() {
         <AccordionTrigger className="hover:underline-none text-left text-black">
           What kind of questions can I ask ClubConnect&apos;s Front-Desk Assistant ?
         </AccordionTrigger>
-        <AccordionContent className="text-white">
+        <AccordionContent className="text-black">
           You can ask ClubConnect&apos;s Front-Desk Assistant about website navigation, services offered, troubleshooting, and more. It&apos;s here to ensure you find the information you need. We are working on integrations with software providers powering your club to further increase the possibilities of how Front-Desk Assistants are capable of aiding your customers.
         </AccordionContent>
       </AccordionItem>
@@ -49,10 +49,10 @@ export function FAQ() {
       </AccordionItem>
       <AccordionItem value="item-6">
         <AccordionTrigger className="hover:underline-none text-left text-black">
-          Which AI models does ClubConnect suuport in their Front-Desk Assistants?
+          Which AI models does ClubConnect support in their Front-Desk Assistants?
         </AccordionTrigger>
         <AccordionContent className="text-black">
-          We support the latest models from OpenAI with a focus on Stable Sanpshots so when updates are pushed you dont have to worry about how those will affect your Front-Desk Assistants, any updates to a new model for Front-Desk Assistants will be communicated ahead of time and our team will work with you to make sure your assistant improves along with the updated model. 
+          We test the latest models from OpenAI with a focus on Stable Sanpshots so when updates are pushed you dont have to worry about how those will affect your Front-Desk Assistants, any updates to a new model for Front-Desk Assistants will be communicated ahead of time and our team will work with you to make sure your assistant improves along with the updated model. 
         </AccordionContent>
       </AccordionItem>
     </Accordion>
