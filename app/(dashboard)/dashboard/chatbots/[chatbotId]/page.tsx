@@ -142,7 +142,7 @@ export default async function ChatbotPage({ params }: ChatbotSettingsProps) {
                         </Card>
                     </div>
                 </TabsContent>
-                <TabsContent>
+                <TabsContent value="integrations">
                     <IntegrationSettings chatbot={chatbot} />
                 </TabsContent>
                 <TabsContent value="customizations">
