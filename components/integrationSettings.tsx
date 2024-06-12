@@ -2,8 +2,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { upsertIntegration, disconnectIntegration, listChatbotIntegrations } from '@/lib/prismaOperations';
-import { Form, FormField, FormItem, FormControl, FormLabel, FormDescription, FormMessage } from '@/components/ui/form';
-import { buttonVariants } from '@/components/ui/button';
+import { Form, FormField, FormItem, FormControl, FormLabel, FormDescription } from '@/components/ui/form';
 import { Switch } from '@/components/ui/switch';
 
 function IntegrationSettings({ chatbot }) {
@@ -19,7 +18,7 @@ function IntegrationSettings({ chatbot }) {
     };
 
     const handleConnect = async (platform) => {
-        const { platformId, accessToken } = await triggerOAuthFlow(platform); // Ensure this function handles OAuth flow
+        const { platformId, accessToken } = await triggerOAuthFlow(platform);
         await upsertIntegration(chatbot.id, platform, platformId, accessToken);
         fetchIntegrations();
     };
@@ -27,6 +26,15 @@ function IntegrationSettings({ chatbot }) {
     const handleDisconnect = async (platform) => {
         await disconnectIntegration(chatbot.id, platform);
         fetchIntegrations();
+    };
+
+    const handleToggle = (platform) => {
+        const integration = integrations.find(int => int.platform === platform);
+        if (integration && integration.connected) {
+            handleDisconnect(platform);
+        } else {
+            handleConnect(platform);
+        }
     };
 
     return (
@@ -45,21 +53,24 @@ function IntegrationSettings({ chatbot }) {
                             <FormControl>
                                 <Switch
                                     checked={integration.connected}
-                                    onCheckedChange={() => integration.connected ? handleDisconnect(integration.platform) : handleConnect(integration.platform)}
+                                    onCheckedChange={() => handleToggle(integration.platform)}
                                 />
                             </FormControl>
                         </FormItem>
                     </FormField>
                 ))}
-                {/* Additional button to connect to Facebook if not already connected */}
-                {!integrations.some(int => int.platform === 'facebook' && int.connected) && (
-                    <button
-                        onClick={() => handleConnect('facebook')}
-                        className={buttonVariants({ variant: 'solid' })}
-                    >
-                        Connect to Facebook
-                    </button>
-                )}
+                {/* Toggle switch for Facebook connection */}
+                <FormField>
+                    <FormItem className="flex justify-between items-center p-4 border rounded-lg">
+                        <FormLabel>Facebook</FormLabel>
+                        <FormControl>
+                            <Switch
+                                checked={integrations.some(int => int.platform === 'facebook' && int.connected)}
+                                onCheckedChange={() => handleToggle('facebook')}
+                            />
+                        </FormControl>
+                    </FormItem>
+                </FormField>
             </div>
         </Form>
     );
