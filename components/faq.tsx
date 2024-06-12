@@ -6,7 +6,7 @@ import { AccordionTrigger, AccordionContent, AccordionItem, Accordion } from "@/
 
 export function FAQ() {
   return (
-    <Accordion className="w-full mt-4 bg-slate-200 shadow-2xl" type="multiple">
+    <Accordion className="w-full mt-4" type="multiple">
       <AccordionItem value="item-0">
         <AccordionTrigger className="hover:underline-none text-black">
           What is ClubConnect?
