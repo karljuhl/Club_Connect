@@ -17,7 +17,7 @@ export default function IndexPage() {
     backgroundAttachment: "fixed",
     backgroundPosition: "center top",
     backgroundRepeat: "repeat",
-    backgroundSize: cover"
+    backgroundSize: "cover"
   }}
 >
       <section data-aos="fade-up" className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 py-12 md:py-24 lg:py-32">
