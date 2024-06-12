@@ -99,12 +99,10 @@ export default function IndexPage() {
           </div>
         </div>
         <div className="mx-auto text-center md:max-w-[58rem]">
-          <p className="leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-              <p>Check out what&apos;s next for the platform and suggest features you need.</p>
-                <button className="mt-4 bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded">
-                <a href="/roadmap">View Roadmap</a>
-                </button>
-          </p>
+          <Link href="/roadmap" className={cn(buttonVariants({ size: "lg" }))}>
+            <Icons.bell className="h-4 w-4 mr-2"></Icons.bell>
+              View Recently Added and Upcoming Features
+          </Link>
         </div>
       </section>
 
