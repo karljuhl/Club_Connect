@@ -12,10 +12,16 @@ export default function IndexPage() {
   return (
     <>
       <section 
-        data-aos="fade-up" 
-        className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 py-12 md:py-24 lg:py-32"
-        style={{ backgroundImage: "linear-gradient(to bottom, #FFF176, #60a5fa)" }} // from blue-300 to blue-100
-      >
+  data-aos="fade-up" 
+  className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 py-12 md:py-24 lg:py-32"
+  style={{ 
+    backgroundImage: "url('/paper-background.jpg'), url('/grid.svg')",
+    backgroundAttachment: "fixed, fixed",
+    backgroundPosition: "center top, center top",
+    backgroundRepeat: "no-repeat, repeat",
+    backgroundSize: "cover, auto"
+  }}
+>
       <section data-aos="fade-up" className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 py-12 md:py-24 lg:py-32">
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
           <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
