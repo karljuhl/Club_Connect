@@ -6,6 +6,8 @@ import { siteConfig } from "@/config/site";
 import { Icons } from "@/components/icons";
 import { FAQ } from '@/components/faq';
 import { freePlan, basicPlan, hobbyPlan, proPlan, managedWeb, webunlimitedPlan, webplusPlan } from "@/config/subscriptions";
+import Head from 'next/head';
+
 
 export default function IndexPage() {
 
