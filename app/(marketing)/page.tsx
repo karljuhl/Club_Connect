@@ -16,8 +16,8 @@ export default function IndexPage() {
     backgroundImage: "url('/grid.svg'), url('/paper-background.png')",
     backgroundAttachment: "fixed, fixed",
     backgroundPosition: "center top, center top",
-    backgroundRepeat: "repeat, no-repeat",
-    backgroundSize: "auto, cover"
+    backgroundRepeat: "no-repeat, no-repeat",
+    backgroundSize: "cover, cover"
   }}
 >
       <section data-aos="fade-up" className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 py-12 md:py-24 lg:py-32">
