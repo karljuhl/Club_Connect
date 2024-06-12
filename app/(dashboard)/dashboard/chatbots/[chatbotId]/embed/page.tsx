@@ -76,7 +76,7 @@ export default async function EmbedOnSitePage({ params }: ChatbotSettingsProps) 
                                             <ul>
                                                 <li>Go to &apos;plugins&apos; sections and add new plugin &apos;WPCode&apos;</li>
                                                 <br></br>
-                                                <li>Activate the plugin and navigate to &apos;Code Snippets&apos; in the left sidebar, and click &apos;header & Footer&apos;</li>
+                                                <li>Activate the plugin and navigate to &apos;Code Snippets&apos; in the left sidebar of the Dashboard and click &apos;header & Footer&apos;</li>
                                                 <br></br>
                                                 <li>Copy the widget code from ClubConnect, paste into the footer section and save</li>
                                                 <br></br>
