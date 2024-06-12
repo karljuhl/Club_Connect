@@ -1,8 +1,8 @@
 // lib/prismaOperations.ts
-import prisma from './prisma';
+import { db } from '@/lib/db';
 
 export async function upsertIntegration(chatbotId, platform, platformId, accessToken) {
-  return prisma.integration.upsert({
+  return db.integration.upsert({
     where: {
       chatbotId_platform: { chatbotId, platform }
     },
@@ -22,7 +22,7 @@ export async function upsertIntegration(chatbotId, platform, platformId, accessT
 }
 
 export async function disconnectIntegration(chatbotId, platform) {
-  return prisma.integration.updateMany({
+  return db.integration.updateMany({
     where: {
       chatbotId,
       platform
@@ -35,7 +35,7 @@ export async function disconnectIntegration(chatbotId, platform) {
 }
 
 export async function listChatbotIntegrations(chatbotId) {
-  return prisma.integration.findMany({
+  return db.integration.findMany({
     where: {
       chatbotId,
       connected: true
