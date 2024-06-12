@@ -34,6 +34,19 @@ model ChatbotErrors {
   chatbot      Chatbot  @relation(fields: [chatbotId], references: [id], onDelete: Cascade)
 }
 
+model Integration {
+  id           String   @id @default(cuid())
+  userId       String
+  platform     String
+  platformId   String 
+  accessToken  String
+  connected    Boolean  @default(false)
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, platform])
+  @@map("integrations")
+}
+
 model Chatbot {
   id                              String            @id @default(cuid())
   name                            String
@@ -58,7 +71,7 @@ model Chatbot {
   userReplyBackgroundColor        String            @default("#3b82f6")
   userReplyTextColor              String            @default("#FFFFFF")
   chatbotLogoURL                  String?
-  assistantImageBackgroundColor   String?           @default("#777777")
+  assistantImageBackgroundColor   String?           @default("#000000")
   inquiryEnabled                  Boolean           @default(false)
   inquiryLinkText                 String            @default("Contact our support team")
   inquiryTitle                    String            @default("Contact our support team")
@@ -71,6 +84,7 @@ model Chatbot {
   ChatbotErrors                   ChatbotErrors[]
   ChatbotFiles                    ChatbotFiles[]
   ClientInquiries                 ClientInquiries[]
+  Integrations                    Integration[]
   model                           ChatbotModel?     @relation(fields: [modelId], references: [id])
   user                            User              @relation(fields: [userId], references: [id])
 

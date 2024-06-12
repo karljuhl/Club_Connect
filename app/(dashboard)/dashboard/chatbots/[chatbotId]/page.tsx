@@ -17,6 +17,7 @@ import { siteConfig } from "@/config/site"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { CustomizationSettings } from "@/components/customization-settings"
 import { InquirySettings } from "@/components/inquiry-settings"
+import IntegrationSettings from "@/components/integrationSettings"
 import { ImportedChatbotForm } from "@/components/imported-chatbot-form"
 
 interface ChatbotSettingsProps {
@@ -102,11 +103,12 @@ export default async function ChatbotPage({ params }: ChatbotSettingsProps) {
                 </Link>
             </DashboardHeader>
             <Tabs className="w-full" defaultValue="settings">
-                <TabsList className="mb-5 grid w-full grid-cols-3 gap-4">
-                    <TabsTrigger value="settings">General Settings</TabsTrigger>
-                    <TabsTrigger value="customizations">Customizations</TabsTrigger>
-                    <TabsTrigger value="inquiry">User Inquiry Settings</TabsTrigger>
-                </TabsList>
+                <TabsList className="mb-5 grid w-full grid-cols-4 gap-4"> {/* Adjust grid-cols as needed */}
+                <TabsTrigger value="settings">General Settings</TabsTrigger>
+                <TabsTrigger value="customizations">Customizations</TabsTrigger>
+                <TabsTrigger value="inquiry">User Inquiry Settings</TabsTrigger>
+                <TabsTrigger value="integrations">Integrations</TabsTrigger> {/* New Tab for Integrations */}
+            </TabsList>
                 <TabsContent value="settings">
                     <div className="space-y-4">
                         <div className="grid gap-10">
@@ -139,6 +141,9 @@ export default async function ChatbotPage({ params }: ChatbotSettingsProps) {
                             </CardContent>
                         </Card>
                     </div>
+                </TabsContent>
+                <TabsContent>
+                    <IntegrationSettings chatbot={chatbot} />
                 </TabsContent>
                 <TabsContent value="customizations">
                     <div className="space-y-4">
