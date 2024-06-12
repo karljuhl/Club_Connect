@@ -1,5 +1,5 @@
 // components/IntegrationSettings.tsx
-
+"use client";
 import React, { useState, useEffect } from 'react';
 import { upsertIntegration, disconnectIntegration, listChatbotIntegrations } from '@/lib/prismaOperations';
 
