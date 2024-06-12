@@ -34,7 +34,7 @@ export function SiteFooter({ simpleFooter, className }: SiteFooterProps) {
             <div className="space-x-4 space-y-4">
             <Link href="/login" className={cn(buttonVariants({ size: "lg" }))}>
               <Icons.bell className="h-4 w-4 mr-2"></Icons.bell>
-              Get Started for Free
+              Get Started
             </Link>
           </div>
           </div>
