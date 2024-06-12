@@ -13,10 +13,10 @@ export default function IndexPage() {
     <>
 <section 
   style={{ 
-    backgroundImage: "linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(245, 245, 245, 1) 50%, rgba(245, 245, 245, 1) 100%), url('/grid.svg')",
+    backgroundImage: "linear-gradient(to bottom, rgba(255, 255, 255, 0) 50%, rgba(245, 245, 245, 1) 100%), url('/grid.svg')",
     backgroundAttachment: "fixed",
     backgroundPosition: "center top",
-    backgroundRepeat: "no-repeat",
+    backgroundRepeat: "repeat",
     backgroundSize: "cover"
   }}
 >
