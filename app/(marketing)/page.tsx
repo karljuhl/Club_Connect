@@ -169,12 +169,12 @@ export default function IndexPage() {
             Our assistant requires small code snippet to integrate into your website.
             You can follow our documentation to see how to implement your assistant in your website.
           </p>
-          <Image alt="code example" className="mt-6 shadow-xl border rounded-lg" width={550} height={550} src="/code_example.png" />
+          <Image alt="code example" className="mt-6 shadow-2xl border rounded-lg" width={550} height={550} src="/code_example.png" />
         </div>
       </section>
 <section data-aos="fade-up" id="pricing" className="container py-12 md:py-24 lg:py-32">
     <div className="container px-4 md:px-6">
-        <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
+        <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center shadow-2xl">
             <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Find the Right Plan for your Facility</h2>
                 <p className="max-w-[800px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
@@ -183,7 +183,7 @@ export default function IndexPage() {
             </div>
         </div>
         <div className="mx-auto mt-10 grid max-w-sm items-start gap-12 sm:max-w-4xl sm:grid-cols-2 lg:max-w-5xl lg:grid-cols-4">
-        <div className="relative flex flex-col space-y-2 px-3 py-3 rounded-md bg-gray-100">
+        <div className="relative flex flex-col space-y-2 px-3 py-3 rounded-md bg-gray-100 shadow-2xl">
                 <div className="space-y-2">
                     <h3 className="text-2xl font-bold tracking-tighter">{hobbyPlan.name}</h3>
                     <p className="text-2xl font-bold tracking-tighter">${hobbyPlan.price}</p>
@@ -196,7 +196,7 @@ export default function IndexPage() {
                     <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Unlimited Messages</li>
                 </ul>
             </div>
-            <div className="relative flex flex-col space-y-2 px-3 py-3 rounded-md bg-gray-100">
+            <div className="relative flex flex-col space-y-2 px-3 py-3 rounded-md bg-gray-100 shadow-2xl">
                 <div className="space-y-2">
                     <h3 className="text-2xl font-bold tracking-tighter">{webplusPlan.name}</h3>
                     <p className="text-2xl font-bold tracking-tighter">${webplusPlan.price}</p>
@@ -209,7 +209,7 @@ export default function IndexPage() {
                     <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Unlimited Messages</li>
                 </ul>
             </div>
-            <div className="relative flex flex-col space-y-2 px-3 py-3 rounded-md bg-gray-100">
+            <div className="relative flex flex-col space-y-2 px-3 py-3 rounded-md bg-gray-100 shadow-2xl">
                 <div className="space-y-2">
                     <h3 className="text-2xl font-bold tracking-tighter">{webunlimitedPlan.name}</h3>
                     <p className="text-2xl font-bold tracking-tighter">${webunlimitedPlan.price}</p>
@@ -223,7 +223,7 @@ export default function IndexPage() {
                     <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Premium support</li>
                 </ul>
             </div>
-            <div className="relative flex flex-col space-y-2 px-3 py-3 rounded-md bg-gray-100">
+            <div className="relative flex flex-col space-y-2 px-3 py-3 rounded-md bg-gray-100 shadow-2xl">
                 <div className="space-y-2">
                     <h3 className="text-2xl font-bold tracking-tighter">{managedWeb.name}</h3>
                     <p className="text-2xl font-bold tracking-tighter">${managedWeb.price}</p>
