@@ -34,7 +34,6 @@ export default function IndexPage() {
               Get Started for Free
             </Link>
           </div>
-          <Image data-aos="zoom-in" priority={false} className="mt-10 border shadow-xl rounded-md" src="/dashboard.png" width={810} height={540} alt="Dashboard" />
         </div>
       </section>
       <section data-aos="fade-up" id="chat" className="container py-12 md:py-24 lg:py-32">
