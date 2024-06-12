@@ -12,14 +12,12 @@ export default function IndexPage() {
   return (
     <>
       <section 
-  data-aos="fade-up" 
-  className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 py-12 md:py-24 lg:py-32"
   style={{ 
-    backgroundImage: "url('/paper-background.jpg'), url('/grid.svg')",
+    backgroundImage: "url('/grid.svg'), url('/paper-background.jpg')",
     backgroundAttachment: "fixed, fixed",
     backgroundPosition: "center top, center top",
-    backgroundRepeat: "no-repeat, repeat",
-    backgroundSize: "cover, auto"
+    backgroundRepeat: "repeat, no-repeat",
+    backgroundSize: "auto, cover"
   }}
 >
       <section data-aos="fade-up" className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 py-12 md:py-24 lg:py-32">
