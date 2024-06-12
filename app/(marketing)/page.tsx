@@ -193,7 +193,7 @@ export default function IndexPage() {
                     <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {hobbyPlan.maxChatbots} Assistant</li>
                     <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {hobbyPlan.maxFiles} Files</li>
                     <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Customizations</li>
-                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Unlimited Messages</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> 2.500 Messages/month</li>
                 </ul>
             </div>
             <div className="relative flex flex-col space-y-2 px-3 py-3 rounded-md bg-green-200 shadow-2xl">
@@ -206,7 +206,7 @@ export default function IndexPage() {
                     <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {webplusPlan.maxChatbots} Assistants</li>
                     <li><Icons.check className="mr-2 inline-block h-4 w-4" /> {webplusPlan.maxFiles} Files</li>
                     <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Customizations</li>
-                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> Unlimited Messages</li>
+                    <li><Icons.check className="mr-2 inline-block h-4 w-4" /> 6.500 Messages/month</li>
                 </ul>
             </div>
             <div className="relative flex flex-col space-y-2 px-3 py-3 rounded-md bg-green-200 shadow-2xl">
