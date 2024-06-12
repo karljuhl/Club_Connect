@@ -13,7 +13,7 @@ export default function IndexPage() {
     <>
       <section 
   style={{ 
-    backgroundImage: "url('/grid.svg'), url('/paper-background.jpg')",
+    backgroundImage: "url('/paper-background.jpg')",
     backgroundAttachment: "fixed, fixed",
     backgroundPosition: "center top, center top",
     backgroundRepeat: "repeat, no-repeat",
