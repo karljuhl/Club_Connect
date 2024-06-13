@@ -1,7 +1,7 @@
 // components/IntegrationSettings.tsx
 "use client";
 import React, { useState, useEffect } from 'react';
-// import { upsertIntegration, disconnectIntegration, listChatbotIntegrations } from '@/lib/prismaOperations';
+import { upsertIntegration, disconnectIntegration, listChatbotIntegrations } from '@/lib/prismaOperations';
 import { Form, FormField, FormItem, FormControl, FormLabel, FormDescription } from '@/components/ui/form';
 import { Switch } from '@/components/ui/switch';
 
@@ -9,46 +9,49 @@ function IntegrationSettings({ chatbot }) {
     const [integrations, setIntegrations] = useState([]);
 
     useEffect(() => {
-        // Mock data to focus on aesthetics
-        setIntegrations([
-            { platform: 'facebook', connected: false },
-            { platform: 'twitter', connected: true }
-        ]);
+        const fetchIntegrations = async () => {
+            try {
+                const integrationData = await listChatbotIntegrations(chatbot.id);
+                setIntegrations(integrationData);
+            } catch (error) {
+                console.error("Error fetching integrations:", error);
+                // Handle or display error appropriately
+            }
+        };
 
-        // const fetchIntegrations = async () => {
-        //     try {
-        //         const integrationData = await listChatbotIntegrations(chatbot.id);
-        //         setIntegrations(integrationData);
-        //     } catch (error) {
-        //         console.error("Error fetching integrations:", error);
-        //         // Handle or display error appropriately
-        //     }
-        // };
-        // fetchIntegrations();
+        fetchIntegrations();
     }, [chatbot.id]);
 
-    // Commented out functional handlers
-    // const handleConnect = async (platform) => {
-    //     const { platformId, accessToken } = await triggerOAuthFlow(platform);
-    //     await upsertIntegration(chatbot.id, platform, platformId, accessToken);
-    //     fetchIntegrations();
-    // };
+    const handleConnect = async (platform) => {
+        try {
+            const { platformId, accessToken } = await triggerOAuthFlow(platform);
+            await upsertIntegration(chatbot.id, platform, platformId, accessToken);
+            fetchIntegrations();
+        } catch (error) {
+            console.error("Failed to connect:", error);
+            // Optionally handle error in UI, such as showing a notification or message
+        }
+    };
 
-    // const handleDisconnect = async (platform) => {
-    //     await disconnectIntegration(chatbot.id, platform);
-    //     fetchIntegrations();
-    // };
+    const handleDisconnect = async (platform) => {
+        try {
+            await disconnectIntegration(chatbot.id, platform);
+            fetchIntegrations();
+        } catch (error) {
+            console.error("Failed to disconnect:", error);
+            // Optionally handle error in UI
+        }
+    };
 
     const handleToggle = (platform) => {
-        // Log actions to console instead of performing them
-        console.log(`${platform} toggle clicked`);
-        // Update local state to simulate toggle for aesthetic purposes
-        setIntegrations(integrations.map(int => {
-            if (int.platform === platform) {
-                return { ...int, connected: !int.connected };
+        const integration = integrations.find(int => int.platform === platform);
+        if (integration) {
+            if (integration.connected) {
+                handleDisconnect(platform);
+            } else {
+                handleConnect(platform);
             }
-            return int;
-        }));
+        }
     };
 
     return (
@@ -73,6 +76,18 @@ function IntegrationSettings({ chatbot }) {
                         </FormItem>
                     </FormField>
                 ))}
+                {/* Toggle switch for Facebook connection */}
+                <FormField>
+                    <FormItem className="flex justify-between items-center p-4 border rounded-lg">
+                        <FormLabel>Facebook</FormLabel>
+                        <FormControl>
+                            <Switch
+                                checked={integrations.some(int => int.platform === 'facebook' && int.connected)}
+                                onCheckedChange={() => handleToggle('facebook')}
+                            />
+                        </FormControl>
+                    </FormItem>
+                </FormField>
             </div>
         </Form>
     );
