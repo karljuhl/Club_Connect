@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState, useEffect } from 'react';
 import { upsertIntegration, disconnectIntegration, listChatbotIntegrations } from '@/lib/prismaOperations';
@@ -13,16 +12,15 @@ function IntegrationSettings({ chatbot }) {
         const fetchIntegrations = async () => {
             try {
                 const integrationData = await listChatbotIntegrations(chatbot.id);
-                if (integrationData.length > 0) {
+                if (integrationData && integrationData.length > 0) {
                     setIntegrations(integrationData);
+                    // Check if Facebook is already connected in the fetched integrations
+                    const fbIntegration = integrationData.find(int => int.platform === 'facebook');
+                    setIsFacebookConnected(fbIntegration?.connected ?? false);
                 } else {
                     console.log("No integrations found for this chatbot.");
+                    setIsFacebookConnected(false);  // Ensure this is set to false if no integrations exist
                 }
-
-                // Check if Facebook is already connected in the fetched integrations
-                const fbIntegration = integrationData.find(int => int.platform === 'facebook');
-                setIsFacebookConnected(fbIntegration ? fbIntegration.connected : false);
-
             } catch (error) {
                 console.error("Error fetching integrations:", error);
             }
@@ -56,22 +54,20 @@ function IntegrationSettings({ chatbot }) {
     };
 
     const handleConnect = async (platform) => {
-        // Implement connection logic here, including obtaining access tokens
         console.log(`Connecting to ${platform}`);
-        // For demonstration purposes, simulate connection
+        // Implement connection logic here, including obtaining access tokens
     };
 
     const handleDisconnect = async (platform) => {
-        // Implement disconnection logic here
         console.log(`Disconnecting from ${platform}`);
-        // For demonstration purposes, simulate disconnection
+        // Implement disconnection logic here
     };
 
     return (
         <Form>
             <div className="space-y-6">
                 <h3 className="text-lg font-semibold">Manage Your Integrations</h3>
-                {integrations.length > 0 && integrations.map(integration => (
+                {integrations.length > 0 ? integrations.map(integration => (
                     <FormField key={integration.platform}>
                         <FormItem className="flex justify-between items-center p-4 border rounded-lg">
                             <div>
@@ -88,7 +84,9 @@ function IntegrationSettings({ chatbot }) {
                             </FormControl>
                         </FormItem>
                     </FormField>
-                ))}
+                )) : (
+                    <div>No integrations available. Please set up new integrations.</div>
+                )}
                 <FormField>
                     <FormItem className="flex justify-between items-center p-4 border rounded-lg">
                         <FormLabel>Facebook</FormLabel>
@@ -100,14 +98,9 @@ function IntegrationSettings({ chatbot }) {
                         </FormControl>
                     </FormItem>
                 </FormField>
-                {integrations.length === 0 && (
-                    <div>No integrations available. Please set up new integrations.</div>
-                )}
             </div>
         </Form>
     );
 }
 
 export default IntegrationSettings;
-
-
