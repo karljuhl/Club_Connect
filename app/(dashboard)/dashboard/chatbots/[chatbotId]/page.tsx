@@ -107,7 +107,6 @@ export default async function ChatbotPage({ params }: ChatbotSettingsProps) {
                 <TabsTrigger value="settings">General Settings</TabsTrigger>
                 <TabsTrigger value="customizations">Customizations</TabsTrigger>
                 <TabsTrigger value="inquiry">User Inquiry Settings</TabsTrigger>
-                <TabsTrigger value="integrations">Integrations</TabsTrigger> {/* New Tab for Integrations */}
             </TabsList>
                 <TabsContent value="settings">
                     <div className="space-y-4">
@@ -141,9 +140,6 @@ export default async function ChatbotPage({ params }: ChatbotSettingsProps) {
                             </CardContent>
                         </Card>
                     </div>
-                </TabsContent>
-                <TabsContent value="integrations">
-                    <IntegrationSettings chatbot={chatbot} />
                 </TabsContent>
                 <TabsContent value="customizations">
                     <div className="space-y-4">
