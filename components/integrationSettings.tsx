@@ -9,31 +9,48 @@ function IntegrationSettings({ chatbot }) {
     const [integrations, setIntegrations] = useState([]);
 
     useEffect(() => {
+        const fetchIntegrations = async () => {
+            try {
+                const integrationData = await listChatbotIntegrations(chatbot.id);
+                setIntegrations(integrationData);
+            } catch (error) {
+                console.error("Error fetching integrations:", error);
+                // Handle or display error appropriately
+            }
+        };
+
         fetchIntegrations();
     }, [chatbot.id]);
 
-    const fetchIntegrations = async () => {
-        const integrationData = await listChatbotIntegrations(chatbot.id);
-        setIntegrations(integrationData);
-    };
-
     const handleConnect = async (platform) => {
-        const { platformId, accessToken } = await triggerOAuthFlow(platform);
-        await upsertIntegration(chatbot.id, platform, platformId, accessToken);
-        fetchIntegrations();
+        try {
+            const { platformId, accessToken } = await triggerOAuthFlow(platform);
+            await upsertIntegration(chatbot.id, platform, platformId, accessToken);
+            fetchIntegrations();
+        } catch (error) {
+            console.error("Failed to connect:", error);
+            // Optionally handle error in UI, such as showing a notification or message
+        }
     };
 
     const handleDisconnect = async (platform) => {
-        await disconnectIntegration(chatbot.id, platform);
-        fetchIntegrations();
+        try {
+            await disconnectIntegration(chatbot.id, platform);
+            fetchIntegrations();
+        } catch (error) {
+            console.error("Failed to disconnect:", error);
+            // Optionally handle error in UI
+        }
     };
 
     const handleToggle = (platform) => {
         const integration = integrations.find(int => int.platform === platform);
-        if (integration && integration.connected) {
-            handleDisconnect(platform);
-        } else {
-            handleConnect(platform);
+        if (integration) {
+            if (integration.connected) {
+                handleDisconnect(platform);
+            } else {
+                handleConnect(platform);
+            }
         }
     };
 
