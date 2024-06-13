@@ -56,7 +56,7 @@ export const webunlimitedPlan: SubscriptionPlan = {
     description: "The Web Unlimited plan includes 3 assistants, 8 files, customizations and unlimited messages.",
     stripePriceId: process.env.NEXT_PUBLIC_STRIPE_WEBUNLIMITED_PRICE_ID || "",
 
-    maxChatbots: 1,
+    maxChatbots: 2,
     maxCrawlers: 1,
     maxFiles: 3,
     unlimitedMessages: true,
@@ -76,7 +76,7 @@ export const managedWeb: SubscriptionPlan = {
     description: "The Managed Web Unlimited plan has 4 assistants, 12 files, customizations and unlimited messages in conjunciton with our experienced team helping you set up and keeping a close eye on the day-to-day performance. We will notify you when updates to information are needed are provide reports on performance",
     stripePriceId: process.env.NEXT_PUBLIC_STRIPE_MW_PRICE_ID || "",
 
-    maxChatbots: 2,
+    maxChatbots: 3,
     maxCrawlers: 2,
     maxFiles: 4,
     unlimitedMessages: true,
